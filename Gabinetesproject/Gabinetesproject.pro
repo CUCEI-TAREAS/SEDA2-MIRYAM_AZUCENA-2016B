@@ -12,7 +12,8 @@ TARGET = Gabinetesproject
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp
+SOURCES += main.cpp \
+    guigabinete.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += \
+    guigabinete.h
