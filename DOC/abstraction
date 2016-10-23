@@ -1,0 +1,47 @@
+Proyecto Final
+Felipe de Jesus Ruiz Garcia 214522077
+
+Diagrama de clases UML
+
+// Gabinete : psicologico - medico - legal
+
+Permisos
+permiso		char
+void Permiso(char)
+char getPermiso()
+void setPermiso(char)
+
+Estudiante
+nombre:		string
+codigo:		string
+permiso		char
+status			char
+tutor			*Estudiante
+carrera:		*Carrera
+semestre:		char
+creditos cursados	char
+email 			string
+telefono		string
+expediente		string
+void Estudiante()
+type getters(void)
+void setters(type)
+
+Menu
+registroFaltas	Lista<Estudiante>
+tutores		Lista<Estudiante>		
+opcion			char
+void Menu(void)
+short doAction(char)
+short mostrarMenu()
+
+
+Cita
+tipoCita		string
+fecha			fecha
+codigoAlumno	string	
+
+Mail
+Lista<Template>
+Reporte
+

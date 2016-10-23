@@ -2,5 +2,5 @@
 
 Carrera::Carrera()
 {
-
+    carrera = -1;
 }

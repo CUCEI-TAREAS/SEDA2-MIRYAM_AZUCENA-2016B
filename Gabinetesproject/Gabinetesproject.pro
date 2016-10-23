@@ -13,7 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    guigabinete.cpp
+    guigabinete.cpp \
+    personal.cpp \
+    carrera.cpp
 
 HEADERS  += \
-    guigabinete.h
+    guigabinete.h \
+    personal.h \
+    carrera.h
