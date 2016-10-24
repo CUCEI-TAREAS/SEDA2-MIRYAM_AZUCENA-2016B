@@ -5,6 +5,12 @@
 #include <QWidget>
 #include <QLayout>
 #include <QLabel>
+#include <QGroupBox>
+
+#define NAME_PERSONAL           "Nombre del estudiante"
+#define LAST_NAME_PERSONAL      "Apeido del estudiante"
+#define CODE_PERSONAL           "Codigo del estudiante"
+#define EMAIL_PERSONAL          "Email del estudiante"
 
 #define TITLE_APP       "Gabinete"
 #define MINIMUM_WIDTH   300
@@ -29,20 +35,22 @@ private:
 
     // registro
     QWidget *registroWidget = nullptr;
+    QGroupBox *registroLayout = nullptr;
 
     // components of registro
     QLabel
-    nombre,
-    codigo,
-    email,
-    telefono,
-    expediente,
-    statusPersonal,
-    semestre,
-    creditosCursados,
-    permisos, // is necesary ?
-    carrera, // combox
-    tutor;  // combox
+    *nombre,
+    *apeido,
+    *codigo,
+    *email,
+    *telefono,
+    *expediente,
+    *statusPersonal,
+    *semestre,
+    *creditosCursados,
+    *permisos, // is necesary ?
+    *carrera, // combox
+    *tutor;  // combox
 
     void initRegistro(void);
 

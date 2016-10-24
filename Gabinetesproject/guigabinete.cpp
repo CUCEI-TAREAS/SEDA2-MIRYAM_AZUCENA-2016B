@@ -17,5 +17,16 @@ GUIGabinete::GUIGabinete()
 
 void GUIGabinete::initRegistro()
 {
-
+    nombre = new QLabel(NAME_PERSONAL);
+    apeido = new QLabel(LAST_NAME_PERSONAL);
+    codigo = new QLabel(CODE_PERSONAL);
+    email = new QLabel (EMAIL_PERSONAL);
+    telefono,
+    expediente,
+    statusPersonal,
+    semestre,
+    creditosCursados,
+    permisos, // is necesary ?
+    carrera, // combox
+    tutor;  // combox
 }
