@@ -6,18 +6,28 @@
 #include <QLayout>
 #include <QLabel>
 #include <QGroupBox>
+#include <QGridLayout>
 
 #define NAME_PERSONAL           "Nombre del estudiante"
 #define LAST_NAME_PERSONAL      "Apeido del estudiante"
 #define CODE_PERSONAL           "Codigo del estudiante"
 #define EMAIL_PERSONAL          "Email del estudiante"
+#define PHONE_PERSONAL          "Telefono del estudiante"
+#define EXP_PERSONAL            "Expediente del estudiante"
+#define STATE_PERSONAL          "Status del estudiante"
+#define SEMESTRE_PERSONAL       "Semestre del estudiante"
+#define CURRENT_PERSONAL        "Creditos cursados del estudiante"
+#define PERMISOS_PERSONAL       "Permisos del estudiante"
+#define CARRERA_PERSONAL        "Carrera del estudiante"
+#define TUTOR_ESTUDIANTE        "Tutor del estudiante"
 
 #define TITLE_APP       "Gabinete"
 #define MINIMUM_WIDTH   300
 
 enum {
     SETUP,
-    READY
+    READY,
+    SESSION
 };
 
 class GUIGabinete : QObject
@@ -33,9 +43,12 @@ private:
     QWidget *mainWidget = nullptr; // all into there
     QLayout *mainLayout = nullptr;
 
+    QGroupBox *registroGroupLayout = nullptr;
+
+
     // registro
     QWidget *registroWidget = nullptr;
-    QGroupBox *registroLayout = nullptr;
+    QGridLayout *registroGridLayout = nullptr;
 
     // components of registro
     QLabel

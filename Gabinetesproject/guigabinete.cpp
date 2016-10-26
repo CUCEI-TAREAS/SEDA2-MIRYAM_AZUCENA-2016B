@@ -17,16 +17,27 @@ GUIGabinete::GUIGabinete()
 
 void GUIGabinete::initRegistro()
 {
+    //widget
+    registroWidget = new QWidget();
+
+    //layout
+    registroGroupLayout = new QGroupBox();
+    registroGridLayout = new QGridLayout();
+
+    // labels
     nombre = new QLabel(NAME_PERSONAL);
     apeido = new QLabel(LAST_NAME_PERSONAL);
     codigo = new QLabel(CODE_PERSONAL);
-    email = new QLabel (EMAIL_PERSONAL);
-    telefono,
-    expediente,
-    statusPersonal,
-    semestre,
-    creditosCursados,
-    permisos, // is necesary ?
-    carrera, // combox
-    tutor;  // combox
+    email = new QLabel(EMAIL_PERSONAL);
+    telefono = new QLabel(PHONE_PERSONAL);
+    expediente = new QLabel(EXP_PERSONAL);
+    statusPersonal = new QLabel (STATE_PERSONAL);
+    semestre =  new QLabel (SEMESTRE_PERSONAL);
+    creditosCursados = new QLabel(CURRENT_PERSONAL);
+    permisos = new QLabel (PERMISOS_PERSONAL); // is necesary ?
+    carrera = new QLabel (CARRERA_PERSONAL); // combox
+    tutor = new QLabel (TUTOR_ESTUDIANTE);  // combox
+
+    registroGridLayout->addWidget(nombre, 0, 0);
+    registroGrid
 }
