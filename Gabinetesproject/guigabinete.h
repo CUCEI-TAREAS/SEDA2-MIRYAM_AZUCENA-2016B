@@ -4,9 +4,13 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QLayout>
-#include <QLabel>
 #include <QGroupBox>
 #include <QGridLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QComboBox>
+#include <QSpinBox>
+#include <QPushButton>
 
 #define NAME_PERSONAL           "Nombre del estudiante"
 #define LAST_NAME_PERSONAL      "Apeido del estudiante"
@@ -21,8 +25,13 @@
 #define CARRERA_PERSONAL        "Carrera del estudiante"
 #define TUTOR_ESTUDIANTE        "Tutor del estudiante"
 
+#define MIN_RANGE_SEMESTRE 1
+#define MAX_RANGE_SEMESTRE 22
+
+#define TEXT_ADD_PERSONAL   "Agregar estudiante"
+
 #define TITLE_APP       "Gabinete"
-#define MINIMUM_WIDTH   300
+#define MINIMUM_WIDTH   600
 
 enum {
     SETUP,
@@ -40,30 +49,41 @@ private:
 
     // interface
     QMainWindow *window = nullptr;
-    QWidget *mainWidget = nullptr; // all into there
     QLayout *mainLayout = nullptr;
+    QWidget *mainWidget = nullptr; // all into there
 
     QGroupBox *registroGroupLayout = nullptr;
 
-
     // registro
-    QWidget *registroWidget = nullptr;
     QGridLayout *registroGridLayout = nullptr;
 
     // components of registro
     QLabel
-    *nombre,
-    *apeido,
-    *codigo,
-    *email,
-    *telefono,
-    *expediente,
-    *statusPersonal,
-    *semestre,
-    *creditosCursados,
-    *permisos, // is necesary ?
-    *carrera, // combox
-    *tutor;  // combox
+    *nombreLabel,
+    *apeidoLabel,
+    *codigoLabel,
+    *emailLabel,
+    *telefonoLabel,
+    *expedienteLabel,
+    *statusPersonalLabel,
+    *semestreLabel,
+    *creditosCursadosLabel,
+    *carreraLabel, // combox
+    *tutorLabel;  // combox
+
+    QLineEdit
+    *nombreLine,
+    *apeidoLine,
+    *codigoLine,
+    *emailLine,
+    *telefonoLine,
+    *expedienteLine,
+    *creditosCursadosLine;
+
+    QPushButton *addPersonalButton;
+    QSpinBox *semestreSpin;
+    QComboBox *carreraCombobox, *tutorCombobox, *statusPersonalCombobox;
+
 
     void initRegistro(void);
 
