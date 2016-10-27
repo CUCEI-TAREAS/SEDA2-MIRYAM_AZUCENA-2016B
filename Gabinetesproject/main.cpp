@@ -11,3 +11,10 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
+
+/* if config.txt doesnt exist
+ * captureDatabase and create config.txt
+ *
+ * if connection is failed
+ * show message /
+ *

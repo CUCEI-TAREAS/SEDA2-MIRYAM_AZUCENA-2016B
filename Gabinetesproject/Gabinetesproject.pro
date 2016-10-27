@@ -15,9 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp \
     guigabinete.cpp \
     personal.cpp \
-    carrera.cpp
+    carrera.cpp \
+    database.cpp \
+    configfile.cpp
 
 HEADERS  += \
     guigabinete.h \
     personal.h \
-    carrera.h
+    carrera.h \
+    database.h \
+    configfile.h

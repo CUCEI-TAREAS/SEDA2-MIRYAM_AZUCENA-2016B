@@ -86,6 +86,10 @@ private:
 
 
     void initRegistro(void);
+    void clearRegistro();
+
+private slots:
+    void addPersonal();
 
 public:
     GUIGabinete();

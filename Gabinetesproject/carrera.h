@@ -3,11 +3,13 @@
 
 #include <QString>
 
+/*
 enum {
     INFORMATICA,
     COMPUTACION,
     ELECTRONICA
 };
+*/
 
 class Carrera
 {

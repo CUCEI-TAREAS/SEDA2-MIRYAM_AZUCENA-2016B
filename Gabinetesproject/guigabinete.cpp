@@ -97,3 +97,13 @@ void GUIGabinete::initRegistro()
     registroGridLayout->addWidget(addPersonalButton, 10, 0, 1, 2);
     registroGroupLayout->setLayout(registroGridLayout);
 }
+
+void GUIGabinete::clearRegistro()
+{
+
+}
+
+void GUIGabinete::addPersonal()
+{
+
+}
