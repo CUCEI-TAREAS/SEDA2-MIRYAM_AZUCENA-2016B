@@ -3,7 +3,12 @@
 
 GUIGabinete::GUIGabinete()
 {
-    status =  SETUP;
+    status =  CONFIGFILE;
+
+    // load file
+    file = new ConfigFile();
+
+    // GUI
     window = new QMainWindow();
     mainWidget = new QWidget();
     mainLayout = new QGridLayout();

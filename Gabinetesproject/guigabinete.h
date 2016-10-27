@@ -12,6 +12,8 @@
 #include <QSpinBox>
 #include <QPushButton>
 
+#include "configfile.h"
+
 #define NAME_PERSONAL           "Nombre del estudiante"
 #define LAST_NAME_PERSONAL      "Apeido del estudiante"
 #define CODE_PERSONAL           "Codigo del estudiante"
@@ -34,7 +36,9 @@
 #define MINIMUM_WIDTH   600
 
 enum {
-    SETUP,
+    CONFIGFILE,
+    SETUPDB,
+    SETUPGUI,
     READY,
     SESSION
 };
@@ -43,6 +47,8 @@ class GUIGabinete : QObject
 {
     Q_OBJECT
 private:
+
+    ConfigFile *file;
 
     // state
     short status;
