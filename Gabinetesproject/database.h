@@ -10,6 +10,7 @@ private:
 
 public:
     Database();
+    void createDB();
 };
 
 #endif // DATABASE_H

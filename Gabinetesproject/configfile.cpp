@@ -19,7 +19,8 @@ void ConfigFile::createConfigFile()
 bool ConfigFile::checkStructureFile()
 {
 /* FILE STRUCTURE
-
+user: ANYTEXT
+pass: ANYTEXT
 */
 }
 

@@ -4,3 +4,8 @@ Database::Database()
 {
 
 }
+
+void Database::createDB()
+{
+
+}
