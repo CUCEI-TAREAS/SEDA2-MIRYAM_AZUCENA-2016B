@@ -6,7 +6,7 @@ GUIGabinete::GUIGabinete()
     status =  CONFIGFILE;
 
     // load file
-    file = new ConfigFile();
+    fileConfig = new ConfigFile();
 
     // GUI
     window = new QMainWindow();

@@ -2,7 +2,11 @@
 #define CONFIGFILE_H
 
 #include <QFile>
-#include <QByteArray>
+#include <QTextStream>
+
+#define HOST "host "
+#define PORT "port "
+#define USER "user "
 
 #define NAME_FILE "config.txt"
 
@@ -21,7 +25,7 @@ private:
 public:
     ConfigFile();
 
-    void createConfigFile();
+    void createConfigFile(QString, QString, QString, QString, QString );
     bool checkStructureFile();
     bool isOpen();
 };

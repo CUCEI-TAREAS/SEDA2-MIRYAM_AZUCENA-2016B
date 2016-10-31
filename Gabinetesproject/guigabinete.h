@@ -48,7 +48,7 @@ class GUIGabinete : QObject
     Q_OBJECT
 private:
 
-    ConfigFile *file;
+    ConfigFile *fileConfig;
 
     // state
     short status;
