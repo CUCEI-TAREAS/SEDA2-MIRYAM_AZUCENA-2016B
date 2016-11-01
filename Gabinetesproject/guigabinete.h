@@ -13,6 +13,7 @@
 #include <QPushButton>
 
 #include "configfile.h"
+#include "database.h"
 
 #define NAME_PERSONAL           "Nombre del estudiante"
 #define LAST_NAME_PERSONAL      "Apeido del estudiante"
@@ -48,7 +49,11 @@ class GUIGabinete : QObject
     Q_OBJECT
 private:
 
-    ConfigFile *fileConfig;
+    // connection db
+    ConfigFile *fileConfig = nullptr;
+
+    // db
+    Database *db = nullptr;
 
     // state
     short status;
@@ -65,30 +70,33 @@ private:
 
     // components of registro
     QLabel
-    *nombreLabel,
-    *apeidoLabel,
-    *codigoLabel,
-    *emailLabel,
-    *telefonoLabel,
-    *expedienteLabel,
-    *statusPersonalLabel,
-    *semestreLabel,
-    *creditosCursadosLabel,
-    *carreraLabel, // combox
-    *tutorLabel;  // combox
+    *nombreLabel = nullptr,
+    *apeidoLabel = nullptr,
+    *codigoLabel = nullptr,
+    *emailLabel = nullptr,
+    *telefonoLabel= nullptr,
+    *expedienteLabel = nullptr,
+    *statusPersonalLabel = nullptr,
+    *semestreLabel = nullptr,
+    *creditosCursadosLabel= nullptr,
+    *carreraLabel = nullptr, // combox
+    *tutorLabel = nullptr;  // combox
 
     QLineEdit
-    *nombreLine,
-    *apeidoLine,
-    *codigoLine,
-    *emailLine,
-    *telefonoLine,
-    *expedienteLine,
-    *creditosCursadosLine;
+    *nombreLine = nullptr,
+    *apeidoLine = nullptr,
+    *codigoLine = nullptr,
+    *emailLine = nullptr,
+    *telefonoLine = nullptr,
+    *expedienteLine = nullptr,
+    *creditosCursadosLine = nullptr;
 
-    QPushButton *addPersonalButton;
-    QSpinBox *semestreSpin;
-    QComboBox *carreraCombobox, *tutorCombobox, *statusPersonalCombobox;
+    QPushButton *addPersonalButton = nullptr;
+    QSpinBox *semestreSpin = nullptr;
+
+    QComboBox *carreraCombobox = nullptr,
+    *tutorCombobox = nullptr,
+    *statusPersonalCombobox = nullptr;
 
 
     void initRegistro(void);

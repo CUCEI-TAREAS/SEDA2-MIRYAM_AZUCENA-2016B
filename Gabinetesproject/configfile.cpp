@@ -23,23 +23,24 @@ void ConfigFile::createConfigFile(QString host,
     QTextStream out(config);
     out<<HOST<<host;
     out<<PORT<<port;
+    out<<USER<<user;
+    out<<PASS<<pass;
+    out<<DB<<db;
 
 }
 
 bool ConfigFile::checkStructureFile()
 {
-    QTextStream in(config);
+    structure = new QRegularExpression (REGULAR_EXPRESSION);
 
-    /* FILE STRUCTURE
-host ANYTEXT
-port number
-user ANYTEXT
-pass ANYTEXT
-db ANYTEXT
-*/
+    QTextStream in(config);
+    //Qstring temp = in.readLine();
+
+
+    return true;
 }
 
 bool ConfigFile::isOpen()
 {
-
+    return true;
 }
