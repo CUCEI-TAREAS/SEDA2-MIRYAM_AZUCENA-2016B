@@ -26,7 +26,6 @@ void ConfigFile::createConfigFile(QString host,
     out<<USER<<user;
     out<<PASS<<pass;
     out<<DB<<db;
-
 }
 
 bool ConfigFile::checkStructureFile()
@@ -34,13 +33,8 @@ bool ConfigFile::checkStructureFile()
     structure = new QRegularExpression (REGULAR_EXPRESSION);
 
     QTextStream in(config);
-    //Qstring temp = in.readLine();
+    if(structure->match(in.readAll()).hasMatch())
+        return false;
 
-
-    return true;
-}
-
-bool ConfigFile::isOpen()
-{
     return true;
 }

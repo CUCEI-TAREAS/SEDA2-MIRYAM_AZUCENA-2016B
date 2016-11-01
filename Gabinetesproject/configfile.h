@@ -12,7 +12,7 @@
 #define PASS "pass "
 #define DB  "db "
 
-#define REGULAR_EXPRESSION HOST"\n"
+#define REGULAR_EXPRESSION "(" HOST ".+ \n)"
 
 #define NAME_FILE "config.txt"
 
@@ -34,7 +34,6 @@ public:
 
     void createConfigFile(QString, QString, QString, QString, QString );
     bool checkStructureFile();
-    bool isOpen();
 };
 
 #endif // CONFIGFILE_H
