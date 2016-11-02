@@ -5,13 +5,13 @@ ConfigFile::ConfigFile()
     config = new QFile(NAME_FILE);
 
     if(config->exists(NAME_FILE)){
+        statusFile = EXISTS;
         checkStructureFile();
     }else{
-        config->open(QFile::WriteOnly | QFile::Text);
+        statusFile = NOEXISTS;
+        //config->open(QFile::WriteOnly | QFile::Text);
         //createConfigFile();
-
     }
-
 }
 
 void ConfigFile::createConfigFile(QString host,
@@ -28,13 +28,24 @@ void ConfigFile::createConfigFile(QString host,
     out<<DB<<db;
 }
 
-bool ConfigFile::checkStructureFile()
+void ConfigFile::checkStructureFile()
 {
     structure = new QRegularExpression (REGULAR_EXPRESSION);
 
     QTextStream in(config);
-    if(structure->match(in.readAll()).hasMatch())
-        return false;
+    if(structure->match(in.readAll()).hasMatch()){
+        statusFile = DONE;
+    } else {
+        statusFile = FAIL;
+    }
+}
 
-    return true;
+char ConfigFile::getStatusFile()
+{
+    return statusFile;
+}
+
+void ConfigFile::setStatusFile(char n)
+{
+    statusFile = n;
 }

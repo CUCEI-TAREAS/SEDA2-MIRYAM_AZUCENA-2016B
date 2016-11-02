@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QWidget>
+#include <QDialog>
 #include <QLayout>
 #include <QGroupBox>
 #include <QGridLayout>
@@ -36,13 +37,13 @@
 #define TITLE_APP       "Gabinete"
 #define MINIMUM_WIDTH   600
 
-enum {
-    CONFIGFILE,
-    SETUPDB,
-    SETUPGUI,
-    READY,
-    SESSION
-};
+#define START           0
+#define CONFIGFILE      1
+#define READYFILE       2
+#define SETUPDB         3
+#define SETUPGUI        4
+#define READY           5
+#define SESSION         6
 
 class GUIGabinete : QObject
 {
@@ -98,8 +99,12 @@ private:
     *tutorCombobox = nullptr,
     *statusPersonalCombobox = nullptr;
 
+    //capture db
 
-    void initRegistro(void);
+    QDialog *captureDB = nullptr;
+
+    void initCaptureDB(QWidget*);
+    void initRegistroPersonal(void);
     void clearRegistro();
 
 private slots:

@@ -3,17 +3,24 @@
 
 GUIGabinete::GUIGabinete()
 {
-    status =  CONFIGFILE;
+    status =  START;
 
-    // load file
+    db = new Database();
+
+    // load file and validate status
     fileConfig = new ConfigFile();
+
+    if(fileConfig->getStatusFile() < EXISTS ){
+        mainWidget = new QWidget();
+        initCaptureDB(mainWidget);
+    }
+
 
     // GUI
     window = new QMainWindow();
-    mainWidget = new QWidget();
     mainLayout = new QGridLayout();
 
-    initRegistro();
+    initRegistroPersonal();
     mainLayout->addWidget(registroGroupLayout);
     mainWidget->setLayout(mainLayout);
 
@@ -23,7 +30,13 @@ GUIGabinete::GUIGabinete()
     window->show();
 }
 
-void GUIGabinete::initRegistro()
+void GUIGabinete::initCaptureDB(QWidget *x)
+{
+    captureDB = new QDialog(x);
+    captureDB->show();
+}
+
+void GUIGabinete::initRegistroPersonal()
 {
     //widget
     //registroWidget = new QWidget();

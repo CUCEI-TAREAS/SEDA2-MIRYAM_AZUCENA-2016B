@@ -12,19 +12,21 @@
 #define PASS "pass "
 #define DB  "db "
 
-#define REGULAR_EXPRESSION "(" HOST ".+ \n)"
+#define REGULAR_EXPRESSION "/("HOST" .+\n)("PORT" \d+\n)("USER" .+\n)("PASS" .+\d\n)("DB" .+)/g"
 
 #define NAME_FILE "config.txt"
 
-enum{
-    NOEXISTS,
-    FAIL,
-    DONE, // CHECK FILE STRUCTURE
-};
+#define FAIL        -1 // exists corrupted
+#define NOEXISTS    0
+#define EMPTY       1
+#define EXISTS      2
+#define DONE        4 // CHECK FILE STRUCTURE
+
 
 class ConfigFile
 {
 private:
+
     char statusFile;
     QFile *config = nullptr;
     QRegularExpression *structure = nullptr;
@@ -33,7 +35,10 @@ public:
     ConfigFile();
 
     void createConfigFile(QString, QString, QString, QString, QString );
-    bool checkStructureFile();
+    void checkStructureFile();
+
+    char getStatusFile();
+    void setStatusFile(char);
 };
 
 #endif // CONFIGFILE_H
