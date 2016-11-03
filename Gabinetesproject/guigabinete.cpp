@@ -13,8 +13,7 @@ GUIGabinete::GUIGabinete()
     if(fileConfig->getStatusFile() < EXISTS ){
         mainWidget = new QWidget();
         initCaptureDB(mainWidget);
-    }
-
+    } else {
 
     // GUI
     window = new QMainWindow();
@@ -28,11 +27,13 @@ GUIGabinete::GUIGabinete()
     window->setWindowTitle(TITLE_APP);
     window->setMinimumWidth(MINIMUM_WIDTH);
     window->show();
+    }
 }
 
 void GUIGabinete::initCaptureDB(QWidget *x)
 {
     captureDB = new QDialog(x);
+    captureDB->setModal(true);
     captureDB->show();
 }
 
