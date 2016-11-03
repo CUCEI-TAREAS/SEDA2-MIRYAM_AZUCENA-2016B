@@ -15,25 +15,51 @@ GUIGabinete::GUIGabinete()
         initCaptureDB(mainWidget);
     } else {
 
-    // GUI
-    window = new QMainWindow();
-    mainLayout = new QGridLayout();
+        // GUI
+        window = new QMainWindow();
+        mainLayout = new QGridLayout();
 
-    initRegistroPersonal();
-    mainLayout->addWidget(registroGroupLayout);
-    mainWidget->setLayout(mainLayout);
+        initRegistroPersonal();
+        mainLayout->addWidget(registroGroupLayout);
+        mainWidget->setLayout(mainLayout);
 
-    window->setCentralWidget(mainWidget);
-    window->setWindowTitle(TITLE_APP);
-    window->setMinimumWidth(MINIMUM_WIDTH);
-    window->show();
+        window->setCentralWidget(mainWidget);
+        window->setWindowTitle(TITLE_APP);
+        window->setMinimumWidth(MINIMUM_WIDTH);
+        window->show();
     }
 }
 
 void GUIGabinete::initCaptureDB(QWidget *x)
 {
+    QLabel  *hostLabel,
+            *portLabel,
+            *userLabel,
+            *passLabel,
+            *dbLabel;
+
+    QLineEdit *hostLine,
+            *portLine,
+            *userLine,
+            *passLine,
+            *dbLine;
+
+
+    hostLabel = new QLabel();
+    portLabel = new QLabel();
+    userLabel = new QLabel();
+    passLabel = new QLabel();
+    dbLabel = new QLabel();
+
+    hostLine = new QLineEdit();
+    portLine = new QLineEdit();
+    userLine = new QLineEdit();
+    passLine = new QLineEdit();
+    dbLine = new QLineEdit();
+
     captureDB = new QDialog(x);
-    captureDB->setModal(true);
+
+    captureDB->setWindowTitle(TITLE_CAPTUREDB);
     captureDB->show();
 }
 

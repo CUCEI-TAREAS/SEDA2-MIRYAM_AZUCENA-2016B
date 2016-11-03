@@ -16,6 +16,17 @@
 #include "configfile.h"
 #include "database.h"
 
+// app
+#define TEXT_ADD_PERSONAL   "Agregar estudiante"
+
+#define TITLE_APP       "Gabinete"
+#define MINIMUM_WIDTH   600
+
+// capture DB
+#define TITLE_CAPTUREDB "Configuracion de la Base de datos"
+
+
+// registro
 #define NAME_PERSONAL           "Nombre del estudiante"
 #define LAST_NAME_PERSONAL      "Apeido del estudiante"
 #define CODE_PERSONAL           "Codigo del estudiante"
@@ -32,10 +43,6 @@
 #define MIN_RANGE_SEMESTRE 1
 #define MAX_RANGE_SEMESTRE 22
 
-#define TEXT_ADD_PERSONAL   "Agregar estudiante"
-
-#define TITLE_APP       "Gabinete"
-#define MINIMUM_WIDTH   600
 
 #define START           0
 #define CONFIGFILE      1
