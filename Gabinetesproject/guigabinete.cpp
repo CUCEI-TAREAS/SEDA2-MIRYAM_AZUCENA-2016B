@@ -11,7 +11,8 @@ GUIGabinete::GUIGabinete()
     fileConfig = new ConfigFile();
 
     if(fileConfig->getStatusFile() < EXISTS ){
-        mainWidget = new QWidget();
+        //mainWidget = new QWidget();
+        //QMessageBox::Critical("No se a configurado una base de datos aun");
         initCaptureDB(mainWidget);
     } else {
 
@@ -44,22 +45,45 @@ void GUIGabinete::initCaptureDB(QWidget *x)
             *passLine,
             *dbLine;
 
+    QVBoxLayout *layout = new QVBoxLayout();
+    QPushButton *conectar =  new QPushButton(CONECTAR_CAPTUREDB);
 
-    hostLabel = new QLabel();
-    portLabel = new QLabel();
-    userLabel = new QLabel();
-    passLabel = new QLabel();
-    dbLabel = new QLabel();
+    hostLabel = new QLabel(HOST_CAPTUREDB);
+    portLabel = new QLabel(PORT_CAPTUREDB);
+    userLabel = new QLabel(USER_CAPTUREDB);
+    passLabel = new QLabel(PASS_CAPTUREDB);
+    dbLabel = new QLabel(DB_CAPTUREDB);
 
     hostLine = new QLineEdit();
     portLine = new QLineEdit();
     userLine = new QLineEdit();
     passLine = new QLineEdit();
+    passLine->setEchoMode(QLineEdit::Password);
     dbLine = new QLineEdit();
 
+    layout->addWidget(hostLabel, 1);
+    layout->addWidget(hostLine, 2);
+
+    layout->addWidget(portLabel, 3);
+    layout->addWidget(portLine, 4);
+
+    layout->addWidget(userLabel, 5);
+    layout->addWidget(userLine, 6);
+
+    layout->addWidget(passLabel, 7);
+    layout->addWidget(passLine, 8);
+
+    layout->addWidget(dbLabel, 9);
+    layout->addWidget(dbLine, 10);
+
+    layout->addWidget(conectar, 11);
+
     captureDB = new QDialog(x);
+    captureDB->setMinimumWidth(MINIMUM_WIDTH);
+    captureDB->setLayout(layout);
 
     captureDB->setWindowTitle(TITLE_CAPTUREDB);
+    //captureDB->set
     captureDB->show();
 }
 

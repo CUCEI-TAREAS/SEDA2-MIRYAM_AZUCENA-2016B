@@ -9,3 +9,10 @@ void Database::createDB()
 {
 
 }
+
+bool Database::tryConnectUser()
+{
+
+}
+
+

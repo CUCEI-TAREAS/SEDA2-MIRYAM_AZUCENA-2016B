@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QDialog>
 #include <QLayout>
+#include <QVBoxLayout>
 #include <QGroupBox>
 #include <QGridLayout>
 #include <QLabel>
@@ -12,6 +13,7 @@
 #include <QComboBox>
 #include <QSpinBox>
 #include <QPushButton>
+#include <QMessageBox>
 
 #include "configfile.h"
 #include "database.h"
@@ -23,9 +25,13 @@
 #define MINIMUM_WIDTH   600
 
 // capture DB
-#define TITLE_CAPTUREDB "Configuracion de la Base de datos"
-
-
+#define TITLE_CAPTUREDB "Configuracion de la Base de datos PostgreSQL"
+#define HOST_CAPTUREDB  "Host"
+#define PORT_CAPTUREDB  "Puerto"
+#define USER_CAPTUREDB  "Usuario"
+#define PASS_CAPTUREDB  "Contraseña"
+#define DB_CAPTUREDB    "Nombre de la base de datos para "TITLE_APP" Software"
+#define CONECTAR_CAPTUREDB "Conectar"
 // registro
 #define NAME_PERSONAL           "Nombre del estudiante"
 #define LAST_NAME_PERSONAL      "Apeido del estudiante"
