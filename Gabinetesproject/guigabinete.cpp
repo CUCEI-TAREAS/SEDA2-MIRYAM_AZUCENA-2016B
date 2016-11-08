@@ -171,8 +171,13 @@ void GUIGabinete::clearRegistro()
 
 bool GUIGabinete::conectDB()
 {
-    if(db->tryConnectUser(hostLine->text(), portLine->text(), userLine->text(), passLine->text()))
+    if(db->tryConnectUser(hostLine->text(), portLine->text(), userLine->text(), passLine->text())){
+        status = SETUPDB;
 
+        // try create a database
+    } else {
+        QMessageBox::critical(captureDB, TITLE_FAIL_CAPTUREDB, BODY_FAIL_CAPTUREDB, 1, 2);
+    }
 
     return false;
 }

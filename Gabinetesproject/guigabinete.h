@@ -39,8 +39,8 @@
 #define DEFAULT_USER "postgres"
 #define DEFAULT_DB TITLE_APP
 
-
-
+#define TITLE_FAIL_CAPTUREDB    "Conexion no establecida"
+#define BODY_FAIL_CAPTUREDB     "No fue posible establecer la conexion al servidor"
 // registro
 #define NAME_PERSONAL           "Nombre del estudiante"
 #define LAST_NAME_PERSONAL      "Apeido del estudiante"
