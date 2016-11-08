@@ -39,12 +39,6 @@ void GUIGabinete::initCaptureDB(QWidget *x)
             *passLabel,
             *dbLabel;
 
-    QLineEdit *hostLine,
-            *portLine,
-            *userLine,
-            *passLine,
-            *dbLine;
-
     QVBoxLayout *layout = new QVBoxLayout();
     QPushButton *conectar =  new QPushButton(CONECTAR_CAPTUREDB);
 
@@ -81,9 +75,12 @@ void GUIGabinete::initCaptureDB(QWidget *x)
     captureDB = new QDialog(x);
     captureDB->setMinimumWidth(MINIMUM_WIDTH);
     captureDB->setLayout(layout);
-
     captureDB->setWindowTitle(TITLE_CAPTUREDB);
-    //captureDB->set
+
+    // connects
+    connect(conectar, SIGNAL(clicked()), this,  SLOT(conectDB()));
+    //connect(conectar, SIGNAL(clicked()), db,  SLOT(tryConnectUser(hostLine->text(), portLine->text(), userLine->text(), passLine->text())));
+
     captureDB->show();
 }
 
@@ -170,6 +167,14 @@ void GUIGabinete::initRegistroPersonal()
 void GUIGabinete::clearRegistro()
 {
 
+}
+
+bool GUIGabinete::conectDB()
+{
+    if(db->tryConnectUser(hostLine->text(), portLine->text(), userLine->text(), passLine->text()))
+        return true;
+
+    return false;
 }
 
 void GUIGabinete::addPersonal()

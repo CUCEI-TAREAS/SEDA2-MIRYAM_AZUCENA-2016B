@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QDialog>
+#include <QObject>
 #include <QLayout>
 #include <QVBoxLayout>
 #include <QGroupBox>
@@ -116,11 +117,19 @@ private:
 
     QDialog *captureDB = nullptr;
 
+    QLineEdit *hostLine = nullptr,
+            *portLine = nullptr,
+            *userLine = nullptr,
+            *passLine = nullptr,
+            *dbLine = nullptr;
+
     void initCaptureDB(QWidget*);
     void initRegistroPersonal(void);
     void clearRegistro();
 
+
 private slots:
+    bool conectDB();
     void addPersonal();
 
 public:

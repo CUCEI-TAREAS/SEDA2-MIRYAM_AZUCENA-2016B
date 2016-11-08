@@ -5,28 +5,24 @@
 #include <QSqlDatabase>
 #include <QString>
 
+#define TYPE_DB "psql"
 #define INIT        0
 
-class Database
+class Database : public QObject
 {
- Q_OBJECT
+    Q_OBJECT
+
+public slots:
+    bool tryConnectUser(QString, QString, QString, QString);
+
 private:
-
-    //QDialog captureConnection
-
-    // use psql
-    QSqlDatabase *db = nullptr;
+    QSqlDatabase db;
     char statusDB;
-
-private slots:
-    bool tryConnectUser();
 
 
 public:
     Database();
-    void createDB();
-
-
+    void createDB(QString, QString, QString, QString);
 
 };
 
