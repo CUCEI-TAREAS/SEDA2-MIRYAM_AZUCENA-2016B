@@ -5,7 +5,7 @@
 #include <QSqlDatabase>
 #include <QString>
 
-#define TYPE_DB "psql"
+#define TYPE_DB "QPSQL"
 #define INIT        0
 
 class Database : public QObject

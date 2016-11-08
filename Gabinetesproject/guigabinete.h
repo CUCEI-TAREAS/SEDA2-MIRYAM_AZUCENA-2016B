@@ -33,6 +33,14 @@
 #define PASS_CAPTUREDB  "Contraseña"
 #define DB_CAPTUREDB    "Nombre de la base de datos para "TITLE_APP" Software"
 #define CONECTAR_CAPTUREDB "Conectar"
+
+#define DEFAULT_HOST "127.0.0.1"
+#define DEFAULT_PORT "5432"
+#define DEFAULT_USER "postgres"
+#define DEFAULT_DB TITLE_APP
+
+
+
 // registro
 #define NAME_PERSONAL           "Nombre del estudiante"
 #define LAST_NAME_PERSONAL      "Apeido del estudiante"

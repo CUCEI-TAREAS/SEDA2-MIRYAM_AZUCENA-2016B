@@ -7,7 +7,7 @@ Database::Database()
 
 bool Database::tryConnectUser(QString host, QString port, QString user, QString pass)
 {
-    db = QSqlDatabase::addDatabase("QPSQL");
+    db = QSqlDatabase::addDatabase(TYPE_DB);
     db.setHostName(host);
     db.setPort(port.toInt());
     db.setUserName(user);

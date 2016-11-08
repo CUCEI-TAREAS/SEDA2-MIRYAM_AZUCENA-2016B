@@ -48,12 +48,12 @@ void GUIGabinete::initCaptureDB(QWidget *x)
     passLabel = new QLabel(PASS_CAPTUREDB);
     dbLabel = new QLabel(DB_CAPTUREDB);
 
-    hostLine = new QLineEdit();
-    portLine = new QLineEdit();
-    userLine = new QLineEdit();
+    hostLine = new QLineEdit(DEFAULT_HOST);
+    portLine = new QLineEdit(DEFAULT_PORT);
+    userLine = new QLineEdit(DEFAULT_USER);
     passLine = new QLineEdit();
     passLine->setEchoMode(QLineEdit::Password);
-    dbLine = new QLineEdit();
+    dbLine = new QLineEdit(DEFAULT_DB);
 
     layout->addWidget(hostLabel, 1);
     layout->addWidget(hostLine, 2);
@@ -172,7 +172,7 @@ void GUIGabinete::clearRegistro()
 bool GUIGabinete::conectDB()
 {
     if(db->tryConnectUser(hostLine->text(), portLine->text(), userLine->text(), passLine->text()))
-        return true;
+
 
     return false;
 }
