@@ -39,6 +39,10 @@
 #define DEFAULT_USER "postgres"
 #define DEFAULT_DB TITLE_APP
 
+#define STATE_DB_NO_CONECCTION -1
+#define STATE_DB_NO_DB 0
+#define STATE_DB_DONE 1
+
 #define TITLE_FAIL_CAPTUREDB    "Conexion no establecida"
 #define BODY_FAIL_CAPTUREDB     "No fue posible establecer la conexion al servidor"
 // registro
@@ -60,9 +64,9 @@
 
 
 #define START           0
-#define CONFIGFILE      1
-#define READYFILE       2
 #define SETUPDB         3
+#define READYFILE       1
+#define CONFIGFILE      2
 #define SETUPGUI        4
 #define READY           5
 #define SESSION         6
@@ -137,7 +141,7 @@ private:
 
 
 private slots:
-    bool conectDB();
+    char conectDB();
     void addPersonal();
 
 public:

@@ -3,10 +3,15 @@
 
 #include <QObject>
 #include <QSqlDatabase>
+#include <QSqlQuery>
 #include <QString>
 
+#define CREATE_DB "create database "
+#define CREATE_TABLE_STUDENT "create table(nombre varchar(50));"
+
+#define DB_NO_CREATE -1
+
 #define TYPE_DB "QPSQL"
-#define INIT        0
 
 class Database : public QObject
 {
@@ -17,12 +22,10 @@ public slots:
 
 private:
     QSqlDatabase db;
-    char statusDB;
-
 
 public:
     Database();
-    void createDB(QString, QString, QString, QString);
+    char createDB(QString);
 
 };
 

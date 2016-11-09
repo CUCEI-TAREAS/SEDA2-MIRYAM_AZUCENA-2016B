@@ -2,7 +2,19 @@
 
 Database::Database()
 {
-    statusDB = INIT;
+}
+
+char Database::createDB(QString name)
+{
+    QSqlQuery query;
+    if( query.exec(CREATE_DB+name)){
+        db.setDatabaseName(name);
+
+        query.exec(CREATE_TABLE_STUDENT);
+
+    }
+    else
+        return DB_NO_CREATE;
 }
 
 bool Database::tryConnectUser(QString host, QString port, QString user, QString pass)
