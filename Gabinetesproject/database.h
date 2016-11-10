@@ -7,7 +7,7 @@
 #include <QString>
 
 #define CREATE_DB "create database "
-#define CREATE_TABLE_STUDENT "create table(nombre varchar(50));"
+#define CREATE_TABLE_PERSONAL "create table Personal (nombre varchar(50));"
 
 #define DB_NO_CREATE -1
 
