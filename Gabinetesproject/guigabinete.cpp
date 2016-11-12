@@ -14,6 +14,7 @@ GUIGabinete::GUIGabinete()
         //mainWidget = new QWidget();
         //QMessageBox::Critical("No se a configurado una base de datos aun");
         initCaptureDB(mainWidget);
+        QMessageBox::warning(captureDB, CONFIGURE_DB, BODY_FAIL_CAPTUREDB, 1, 2);
     } else {
 
         // GUI
@@ -72,7 +73,7 @@ void GUIGabinete::initCaptureDB(QWidget *x)
 
     layout->addWidget(conectar, 11);
 
-    captureDB = new QDialog(x);
+    captureDB = new QDialog(x, Qt::WindowSystemMenuHint | Qt::WindowTitleHint);
     captureDB->setMinimumWidth(MINIMUM_WIDTH);
     captureDB->setLayout(layout);
     captureDB->setWindowTitle(TITLE_CAPTUREDB);

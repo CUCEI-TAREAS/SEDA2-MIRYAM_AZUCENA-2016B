@@ -10,7 +10,7 @@ char Database::createDB(QString name)
     if( query.exec(CREATE_DB+name)){
         db.setDatabaseName(name);
 
-        query.exec(CREATE_TABLE_STUDENT);
+        query.exec(CREATE_TABLE_PERSONAL);
 
     }
     else
