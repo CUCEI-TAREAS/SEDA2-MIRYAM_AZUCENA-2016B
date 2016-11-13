@@ -14,7 +14,8 @@ GUIGabinete::GUIGabinete()
         //mainWidget = new QWidget();
         //QMessageBox::Critical("No se a configurado una base de datos aun");
         initCaptureDB(mainWidget);
-        QMessageBox::warning(captureDB, CONFIGURE_DB, BODY_FAIL_CAPTUREDB, 1, 2);
+        QMessageBox::warning(captureDB, CONFIGURE_DB, BODY_CONFIGURE_DB_CAPTUREDB, 1, 2);
+        /// TO FIX : OBSOLETE
     } else {
 
         // GUI
@@ -183,6 +184,7 @@ char GUIGabinete::conectDB()
         else
             return STATE_DB_NO_DB;
     } else {
+        /// TO FIX : OBSOLETE
         QMessageBox::critical(captureDB, TITLE_FAIL_CAPTUREDB, BODY_FAIL_CAPTUREDB, 1, 2);
         return STATE_DB_NO_CONECCTION;
     }

@@ -26,7 +26,8 @@
 #define MINIMUM_WIDTH   600
 
 // capture DB
-#define CONFIGURE_DB    "No se ha configurado"
+#define CONFIGURE_DB    "No se ha configurado un Base de datos"
+#define BODY_CONFIGURE_DB_CAPTUREDB "Configure la conexion al servidor"
 
 #define TITLE_CAPTUREDB "Configuracion de la Base de datos PostgreSQL"
 #define HOST_CAPTUREDB  "Host"

@@ -20,6 +20,14 @@ char Database::createDB(QString name)
 bool Database::tryConnectUser(QString host, QString port, QString user, QString pass)
 {
     db = QSqlDatabase::addDatabase(TYPE_DB);
+
+    // differents ways OS
+#if defined(Q_OS_LINUX)
+// broken API
+    db.setDatabaseName("template1");
+// POSIX API
+#endif
+
     db.setHostName(host);
     db.setPort(port.toInt());
     db.setUserName(user);
