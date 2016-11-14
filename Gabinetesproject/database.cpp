@@ -4,17 +4,22 @@ Database::Database()
 {
 }
 
-char Database::createDB(QString name)
+bool Database::createDB(QString name)
 {
     QSqlQuery query;
+
     if( query.exec(CREATE_DB+name)){
+
         db.setDatabaseName(name);
-
         query.exec(CREATE_TABLE_PERSONAL);
-
+        return true;
     }
-    else
-        return DB_NO_CREATE;
+    else  // maybe db already exists
+           // check tables if exists ...
+           // dont overwrite database
+
+        qDebug () << query.lastError().text();
+        return false;
 }
 
 bool Database::tryConnectUser(QString host, QString port, QString user, QString pass)
@@ -23,8 +28,7 @@ bool Database::tryConnectUser(QString host, QString port, QString user, QString 
 
     // differents ways OS
 #if defined(Q_OS_LINUX)
-// broken API
-    db.setDatabaseName("template1");
+//   db.setDatabaseName(DEFAULT_PSQL_DB);
 // POSIX API
 #endif
 
@@ -33,7 +37,19 @@ bool Database::tryConnectUser(QString host, QString port, QString user, QString 
     db.setUserName(user);
     db.setPassword(pass);
 
-    return db.open();
+    bool connection = db.open();
 
+    if (!connection)
+           qDebug () << db.lastError().text();
+
+    return connection;
 }
 
+/*
+
+        QSqlError err = addConnection(dialog.driverName(), dialog.databaseName(), dialog.hostName(),
+                           dialog.userName(), dialog.password(), dialog.port());
+        if (err.type() != QSqlError::NoError)
+            QMessageBox::warning(this, tr("Unable to open database"), tr("An error occurred while "
+                                       "opening the connection: ") + err.text());
+*/

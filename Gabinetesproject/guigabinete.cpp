@@ -176,13 +176,16 @@ char GUIGabinete::conectDB()
     if(db->tryConnectUser(hostLine->text(), portLine->text(), userLine->text(), passLine->text())){
         status = SETUPDB;
         // try create a database
-        if (db->createDB(dbLine->text())) 
+        if (db->createDB(dbLine->text()))
+
             return STATE_DB_DONE;
             // make a fileconfig with db settings connection
             /// create root user to database with default pass [db connection] / after first log force to change[mandatory] 
         
         else
+            QMessageBox::critical(captureDB, TITLE_FAIL_PERMISSION, BODY_FAIL_PERMISSION, 1, 2);
             return STATE_DB_NO_DB;
+
     } else {
         /// TO FIX : OBSOLETE
         QMessageBox::critical(captureDB, TITLE_FAIL_CAPTUREDB, BODY_FAIL_CAPTUREDB, 1, 2);

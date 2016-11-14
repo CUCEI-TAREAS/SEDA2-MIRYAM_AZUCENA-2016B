@@ -46,8 +46,14 @@
 #define STATE_DB_NO_DB 0
 #define STATE_DB_DONE 1
 
+// no connection db
 #define TITLE_FAIL_CAPTUREDB    "Conexion no establecida"
 #define BODY_FAIL_CAPTUREDB     "No fue posible establecer la conexion al servidor"
+
+// no permission to create db
+#define TITLE_FAIL_PERMISSION   "Sin permisos para crear la base de datos"
+#define BODY_FAIL_PERMISSION    "El usuario no cuenta con privilegios para crear la base de datos"
+
 // registro
 #define NAME_PERSONAL           "Nombre del estudiante"
 #define LAST_NAME_PERSONAL      "Apeido del estudiante"
