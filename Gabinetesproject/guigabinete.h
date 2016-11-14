@@ -34,7 +34,7 @@
 #define PORT_CAPTUREDB  "Puerto"
 #define USER_CAPTUREDB  "Usuario"
 #define PASS_CAPTUREDB  "Contraseña"
-#define DB_CAPTUREDB    "Nombre de la base de datos para "TITLE_APP" Software"
+#define DB_CAPTUREDB    "Nombre de la base de datos para " TITLE_APP " Software"
 #define CONECTAR_CAPTUREDB "Conectar"
 
 #define DEFAULT_HOST "127.0.0.1"
@@ -71,14 +71,13 @@
 #define MIN_RANGE_SEMESTRE 1
 #define MAX_RANGE_SEMESTRE 22
 
-
-#define START           0
-#define SETUPDB         3
-#define READYFILE       1
-#define CONFIGFILE      2
-#define SETUPGUI        4
+#define START           -1
+#define SETUPDB         0 // capture
+#define CONFIGFILE      1
+#define READYFILE       2
+#define SETUPGUI        4 // register
 #define READY           5
-#define SESSION         6
+#define SESSION         6 // schedules and mails
 
 class GUIGabinete : QObject
 {
@@ -135,8 +134,7 @@ private:
     *statusPersonalCombobox = nullptr;
 
     //capture db
-
-    QDialog *captureDB = nullptr;
+    QWidget *captureDB = nullptr;
 
     QLineEdit *hostLine = nullptr,
             *portLine = nullptr,
@@ -144,14 +142,19 @@ private:
             *passLine = nullptr,
             *dbLine = nullptr;
 
-    void initCaptureDB(QWidget*);
-    void initRegistroPersonal(void);
-    void clearRegistro();
+    void initCaptureDB();
+    void initRegistroPersonal();
+
 
 
 private slots:
     char conectDB();
-    void addPersonal();
+    void clearRegistro();
+    void deleteCaptureDB();
+    void addPersonalRegistroWidget();
+
+signals:
+    void fileConfigReady();
 
 public:
     GUIGabinete();

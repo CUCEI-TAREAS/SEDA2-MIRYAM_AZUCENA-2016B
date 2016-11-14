@@ -4,36 +4,18 @@
 GUIGabinete::GUIGabinete()
 {
     status =  START;
-
     db = new Database();
-
-    // load file and validate status
     fileConfig = new ConfigFile();
-
     if(fileConfig->getStatusFile() < EXISTS ){
-        //mainWidget = new QWidget();
-        //QMessageBox::Critical("No se a configurado una base de datos aun");
-        initCaptureDB(mainWidget);
+        initCaptureDB();
         QMessageBox::warning(captureDB, CONFIGURE_DB, BODY_CONFIGURE_DB_CAPTUREDB, 1, 2);
-        /// TO FIX : OBSOLETE
+        status =  SETUPDB;
     } else {
-
-        // GUI
-        window = new QMainWindow();
-        mainLayout = new QGridLayout();
-
-        initRegistroPersonal();
-        mainLayout->addWidget(registroGroupLayout);
-        mainWidget->setLayout(mainLayout);
-
-        window->setCentralWidget(mainWidget);
-        window->setWindowTitle(TITLE_APP);
-        window->setMinimumWidth(MINIMUM_WIDTH);
-        window->show();
+        addPersonalRegistroWidget();
     }
 }
 
-void GUIGabinete::initCaptureDB(QWidget *x)
+void GUIGabinete::initCaptureDB()
 {
     QLabel  *hostLabel,
             *portLabel,
@@ -41,21 +23,21 @@ void GUIGabinete::initCaptureDB(QWidget *x)
             *passLabel,
             *dbLabel;
 
-    QVBoxLayout *layout = new QVBoxLayout();
-    QPushButton *conectar =  new QPushButton(CONECTAR_CAPTUREDB);
+    QVBoxLayout *layout = new QVBoxLayout(captureDB);
+    QPushButton *conectar =  new QPushButton(CONECTAR_CAPTUREDB, captureDB);
 
-    hostLabel = new QLabel(HOST_CAPTUREDB);
-    portLabel = new QLabel(PORT_CAPTUREDB);
-    userLabel = new QLabel(USER_CAPTUREDB);
-    passLabel = new QLabel(PASS_CAPTUREDB);
-    dbLabel = new QLabel(DB_CAPTUREDB);
+    hostLabel = new QLabel(HOST_CAPTUREDB, captureDB);
+    portLabel = new QLabel(PORT_CAPTUREDB, captureDB);
+    userLabel = new QLabel(USER_CAPTUREDB, captureDB);
+    passLabel = new QLabel(PASS_CAPTUREDB, captureDB);
+    dbLabel = new QLabel(DB_CAPTUREDB, captureDB);
 
-    hostLine = new QLineEdit(DEFAULT_HOST);
-    portLine = new QLineEdit(DEFAULT_PORT);
-    userLine = new QLineEdit(DEFAULT_USER);
-    passLine = new QLineEdit();
+    hostLine = new QLineEdit(DEFAULT_HOST, captureDB);
+    portLine = new QLineEdit(DEFAULT_PORT, captureDB);
+    userLine = new QLineEdit(DEFAULT_USER, captureDB);
+    passLine = new QLineEdit(captureDB);
     passLine->setEchoMode(QLineEdit::Password);
-    dbLine = new QLineEdit(DEFAULT_DB);
+    dbLine = new QLineEdit(DEFAULT_DB, captureDB);
 
     layout->addWidget(hostLabel, 1);
     layout->addWidget(hostLine, 2);
@@ -74,23 +56,19 @@ void GUIGabinete::initCaptureDB(QWidget *x)
 
     layout->addWidget(conectar, 11);
 
-    captureDB = new QDialog(x, Qt::WindowSystemMenuHint | Qt::WindowTitleHint);
+    captureDB = new QWidget();
     captureDB->setMinimumWidth(MINIMUM_WIDTH);
     captureDB->setLayout(layout);
     captureDB->setWindowTitle(TITLE_CAPTUREDB);
 
     // connects
     connect(conectar, SIGNAL(clicked()), this,  SLOT(conectDB()));
-    //connect(conectar, SIGNAL(clicked()), db,  SLOT(tryConnectUser(hostLine->text(), portLine->text(), userLine->text(), passLine->text())));
-
+    connect(this, SIGNAL(fileConfigReady()), this, SLOT(deleteCaptureDB()));
     captureDB->show();
 }
 
 void GUIGabinete::initRegistroPersonal()
 {
-    //widget
-    //registroWidget = new QWidget();
-
     //layout
     registroGroupLayout = new QGroupBox();
     registroGridLayout = new QGridLayout();
@@ -171,29 +149,50 @@ void GUIGabinete::clearRegistro()
 
 }
 
+void GUIGabinete::deleteCaptureDB()
+{
+    captureDB = nullptr;
+    //captureDB->destroy();
+    delete captureDB;
+    addPersonalRegistroWidget();
+}
+
 char GUIGabinete::conectDB()
 {
     if(db->tryConnectUser(hostLine->text(), portLine->text(), userLine->text(), passLine->text())){
-        status = SETUPDB;
-        // try create a database
-        if (db->createDB(dbLine->text()))
 
+        status = SETUPDB;
+
+        if (db->createDB(dbLine->text())){
+            fileConfig->createConfigFile(hostLine->text(), portLine->text(), userLine->text(), passLine->text(), dbLine->text());
+            fileConfigReady();
             return STATE_DB_DONE;
-            // make a fileconfig with db settings connection
-            /// create root user to database with default pass [db connection] / after first log force to change[mandatory] 
-        
+        }
         else
             QMessageBox::critical(captureDB, TITLE_FAIL_PERMISSION, BODY_FAIL_PERMISSION, 1, 2);
-            return STATE_DB_NO_DB;
+
+        return STATE_DB_NO_DB;
 
     } else {
-        /// TO FIX : OBSOLETE
         QMessageBox::critical(captureDB, TITLE_FAIL_CAPTUREDB, BODY_FAIL_CAPTUREDB, 1, 2);
         return STATE_DB_NO_CONECCTION;
     }
 }
 
-void GUIGabinete::addPersonal()
+void GUIGabinete::addPersonalRegistroWidget()
 {
+    // GUI
+    mainWidget = new QWidget();
+    window = new QMainWindow();
+    mainLayout = new QGridLayout();
 
+    initRegistroPersonal();
+    mainLayout->addWidget(registroGroupLayout);
+    mainWidget->setLayout(mainLayout);
+
+    window->setCentralWidget(mainWidget);
+    window->setWindowTitle(TITLE_APP);
+    window->setMinimumWidth(MINIMUM_WIDTH);
+    window->show();
 }
+

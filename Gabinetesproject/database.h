@@ -26,7 +26,6 @@ public slots:
     bool tryConnectUser(QString, QString, QString, QString);
 
 private:
-    //QSqlError err = nullptr;
     QSqlDatabase db;
 
 public:

@@ -15,23 +15,16 @@ bool Database::createDB(QString name)
         return true;
     }
     else  // maybe db already exists
-           // check tables if exists ...
-           // dont overwrite database
+        // check tables if exists ...
+        // dont overwrite database
 
         qDebug () << query.lastError().text();
-        return false;
+    return false;
 }
 
 bool Database::tryConnectUser(QString host, QString port, QString user, QString pass)
 {
     db = QSqlDatabase::addDatabase(TYPE_DB);
-
-    // differents ways OS
-#if defined(Q_OS_LINUX)
-//   db.setDatabaseName(DEFAULT_PSQL_DB);
-// POSIX API
-#endif
-
     db.setHostName(host);
     db.setPort(port.toInt());
     db.setUserName(user);
@@ -40,16 +33,7 @@ bool Database::tryConnectUser(QString host, QString port, QString user, QString 
     bool connection = db.open();
 
     if (!connection)
-           qDebug () << db.lastError().text();
+        qDebug () << db.lastError().text();
 
     return connection;
 }
-
-/*
-
-        QSqlError err = addConnection(dialog.driverName(), dialog.databaseName(), dialog.hostName(),
-                           dialog.userName(), dialog.password(), dialog.port());
-        if (err.type() != QSqlError::NoError)
-            QMessageBox::warning(this, tr("Unable to open database"), tr("An error occurred while "
-                                       "opening the connection: ") + err.text());
-*/

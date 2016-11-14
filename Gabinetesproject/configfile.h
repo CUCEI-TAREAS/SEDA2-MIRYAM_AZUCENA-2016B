@@ -4,15 +4,16 @@
 #include <QFile>
 #include <QString>
 #include <QRegularExpression>
+#include <QRegularExpressionMatch>
 #include <QTextStream>
 
-#define HOST "host "
-#define PORT "port "
-#define USER "user "
-#define PASS "pass "
-#define DB  "db "
+#define HOST "host"
+#define PORT "port"
+#define USER "user"
+#define PASS "pass"
+#define DB  "db"
 
-#define REGULAR_EXPRESSION "/("HOST" .+\n)("PORT" \d+\n)("USER" .+\n)("PASS" .+\d\n)("DB" .+)/g"
+#define REGULAR_EXPRESSION HOST " .*\n" PORT " .*\n" USER " .*\n" PASS " .*\n" DB " .*"
 
 #define NAME_FILE "config.txt"
 
@@ -27,7 +28,7 @@ class ConfigFile
 {
 private:
 
-    char statusFile;
+    unsigned char statusFile;
     QFile *config = nullptr;
     QRegularExpression *structure = nullptr;
 
