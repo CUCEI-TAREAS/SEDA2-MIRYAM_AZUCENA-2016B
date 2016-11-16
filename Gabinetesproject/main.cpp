@@ -12,10 +12,12 @@ int main(int argc, char *argv[])
 
 // database use postgresql
 
-/* if config.txt doesnt exist
- * captureDatabase and create config.txt
- *
- * if connection is failed
- * show message /
- *
+/* 
+High priority 
+    addPerson()
+    logAsAdmin()
+    createMeeting() & dateSchedule() // focused available to date
+    
+Second 
+    Fix dependencies and researched
  */
