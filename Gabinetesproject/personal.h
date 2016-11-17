@@ -8,6 +8,9 @@
 #define STATUS_PERSONAL_ACTIVE "ACTIVO"
 #define STATUS_PERSONAL_INACTIVE "INACTIVO"
 
+#define ACTIVE      '1'
+#define INACTIVE    '0'
+
 class Personal
 {
 private:

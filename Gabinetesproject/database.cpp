@@ -12,11 +12,13 @@ bool Database::createDB(QString name)
 
         db.setDatabaseName(name);
         query.exec(CREATE_TABLE_PERSONAL);
+        // insert user
+
         return true;
     }
     else  // maybe db already exists
         // check tables if exists ...
-        // dont overwrite database
+        // dont override database
 
         qDebug () << query.lastError().text();
     return false;
