@@ -3,13 +3,9 @@
 
 #include <QString>
 
-/*
-enum {
-    INFORMATICA,
-    COMPUTACION,
-    ELECTRONICA
-};
-*/
+#define CAREER_INF "INFORMATICA"
+#define CAREER_COM "COMPUTACION"
+#define CAREER_ELE "ELECTRONICA"
 
 class Carrera
 {

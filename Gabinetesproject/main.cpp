@@ -13,11 +13,21 @@ int main(int argc, char *argv[])
 // database use postgresql
 
 /* 
-High priority 
+High priority
+
+    done ; message around db is create sicces
+    tables and defaults user on DB ; these might db connection as root
+
+    loadAdmins() // to load on tutorCombox
     addPerson()
+    personExist() // by codigo
     logAsAdmin()
     createMeeting() & dateSchedule() // focused available to date
     
 Second 
-    Fix dependencies and researched
+
+    verifyeConnectionFromFileConfigToDB() // when fileConfig already exists
+    validationsToPerson()
+    Fix dependencies and cleanUp ram researched
+
  */

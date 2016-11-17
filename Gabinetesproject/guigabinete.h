@@ -18,6 +18,7 @@
 
 #include "configfile.h"
 #include "database.h"
+#include "personal.h"
 
 // app
 #define TEXT_ADD_PERSONAL   "Agregar estudiante"
@@ -53,6 +54,10 @@
 // no permission to create db
 #define TITLE_FAIL_PERMISSION   "Sin permisos para crear la base de datos"
 #define BODY_FAIL_PERMISSION    "El usuario no cuenta con privilegios para crear la base de datos"
+
+// db done
+#define TITLE_DB_DONE       "Base de datos creada con exito"
+#define TITLE_DB_MSG        "se configuro la base datos " + dbLine->text() + " con exito "
 
 // registro
 #define NAME_PERSONAL           "Nombre del estudiante"

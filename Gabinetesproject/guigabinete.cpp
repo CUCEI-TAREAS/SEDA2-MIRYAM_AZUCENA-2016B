@@ -97,10 +97,17 @@ void GUIGabinete::initRegistroPersonal()
 
     // QComboBox
     statusPersonalCombobox = new QComboBox();
-    // statusPersonalCombobox->addItem();
+    statusPersonalCombobox->addItem(STATUS_PERSONAL_ACTIVE);
+    statusPersonalCombobox->addItem(STATUS_PERSONAL_INACTIVE);
 
     carreraCombobox = new QComboBox();
-    tutorCombobox = new QComboBox();
+    carreraCombobox->addItem(CAREER_INF);
+    carreraCombobox->addItem(CAREER_COM);
+    carreraCombobox->addItem(CAREER_ELE);
+
+    tutorCombobox = new QComboBox(); // read from db
+
+
 
     // QSpinBox
     semestreSpin = new QSpinBox();
@@ -151,9 +158,11 @@ void GUIGabinete::clearRegistro()
 
 void GUIGabinete::deleteCaptureDB()
 {
+    captureDB->hide();
     captureDB = nullptr;
     //captureDB->destroy();
     delete captureDB;
+
     addPersonalRegistroWidget();
 }
 
@@ -166,6 +175,7 @@ char GUIGabinete::conectDB()
         if (db->createDB(dbLine->text())){
             fileConfig->createConfigFile(hostLine->text(), portLine->text(), userLine->text(), passLine->text(), dbLine->text());
             fileConfigReady();
+            QMessageBox::information(captureDB, TITLE_DB_DONE, TITLE_DB_MSG, 1, 2);
             return STATE_DB_DONE;
         }
         else
@@ -187,6 +197,7 @@ void GUIGabinete::addPersonalRegistroWidget()
     mainLayout = new QGridLayout();
 
     initRegistroPersonal();
+    // also init to GabinetePersonal()
     mainLayout->addWidget(registroGroupLayout);
     mainWidget->setLayout(mainLayout);
 
@@ -194,5 +205,8 @@ void GUIGabinete::addPersonalRegistroWidget()
     window->setWindowTitle(TITLE_APP);
     window->setMinimumWidth(MINIMUM_WIDTH);
     window->show();
+
+    // connects
+
 }
 

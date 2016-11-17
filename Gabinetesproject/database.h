@@ -10,9 +10,18 @@
 #include <QSqlError>
 #include <QDebug>
 
+/*
+all persons register on Personal table,
+with masterkey linked to other tables by example
+
+default
+
+*/
+
 #define CREATE_DB "create database "
 #define DEFAULT_PSQL_DB "postgres"
-#define CREATE_TABLE_PERSONAL "create table Personal (nombre varchar(50));"
+#define CREATE_TABLE_PERSONAL "create table Personal (nombre varchar(100));"
+#define CREATE_TABLE_ADMIN " create table admin(code varchar(12));"
 
 #define DB_NO_CREATE -1
 

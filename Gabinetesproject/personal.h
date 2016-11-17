@@ -5,6 +5,9 @@
 
 #include "carrera.h"
 
+#define STATUS_PERSONAL_ACTIVE "ACTIVO"
+#define STATUS_PERSONAL_INACTIVE "INACTIVO"
+
 class Personal
 {
 private:
