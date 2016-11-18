@@ -15,8 +15,13 @@ int main(int argc, char *argv[])
 /* 
 High priority
 
+
     done ; message around db is create sicces
-    tables and defaults user on DB ; these might db connection as root
+    done ; implement name as typedata
+
+
+    .... tables and defaults user on DB ; these might db connection as root
+        create all indepences tables, after tables  with dependencies and foreign keys
 
     loadAllCodes() to linked list : seek faster exists
     loadConnectionDB() // create connection DB from file // when file already exists
@@ -25,7 +30,8 @@ High priority
     personExist() // by codigo
     logAsAdmin()
     createMeeting() & dateSchedule() // focused available to date
-    
+    sendMail()
+
 Second 
 
     verifyeConnectionFromFileConfigToDB() // when fileConfig already exists

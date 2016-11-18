@@ -11,8 +11,10 @@ bool Database::createDB(QString name)
     if( query.exec(CREATE_DB+name)){
 
         db.setDatabaseName(name);
+        query.exec(CREATE_TABLE_CAREER);
         query.exec(CREATE_TABLE_PERSONAL);
-        // insert user
+
+
 
         return true;
     }
