@@ -1,27 +1,23 @@
 #include "database.h"
 
 Database::Database()
-{
-}
-
+{}
 bool Database::createDB(QString name)
 {
     QSqlQuery query;
-
     if( query.exec(CREATE_DB+name)){
-
         db.setDatabaseName(name);
-        query.exec(CREATE_TABLE_CAREER);
-        query.exec(CREATE_TABLE_PERSONAL);
-
-
-
+        bool creations = query.exec(CREATE_TABLE ROLES); // TMP, only debug ...
+        creations = query.exec(CREATE_TABLE CAREER);
+        creations = query.exec(CREATE_TABLE PERSON);
+        creations = query.exec(CREATE_TABLE ADMIN);
+        creations = query.exec(CREATE_TABLE MEETING);
         return true;
     }
-    else  // maybe db already exists
-        // check tables if exists ...
+    else
+        // maybe db already exists
+        // check tables if exists
         // dont override database
-
         qDebug () << query.lastError().text();
     return false;
 }

@@ -18,12 +18,11 @@ High priority
 
     done ; message around db is create sicces
     done ; implement name as typedata
+    done ; tables and defaults user on DB ; these might db connection as root
 
-
-    .... tables and defaults user on DB ; these might db connection as root
-        create all indepences tables, after tables  with dependencies and foreign keys
-
-    loadAllCodes() to linked list : seek faster exists
+    create all indepences tables, after tables  with dependencies and foreign keys
+    loadAll() CAreers, Roles, admin,
+    loadAllCodesPerson() to linked list : seek faster exists
     loadConnectionDB() // create connection DB from file // when file already exists
     loadAdmins() // to load on tutorCombox
     addPerson()
