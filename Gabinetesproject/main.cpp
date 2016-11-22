@@ -20,6 +20,7 @@ High priority
     done ; implement name as typedata
     done ; tables and defaults user on DB ; these might db connection as root
 
+    // user and db always must be lowercase
     create all indepences tables, after tables  with dependencies and foreign keys
     loadAll() CAreers, Roles, admin,
     loadAllCodesPerson() to linked list : seek faster exists

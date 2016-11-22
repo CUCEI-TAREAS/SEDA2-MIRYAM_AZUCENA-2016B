@@ -4,14 +4,17 @@ Database::Database()
 {}
 bool Database::createDB(QString name)
 {
-    QSqlQuery query;
+    QSqlQuery query(db);
     if( query.exec(CREATE_DB+name)){
+
         db.setDatabaseName(name);
-        bool creations = query.exec(CREATE_TABLE ROLES); // TMP, only debug ...
-        creations = query.exec(CREATE_TABLE CAREER);
-        creations = query.exec(CREATE_TABLE PERSON);
-        creations = query.exec(CREATE_TABLE ADMIN);
-        creations = query.exec(CREATE_TABLE MEETING);
+        db.open();
+
+        query.exec(CREATE_TABLE ROLES);
+        query.exec(CREATE_TABLE CAREER);
+        query.exec(CREATE_TABLE PERSON);
+        query.exec(CREATE_TABLE ADMIN);
+        query.exec(CREATE_TABLE MEETING);
         return true;
     }
     else

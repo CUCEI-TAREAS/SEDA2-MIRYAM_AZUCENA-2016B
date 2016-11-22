@@ -41,7 +41,7 @@
 #define DEFAULT_HOST "127.0.0.1"
 #define DEFAULT_PORT "5432"
 #define DEFAULT_USER "postgres"
-#define DEFAULT_DB TITLE_APP
+#define DEFAULT_DB "gabinete"
 
 #define STATE_DB_NO_CONECCTION -1
 #define STATE_DB_NO_DB 0

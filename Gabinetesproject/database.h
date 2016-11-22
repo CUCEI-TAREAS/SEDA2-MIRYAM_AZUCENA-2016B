@@ -26,11 +26,11 @@
     "status CHAR(1) NOT NULL, " \
     "currentSemestre CHAR(1) NOT NULL, " \
     "creditsObtained CHAR(1) NOT NULL, " \
-    "career INTERGER NULL REFERENCES Career(id), " \
+    "career INTEGER NULL REFERENCES Career(id), " \
     "codeTutor VARCHAR (10) REFERENCES Person (code)" \
     " ); "
 
-#define ADMIN " Admin (id SERIAL PRIMARY KEY, admin VARCHAR (10) REFERENCE Person (code) );"
+#define ADMIN " Admin (id SERIAL PRIMARY KEY, admin VARCHAR (10) REFERENCES Person (code) );"
 #define MEETING " Meeting (codeStudent VARCHAR (10) REFERENCES Person (code), codeAdmin  VARCHAR (10), date TIMESTAMP NOT NULL, time TIME NOT NULL);"
 
 #define CREATE_DB "CREATE DATABASE "
