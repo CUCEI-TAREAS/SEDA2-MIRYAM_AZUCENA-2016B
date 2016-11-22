@@ -18,11 +18,15 @@ SOURCES += main.cpp \
     personal.cpp \
     carrera.cpp \
     database.cpp \
-    configfile.cpp
+    configfile.cpp \
+    list.cpp \
+    node.cpp
 
 HEADERS  += \
     guigabinete.h \
     personal.h \
     carrera.h \
     database.h \
-    configfile.h
+    configfile.h \
+    list.h \
+    node.h
