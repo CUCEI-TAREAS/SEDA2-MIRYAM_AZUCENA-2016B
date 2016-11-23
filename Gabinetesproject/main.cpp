@@ -10,8 +10,6 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
-// database use postgresql
-
 /* 
 High priority
 
@@ -20,9 +18,6 @@ High priority
     done ; implement name as typedata
     done ; tables and defaults user on DB ; these might db connection as root
     done ; create all indepences tables, after tables  with dependencies and foreign keys
-
-    improve relations on cascade or // product_no integer REFERENCES products ON DELETE RESTRICT,
-    order_id integer REFERENCES orders ON DELETE CASCADE,
 
     loadAll() CAreers, Roles, admin
     loadAllCodesPerson() to linked list : seek faster exists
@@ -35,6 +30,9 @@ High priority
     sendMail()
 
 Second 
+
+    improve relations on cascade or // product_no integer REFERENCES products ON DELETE RESTRICT,
+    order_id integer REFERENCES orders ON DELETE CASCADE,
 
     // user and db always must be lowercase
     verifyeConnectionFromFileConfigToDB() // when fileConfig already exists

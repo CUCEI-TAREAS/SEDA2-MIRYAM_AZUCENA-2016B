@@ -16,7 +16,6 @@ class Personal
 {
 private:
 
-
     QString codigo,
     email,
     telefono,

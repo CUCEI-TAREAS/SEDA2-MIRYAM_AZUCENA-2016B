@@ -10,20 +10,19 @@ bool Database::createDB(QString name)
         db.setDatabaseName(name);
         db.open();
 
-        bool ds = false;
+        query.exec(CREATE_TABLE ROLES);
+        //query.exec(INSERT_INTO DEFAULT_ROLES);
 
-        ds = query.exec(CREATE_TABLE ROLES);
+        query.exec(CREATE_TABLE CAREER);
+        query.exec(INSERT_INTO DEFAULT_CAREER);
 
-        ds = query.exec(CREATE_TABLE CAREER);
-        ds = query.exec(INSERT_INTO DEFAULT_CAREER);
+        query.exec(CREATE_TABLE PERSON);
+        query.exec(INSERT_INTO DEFAULT_PERSON);
 
-        ds = query.exec(CREATE_TABLE PERSON); // fail
-        ds = query.exec(INSERT_INTO DEFAULT_PERSON);
+        query.exec(CREATE_TABLE ADMIN);
+        query.exec(INSERT_INTO DEFAULT_ADMIN);
 
-        ds = query.exec(CREATE_TABLE ADMIN); // fail
-        ds = query.exec(INSERT_INTO DEFAULT_ADMIN);
-
-        ds = query.exec(CREATE_TABLE MEETING); // fail
+        query.exec(CREATE_TABLE MEETING);
 
 
         qDebug () << query.lastError().text();

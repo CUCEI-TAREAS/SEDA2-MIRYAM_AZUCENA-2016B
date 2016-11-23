@@ -19,6 +19,7 @@
 #include "configfile.h"
 #include "database.h"
 #include "personal.h"
+#include "list.h"
 
 // app
 #define TEXT_ADD_PERSONAL   "Agregar estudiante"
@@ -88,6 +89,12 @@ class GUIGabinete : QObject
 {
     Q_OBJECT
 private:
+
+    // dynamic storage
+    List<Carrera> *carreras = nullptr;
+    List<Carrera> *roles = nullptr;
+    List<Personal> *personas = nullptr;
+
 
     // connection db
     ConfigFile *fileConfig = nullptr;
