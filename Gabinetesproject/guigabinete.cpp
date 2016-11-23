@@ -101,9 +101,11 @@ void GUIGabinete::initRegistroPersonal()
     statusPersonalCombobox->addItem(STATUS_PERSONAL_INACTIVE);
 
     carreraCombobox = new QComboBox();
-    carreraCombobox->addItem(CAREER_INF);
-    carreraCombobox->addItem(CAREER_COM);
-    carreraCombobox->addItem(CAREER_ELE);
+    // all read from DB, by default stored DB
+    //  loadAll() CAreers, Roles, admin
+    //carreraCombobox->addItem(CAREER_INF);
+    //carreraCombobox->addItem(CAREER_COM);
+    //carreraCombobox->addItem(CAREER_ELE);
 
     tutorCombobox = new QComboBox(); // read from db
 
@@ -169,6 +171,10 @@ void GUIGabinete::deleteCaptureDB()
 char GUIGabinete::conectDB()
 {
     if(db->tryConnectUser(hostLine->text(), portLine->text(), userLine->text(), passLine->text())){
+
+
+        //  if db connection is done, try connect with default DB gave by user
+        // if db is not found, create itself
 
         status = SETUPDB;
 
