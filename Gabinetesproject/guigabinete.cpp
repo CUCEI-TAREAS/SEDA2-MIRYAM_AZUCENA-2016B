@@ -11,7 +11,12 @@ GUIGabinete::GUIGabinete()
         QMessageBox::warning(captureDB, CONFIGURE_DB, BODY_CONFIGURE_DB_CAPTUREDB, 1, 2);
         status =  SETUPDB;
     } else {
-        addPersonalRegistroWidget();
+        if ( db->connectDB(fileConfig->getHost(), fileConfig->getPort(), fileConfig->getUser(), fileConfig->getPass(), fileConfig->getNameDB())){
+            addPersonalRegistroWidget();
+        } else {
+            // MSG SE PUDO CONECTAR AL SERVER, PERO NO A LA BASE DE DATOS
+        }
+
     }
 }
 
@@ -62,7 +67,7 @@ void GUIGabinete::initCaptureDB()
     captureDB->setWindowTitle(TITLE_CAPTUREDB);
 
     // connects
-    connect(conectar, SIGNAL(clicked()), this,  SLOT(conectDB()));
+    connect(conectar, SIGNAL(clicked()), this,  SLOT(connectDB()));
     connect(this, SIGNAL(fileConfigReady()), this, SLOT(deleteCaptureDB()));
     captureDB->show();
 }
@@ -168,7 +173,7 @@ void GUIGabinete::deleteCaptureDB()
     addPersonalRegistroWidget();
 }
 
-char GUIGabinete::conectDB()
+char GUIGabinete::connectDB()
 {
     if(db->tryConnectUser(hostLine->text(), portLine->text(), userLine->text(), passLine->text())){
 
@@ -195,6 +200,12 @@ char GUIGabinete::conectDB()
     }
 }
 
+/*
+char GUIGabinete::connectDB(QString host, QString port, QString user, QString pass, QString dblocal)
+{
+    db->
+}
+*/
 void GUIGabinete::addPersonalRegistroWidget()
 {
     // GUI

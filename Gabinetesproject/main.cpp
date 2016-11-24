@@ -19,9 +19,9 @@ High priority
     done ; tables and defaults user on DB ; these might db connection as root
     done ; create all indepences tables, after tables  with dependencies and foreign keys
 
+    loadConnectionDB() // create connection DB from file // when file already exists
     loadAll() CAreers, Roles, admin
     loadAllCodesPerson() to linked list : seek faster exists
-    loadConnectionDB() // create connection DB from file // when file already exists
     loadAdmins() // to load on tutorCombox
     addPerson()
     personExist() // by codigo

@@ -160,7 +160,8 @@ private:
 
 
 private slots:
-    char conectDB();
+    char connectDB();
+    //char connectDB(QString host, QString port, QString user, QString pass, QString db);
     void clearRegistro();
     void deleteCaptureDB();
     void addPersonalRegistroWidget();

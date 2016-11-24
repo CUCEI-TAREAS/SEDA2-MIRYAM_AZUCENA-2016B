@@ -20,7 +20,7 @@
 #define DEFAULT_CAREER " Roles (Rol) VALUES (" CAREER_INF "), (" CAREER_COM "), (" CAREER_ELE ");"
 
 
-    //"status CHAR(1) NOT NULL, "
+//"status CHAR(1) NOT NULL, "
 #define PERSON  " Person " \
     "( " \
     "code VARCHAR (10) UNIQUE PRIMARY KEY NOT NULL," \
@@ -67,6 +67,7 @@ private:
 public:
     Database();
     bool createDB(QString);
+    bool connectDB(QString host, QString port, QString user, QString pass, QString dblocal);
 
 };
 

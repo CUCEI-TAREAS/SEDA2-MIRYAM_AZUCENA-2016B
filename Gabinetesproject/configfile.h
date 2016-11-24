@@ -13,7 +13,8 @@
 #define PASS "pass"
 #define DB  "db"
 
-#define REGULAR_EXPRESSION HOST " .*\n" PORT " .*\n" USER " .*\n" PASS " .*\n" DB " .*"
+//#define REGULAR_EXPRESSION HOST " .*\n" PORT " .*\n" USER " .*\n" PASS " .*\n" DB " .*"
+#define REGULAR_EXPRESSION HOST " (.*)\n" PORT " .*\n" USER " .*\n" PASS " .*\n" DB " .*"
 
 #define NAME_FILE "config.txt"
 
@@ -31,15 +32,30 @@ private:
     unsigned char statusFile;
     QFile *config = nullptr;
     QRegularExpression *structure = nullptr;
+    QRegularExpressionMatch match;
+
+    QString host, port, user, pass, nameDB;
 
 public:
     ConfigFile();
 
     void createConfigFile(QString, QString, QString, QString, QString );
-    void checkStructureFile();
+    bool checkStructureFile();
+    void loadDataConnection();
 
     char getStatusFile();
     void setStatusFile(char);
+
+    QString getHost() const;
+    void setHost(const QString &value);
+    QString getPort() const;
+    void setPort(const QString &value);
+    QString getUser() const;
+    void setUser(const QString &value);
+    QString getPass() const;
+    void setPass(const QString &value);
+    QString getNameDB() const;
+    void setNameDB(const QString &value);
 };
 
 #endif // CONFIGFILE_H

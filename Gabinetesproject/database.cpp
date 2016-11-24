@@ -37,6 +37,19 @@ bool Database::createDB(QString name)
     return false;
 }
 
+bool Database::connectDB(QString host, QString port, QString user, QString pass, QString dblocal)
+{
+    if (tryConnectUser(host, port, user, pass)){
+
+        db.setDatabaseName(dblocal);
+        return db.open();
+
+    } else {
+        /// MSG NO SE PUEDE CONNECTAR AL SERVIDOR
+        return false;
+    }
+}
+
 bool Database::tryConnectUser(QString host, QString port, QString user, QString pass)
 {
     db = QSqlDatabase::addDatabase(TYPE_DB);

@@ -1,12 +1,66 @@
 #include "configfile.h"
 
+QString ConfigFile::getHost() const
+{
+    return host;
+}
+
+void ConfigFile::setHost(const QString &value)
+{
+    host = value;
+}
+
+QString ConfigFile::getPort() const
+{
+    return port;
+}
+
+void ConfigFile::setPort(const QString &value)
+{
+    port = value;
+}
+
+QString ConfigFile::getUser() const
+{
+    return user;
+}
+
+void ConfigFile::setUser(const QString &value)
+{
+    user = value;
+}
+
+QString ConfigFile::getPass() const
+{
+    return pass;
+}
+
+void ConfigFile::setPass(const QString &value)
+{
+    pass = value;
+}
+
+QString ConfigFile::getNameDB() const
+{
+    return nameDB;
+}
+
+void ConfigFile::setNameDB(const QString &value)
+{
+    nameDB = value;
+}
+
 ConfigFile::ConfigFile()
 {
     config = new QFile(NAME_FILE);
 
     if(config->exists(NAME_FILE)){
         statusFile = EXISTS;
-        checkStructureFile();
+        if (checkStructureFile()){
+            loadDataConnection();
+        } else{
+            // msg for user, file is fail
+        }
     }else{
         statusFile = NOEXISTS;
         config = nullptr;
@@ -35,11 +89,10 @@ void ConfigFile::createConfigFile(QString host,
     config = nullptr;
 }
 
-void ConfigFile::checkStructureFile()
+bool ConfigFile::checkStructureFile()
 {
     config->open(QFile::ReadOnly | QFile::Text);
     structure = new QRegularExpression (REGULAR_EXPRESSION);
-    QRegularExpressionMatch match;
 
     QTextStream in(config);
     QString temp;
@@ -49,12 +102,17 @@ void ConfigFile::checkStructureFile()
     config = nullptr;
 
     if(match.hasMatch()){
-          statusFile = DONE;
+        statusFile = DONE;
+        return true;
     } else {
         statusFile = FAIL;
+        return false;
     }
+}
 
-    return;
+void ConfigFile::loadDataConnection()
+{
+    // http://doc.qt.io/qt-5/qregularexpression.html#extracting-captured-substrings
 }
 
 char ConfigFile::getStatusFile()
