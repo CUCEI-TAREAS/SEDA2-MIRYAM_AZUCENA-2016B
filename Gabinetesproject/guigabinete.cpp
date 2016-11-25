@@ -20,6 +20,7 @@ GUIGabinete::GUIGabinete()
     }
 }
 
+
 void GUIGabinete::initCaptureDB()
 {
     QLabel  *hostLabel,
@@ -172,7 +173,7 @@ void GUIGabinete::loadAll()
 void GUIGabinete::loadListCarreas(List<Carrera> * myList)
 {
     Carrera *temp = nullptr;
-    QSqlQuery result = db->selectAll(NAME_TABLE_ROLES);
+    QSqlQuery result = db->selectAll(NAME_TABLE_CAREER);
 
     while(result.next()){
 
@@ -187,12 +188,56 @@ void GUIGabinete::loadListCarreas(List<Carrera> * myList)
     delete temp;
 }
 
-void GUIGabinete::loadListRoles(List<Carrera> *)
+void GUIGabinete::loadListRoles(List<Carrera> * myList)
 {
+    Carrera *temp = nullptr;
+    QSqlQuery result = db->selectAll(NAME_TABLE_ROLES);
 
+    while(result.next()){
+
+        temp = new Carrera();
+        temp->setId(result.value(ROLES_ID).toInt());
+        temp->setCarrera(result.value(ROLES_ROL).toString());
+
+        myList->add_head(*temp);
+    }
+
+    temp = nullptr;
+    delete temp;
 }
 
-void GUIGabinete::loadListPersonal(List<Personal> *)
+void GUIGabinete::loadListPersonal(List<Personal> *myList)
+{
+    Personal *temp = nullptr;
+    Name *nombre = nullptr;
+
+    QSqlQuery result = db->selectAll(NAME_TABLE_PERSON);
+
+    while(result.next()){
+
+        temp = new Personal();
+        temp->setCodigo(result.value(PERSON_CODE).toString());
+
+        nombre = new Name();
+
+        nombre->setFirtsName(result.value(PERSON_FIRSTNAME).toString());
+        nombre->setSecondName(result.value(PERSON_SECONDNAME).toString());
+        nombre->setThirdName(result.value(PERSON_THIRDNAME).toString());
+        nombre->setLastNamePaternal(result.value(PERSON_LASTNAMEPATERNAL).toString());
+        nombre->setLastNameMaternal(result.value(PERSON_LASTNAMEPATERNAL).toString());
+
+        temp->setNombre(nombre);
+
+        myList->add_head(*temp);
+
+        temp = nullptr;
+        nombre = nullptr;
+    }
+
+    delete temp;
+}
+
+void GUIGabinete::loadListAdmins(List<Personal> *)
 {
 
 }
@@ -203,6 +248,11 @@ void GUIGabinete::loadListCarreas(List<Carrera> *, QString)
 }
 
 void GUIGabinete::loadListRoles(List<Carrera> *, QString)
+{
+
+}
+
+void GUIGabinete::loadListAdmins(List<Personal> *, QString)
 {
 
 }

@@ -5,6 +5,13 @@
 
 class Name
 {
+private:
+    QString firtsName, // mandatory
+    secondName,
+    thirdName,
+    LastNamePaternal, // mandatory
+    LastNameMaternal; // mandatory
+
 public:
     Name();
 
@@ -23,12 +30,6 @@ public:
     QString getLastNamePaternal() const;
     void setLastNamePaternal(const QString &value);
 
-private:
-    QString firtsName, // mandatory
-    secondName,
-    thirdName,
-    LastNamePaternal, // mandatory
-    LastNameMaternal; // mandatory
 
 };
 

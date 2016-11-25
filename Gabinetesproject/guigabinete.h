@@ -21,6 +21,7 @@
 #include "personal.h"
 #include "list.h"
 #include "list.cpp"
+#include "name.h"
 
 // app
 #define TEXT_ADD_PERSONAL   "Agregar estudiante"
@@ -95,6 +96,7 @@ private:
     List<Carrera> *carreras = nullptr;
     List<Carrera> *roles = nullptr;
     List<Personal> *personal = nullptr;
+    List<Personal> *admins = nullptr;
 
 
     // connection db
@@ -164,12 +166,13 @@ private:
     void loadListCarreas(List<Carrera>*);
     void loadListRoles(List<Carrera>*);
     void loadListPersonal(List<Personal>*);
+    void loadListAdmins(List<Personal>*);
 
     // SELECT BY QUERY
     void loadListCarreas(List<Carrera>*, QString);
     void loadListRoles(List<Carrera>*, QString);
     void loadListPersonal(List<Personal>*, QString);
-
+    void loadListAdmins(List<Personal>*, QString);
 
 private slots:
     char connectDB();

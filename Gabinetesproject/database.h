@@ -52,8 +52,20 @@
     "codeTutor VARCHAR (10) NULL REFERENCES Person (code) " \
     " ); "
 
-
 #define DEFAULT_PERSON  NAME_TABLE_PERSON   " (code, firstName, LastNamePaternal ) VALUES  ('999', 'ADMIN', 'ROOT')"
+#define PERSON_CODE 0
+#define PERSON_FIRSTNAME 1
+#define PERSON_SECONDNAME 2
+#define PERSON_THIRDNAME 3
+#define PERSON_LASTNAMEPATERNAL 4
+#define PERSON_LASTNAMEMATERNAL 5
+#define PERSON_MAIL 6
+#define PERSON_PHONE 7
+#define PERSON_EXPEDIENTE 8
+#define PERSON_CURRENTSEMESTRE 9
+#define PERSON_CREDITS 10
+#define PERSON_CAREER 11
+#define PERSON_ROLES
 
 #define ADMIN           NAME_TABLE_ADMIN    " (id SERIAL PRIMARY KEY, admin VARCHAR (10) REFERENCES Person (code), pass TEXT NOT NULL );"
 #define DEFAULT_ADMIN   NAME_TABLE_ADMIN    " (admin, pass) VALUES ( '999', '123');"

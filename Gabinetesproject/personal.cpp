@@ -1,5 +1,9 @@
 #include "personal.h"
 
+Personal::Personal()
+{
+
+}
 Name *Personal::getNombre() const
 {
     return nombre;
@@ -9,6 +13,7 @@ void Personal::setNombre(Name *value)
 {
     nombre = value;
 }
+
 
 QString Personal::getCodigo() const
 {
