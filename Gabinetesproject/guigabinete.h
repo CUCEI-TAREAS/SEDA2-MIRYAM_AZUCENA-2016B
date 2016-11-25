@@ -93,7 +93,7 @@ private:
     // dynamic storage
     List<Carrera> *carreras = nullptr;
     List<Carrera> *roles = nullptr;
-    List<Personal> *personas = nullptr;
+    List<Personal> *personal = nullptr;
 
 
     // connection db
@@ -149,14 +149,25 @@ private:
     QWidget *captureDB = nullptr;
 
     QLineEdit *hostLine = nullptr,
-            *portLine = nullptr,
-            *userLine = nullptr,
-            *passLine = nullptr,
-            *dbLine = nullptr;
+    *portLine = nullptr,
+    *userLine = nullptr,
+    *passLine = nullptr,
+    *dbLine = nullptr;
 
     void initCaptureDB();
     void initRegistroPersonal();
 
+    void loadAll();
+
+    // SELECT ALL
+    void loadListCarreas(List<Carrera>*);
+    void loadListRoles(List<Carrera>*);
+    void loadListPersonal(List<Personal>*);
+
+    // SELECT BY QUERY
+    void loadListCarreas(List<Carrera>*, QString);
+    void loadListRoles(List<Carrera>*, QString);
+    void loadListPersonal(List<Personal>*, QString);
 
 
 private slots:

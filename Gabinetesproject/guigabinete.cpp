@@ -158,6 +158,43 @@ void GUIGabinete::initRegistroPersonal()
     registroGroupLayout->setLayout(registroGridLayout);
 }
 
+void GUIGabinete::loadAll()
+{
+    loadListCarreas(carreras);
+    loadListRoles(roles);
+    loadListPersonal(personal);
+}
+
+void GUIGabinete::loadListCarreas(List<Carrera> *)
+{
+
+}
+
+void GUIGabinete::loadListRoles(List<Carrera> *)
+{
+
+}
+
+void GUIGabinete::loadListPersonal(List<Personal> *)
+{
+
+}
+
+void GUIGabinete::loadListCarreas(List<Carrera> *, QString)
+{
+
+}
+
+void GUIGabinete::loadListRoles(List<Carrera> *, QString)
+{
+
+}
+
+void GUIGabinete::loadListPersonal(List<Personal> *, QString)
+{
+
+}
+
 void GUIGabinete::clearRegistro()
 {
 
@@ -200,12 +237,6 @@ char GUIGabinete::connectDB()
     }
 }
 
-/*
-char GUIGabinete::connectDB(QString host, QString port, QString user, QString pass, QString dblocal)
-{
-    db->
-}
-*/
 void GUIGabinete::addPersonalRegistroWidget()
 {
     // GUI
@@ -213,7 +244,10 @@ void GUIGabinete::addPersonalRegistroWidget()
     window = new QMainWindow();
     mainLayout = new QGridLayout();
 
+
     initRegistroPersonal();
+    // loadAll() // to insert all data on files and consults
+
     // also init to GabinetePersonal()
     mainLayout->addWidget(registroGroupLayout);
     mainWidget->setLayout(mainLayout);

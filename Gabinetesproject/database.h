@@ -13,15 +13,21 @@
 #define CAREER_COM "'COMPUTACION'"
 #define CAREER_ELE "'ELECTRONICA'"
 
-#define ROLES "Roles ( id SERIAL PRIMARY KEY, Rol TEXT NOT NULL );"
-#define DEFAULT_ROLES " Roles (Rol) VALUES (" CAREER_INF "), (" CAREER_COM "), (" CAREER_ELE ");"
+#define NAME_TABLE_ROLES    " Roles "
+#define NAME_TABLE_CAREER   " Career "
+#define NAME_TABLE_PERSON   " Person "
+#define NAME_TABLE_ADMIN    " Admin "
+#define NAME_TABLE_MEETING  " Meeting "
 
-#define CAREER "Career (  id SERIAL PRIMARY KEY, Career TEXT NOT NULL );"
-#define DEFAULT_CAREER " Roles (Rol) VALUES (" CAREER_INF "), (" CAREER_COM "), (" CAREER_ELE ");"
+#define ROLES           NAME_TABLE_ROLES    " ( id SERIAL PRIMARY KEY, Rol TEXT NOT NULL );"
+#define DEFAULT_ROLES   NAME_TABLE_ROLES    " (Rol) VALUES (" CAREER_INF "), (" CAREER_COM "), (" CAREER_ELE ");"
+
+#define CAREER          NAME_TABLE_CAREER   " (  id SERIAL PRIMARY KEY, Career TEXT NOT NULL );"
+#define DEFAULT_CAREER  NAME_TABLE_CAREER   " (Career) VALUES (" CAREER_INF "), (" CAREER_COM "), (" CAREER_ELE ");"
 
 
 //"status CHAR(1) NOT NULL, "
-#define PERSON  " Person " \
+#define PERSON  NAME_TABLE_PERSON \
     "( " \
     "code VARCHAR (10) UNIQUE PRIMARY KEY NOT NULL," \
     "firstName TEXT NOT NULL," \
@@ -39,16 +45,19 @@
     " ); "
 
 
-#define DEFAULT_PERSON " Person (code, firstName, LastNamePaternal ) VALUES  ('999', 'ADMIN', 'ROOT')"
+#define DEFAULT_PERSON  NAME_TABLE_PERSON   " (code, firstName, LastNamePaternal ) VALUES  ('999', 'ADMIN', 'ROOT')"
 
-#define ADMIN " Admin (id SERIAL PRIMARY KEY, admin VARCHAR (10) REFERENCES Person (code), pass TEXT NOT NULL );"
-#define DEFAULT_ADMIN " Admin (admin, pass) VALUES ( '999', '123');"
+#define ADMIN           NAME_TABLE_ADMIN    " (id SERIAL PRIMARY KEY, admin VARCHAR (10) REFERENCES Person (code), pass TEXT NOT NULL );"
+#define DEFAULT_ADMIN   NAME_TABLE_ADMIN    " (admin, pass) VALUES ( '999', '123');"
 
-#define MEETING " Meeting (codeStudent VARCHAR (10) REFERENCES Person (code), codeAdmin  VARCHAR (10), date TIMESTAMP NOT NULL, time TIME NOT NULL);"
+#define MEETING NAME_TABLE_MEETING " (codeStudent VARCHAR (10) REFERENCES Person (code), codeAdmin  VARCHAR (10), date TIMESTAMP NOT NULL, time TIME NOT NULL);"
 
 #define CREATE_DB "CREATE DATABASE "
 #define CREATE_TABLE "CREATE TABLE "
 #define INSERT_INTO "INSERT INTO "
+
+
+#define QUERY_SELECT_ALL "SELECT * FROM "
 
 #define DB_NO_CREATE -1
 
@@ -66,6 +75,7 @@ private:
 
 public:
     Database();
+    QSqlQuery selectAll(QString);
     bool createDB(QString);
     bool connectDB(QString host, QString port, QString user, QString pass, QString dblocal);
 

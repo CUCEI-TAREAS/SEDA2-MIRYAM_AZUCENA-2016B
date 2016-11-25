@@ -2,6 +2,15 @@
 
 Database::Database()
 {}
+
+QSqlQuery Database::selectAll(QString query)
+{
+    QSqlQuery result(db);
+
+    result.exec(QUERY_SELECT_ALL + query);
+    return result;
+}
+
 bool Database::createDB(QString name)
 {
     QSqlQuery query(db);

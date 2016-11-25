@@ -20,8 +20,8 @@ High priority
     done ; create all indepences tables, after tables  with dependencies and foreign keys
     done ; loadConnectionDB() // create connection DB from file // when file already exists
 
-    loadAllCodesPerson() to linked list : seek faster exists
     loadAllToLinkedList() CAreers, Roles, admin
+    loadAllCodesPerson() to linked list : seek faster exists
     loadAdmins() // to load on GUI e.g. tutorCombox
     addPerson()
     personExist() // by codigo
