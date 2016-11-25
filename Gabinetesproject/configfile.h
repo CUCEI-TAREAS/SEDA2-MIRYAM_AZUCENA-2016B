@@ -14,7 +14,14 @@
 #define DB  "db"
 
 //#define REGULAR_EXPRESSION HOST " .*\n" PORT " .*\n" USER " .*\n" PASS " .*\n" DB " .*"
-#define REGULAR_EXPRESSION HOST " (.*)\n" PORT " .*\n" USER " .*\n" PASS " .*\n" DB " .*"
+#define REGULAR_EXPRESSION HOST " (.*)\n" PORT " (.*)\n" USER " (.*)\n" PASS " (.*)\n" DB " (.*)"
+
+#define EXP_REG_HOST 1
+#define EXP_REG_PORT 2
+#define EXP_REG_USER 3
+#define EXP_REG_PASS 4
+#define EXP_REG_DB 5
+
 
 #define NAME_FILE "config.txt"
 
@@ -34,7 +41,7 @@ private:
     QRegularExpression *structure = nullptr;
     QRegularExpressionMatch match;
 
-    QString host, port, user, pass, nameDB;
+    QString host, port, user, pass, database;
 
 public:
     ConfigFile();

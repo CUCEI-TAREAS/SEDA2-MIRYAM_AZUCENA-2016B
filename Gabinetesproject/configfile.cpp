@@ -42,12 +42,12 @@ void ConfigFile::setPass(const QString &value)
 
 QString ConfigFile::getNameDB() const
 {
-    return nameDB;
+    return database;
 }
 
 void ConfigFile::setNameDB(const QString &value)
 {
-    nameDB = value;
+    database = value;
 }
 
 ConfigFile::ConfigFile()
@@ -113,6 +113,12 @@ bool ConfigFile::checkStructureFile()
 void ConfigFile::loadDataConnection()
 {
     // http://doc.qt.io/qt-5/qregularexpression.html#extracting-captured-substrings
+
+    host = match.captured(EXP_REG_HOST);
+    port = match.captured(EXP_REG_PORT);
+    user = match.captured(EXP_REG_USER);
+    pass = match.captured(EXP_REG_PASS);
+    database =  match.captured(EXP_REG_DB);
 }
 
 char ConfigFile::getStatusFile()
