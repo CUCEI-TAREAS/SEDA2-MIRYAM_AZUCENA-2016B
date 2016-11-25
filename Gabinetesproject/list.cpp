@@ -7,7 +7,7 @@ template<typename T>
 List<T>::List()
 {
     m_num_nodes = 0;
-    m_head = NULL;
+    // m_head = NULL;
 }
 
 // Insertar al inicio

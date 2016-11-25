@@ -20,6 +20,7 @@
 #include "database.h"
 #include "personal.h"
 #include "list.h"
+#include "list.cpp"
 
 // app
 #define TEXT_ADD_PERSONAL   "Agregar estudiante"

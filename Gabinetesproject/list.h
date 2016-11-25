@@ -37,7 +37,7 @@ class List
         void sort();
  
     private:
-        Node<T> *m_head;
+        Node<T> *m_head = nullptr;
         int m_num_nodes;
 };
  

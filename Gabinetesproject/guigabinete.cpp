@@ -160,14 +160,31 @@ void GUIGabinete::initRegistroPersonal()
 
 void GUIGabinete::loadAll()
 {
+    carreras = new List<Carrera>();
+    roles = new List<Carrera>();
+    personal = new List<Personal>();
+
     loadListCarreas(carreras);
     loadListRoles(roles);
     loadListPersonal(personal);
 }
 
-void GUIGabinete::loadListCarreas(List<Carrera> *)
+void GUIGabinete::loadListCarreas(List<Carrera> * myList)
 {
+    Carrera *temp = nullptr;
+    QSqlQuery result = db->selectAll(NAME_TABLE_ROLES);
 
+    while(result.next()){
+
+        temp = new Carrera();
+        temp->setId(result.value(CAREER_ID).toInt());
+        temp->setCarrera(result.value(CAREER_ROL).toString());
+
+        myList->add_head(*temp);
+    }
+
+    temp = nullptr;
+    delete temp;
 }
 
 void GUIGabinete::loadListRoles(List<Carrera> *)
@@ -246,7 +263,7 @@ void GUIGabinete::addPersonalRegistroWidget()
 
 
     initRegistroPersonal();
-    // loadAll() // to insert all data on files and consults
+    loadAll(); // to insert all data on files and consults
 
     // also init to GabinetePersonal()
     mainLayout->addWidget(registroGroupLayout);

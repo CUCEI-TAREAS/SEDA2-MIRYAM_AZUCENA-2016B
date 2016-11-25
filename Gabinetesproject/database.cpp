@@ -3,11 +3,11 @@
 Database::Database()
 {}
 
-QSqlQuery Database::selectAll(QString query)
+QSqlQuery Database::selectAll(QString table)
 {
     QSqlQuery result(db);
 
-    result.exec(QUERY_SELECT_ALL + query);
+    result.exec(QUERY_SELECT_ALL + table);
     return result;
 }
 

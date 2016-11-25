@@ -6,10 +6,17 @@
 class Carrera
 {
 private:
-    char carrera;
+    int id;
+    QString carrera;
 
 public:
     Carrera();
+
+    int getId() const;
+    void setId(int value);
+
+    QString getCarrera() const;
+    void setCarrera(const QString value);
 };
 
 #endif // CARRERA_H

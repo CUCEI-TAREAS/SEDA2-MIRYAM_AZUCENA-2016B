@@ -21,9 +21,17 @@
 
 #define ROLES           NAME_TABLE_ROLES    " ( id SERIAL PRIMARY KEY, Rol TEXT NOT NULL );"
 #define DEFAULT_ROLES   NAME_TABLE_ROLES    " (Rol) VALUES (" CAREER_INF "), (" CAREER_COM "), (" CAREER_ELE ");"
+// columns
+#define ROLES_ID 0
+#define ROLES_ROL 1
+
 
 #define CAREER          NAME_TABLE_CAREER   " (  id SERIAL PRIMARY KEY, Career TEXT NOT NULL );"
 #define DEFAULT_CAREER  NAME_TABLE_CAREER   " (Career) VALUES (" CAREER_INF "), (" CAREER_COM "), (" CAREER_ELE ");"
+// columns
+#define CAREER_ID 0
+#define CAREER_ROL 1
+
 
 
 //"status CHAR(1) NOT NULL, "
