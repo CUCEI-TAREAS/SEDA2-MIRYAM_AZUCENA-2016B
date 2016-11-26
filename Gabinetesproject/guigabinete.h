@@ -160,7 +160,10 @@ private:
     *dbLine = nullptr;
 
     void initCaptureDB();
-    void initRegistroPersonal();
+    void initPersonalRegistro();
+
+
+    bool allValidationsAddPersonal();
 
     void loadAllToLinkedList();
     void loadAllToGuiAddPersonal();
@@ -182,7 +185,6 @@ private:
 
 private slots:
     char connectDB();
-    //char connectDB(QString host, QString port, QString user, QString pass, QString db);
     void clearRegistro();
     void deleteCaptureDB();
     void addPersonalRegistroWidget();

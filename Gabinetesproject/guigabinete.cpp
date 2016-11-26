@@ -73,7 +73,7 @@ void GUIGabinete::initCaptureDB()
     captureDB->show();
 }
 
-void GUIGabinete::initRegistroPersonal()
+void GUIGabinete::initPersonalRegistro()
 {
     //layout
     registroGroupLayout = new QGroupBox();
@@ -149,6 +149,13 @@ void GUIGabinete::initRegistroPersonal()
 
     registroGridLayout->addWidget(addPersonalButton, 10, 0, 1, 2);
     registroGroupLayout->setLayout(registroGridLayout);
+}
+
+bool GUIGabinete::allValidationsAddPersonal()
+{
+    // check only mandatory fields
+
+    return true;
 }
 
 void GUIGabinete::loadAllToLinkedList()
@@ -349,8 +356,7 @@ void GUIGabinete::addPersonalRegistroWidget()
     window = new QMainWindow();
     mainLayout = new QGridLayout();
 
-
-    initRegistroPersonal();
+    initPersonalRegistro();
     loadAllToLinkedList(); // to insert all data on files and consults
     loadAllToGuiAddPersonal();
 
