@@ -73,48 +73,49 @@ void GUIGabinete::initCaptureDB()
     captureDB->show();
 }
 
-void GUIGabinete::initPersonalRegistro()
+void GUIGabinete::initPersonalRegistro(QWidget* widget)
 {
     //layout
-    registroGroupLayout = new QGroupBox();
-    registroGridLayout = new QGridLayout();
+    registroGroupLayout = new QGroupBox(widget);
+    registroGridLayout = new QGridLayout(widget);
 
     // labels
-    nombreLabel = new QLabel(NAME_PERSONAL);
-    apeidoLabel = new QLabel(LAST_NAME_PERSONAL);
-    codigoLabel = new QLabel(CODE_PERSONAL);
-    emailLabel = new QLabel(EMAIL_PERSONAL);
-    telefonoLabel = new QLabel(PHONE_PERSONAL);
-    expedienteLabel = new QLabel(EXP_PERSONAL);
-    statusPersonalLabel = new QLabel (STATE_PERSONAL);
-    semestreLabel =  new QLabel (SEMESTRE_PERSONAL);
-    creditosCursadosLabel = new QLabel(CURRENT_PERSONAL);
-    carreraLabel = new QLabel (CARRERA_PERSONAL); // combox
-    tutorLabel = new QLabel (TUTOR_ESTUDIANTE);  // combox
+    nombreLabel = new QLabel(NAME_PERSONAL, widget);
+    apeidoLabel = new QLabel(LAST_NAME_PERSONAL, widget);
+    codigoLabel = new QLabel(CODE_PERSONAL, widget);
+    emailLabel = new QLabel(EMAIL_PERSONAL, widget);
+    telefonoLabel = new QLabel(PHONE_PERSONAL, widget);
+    expedienteLabel = new QLabel(EXP_PERSONAL, widget);
+    statusPersonalLabel = new QLabel (STATE_PERSONAL, widget);
+    semestreLabel =  new QLabel (SEMESTRE_PERSONAL, widget);
+    creditosCursadosLabel = new QLabel( CURRENT_PERSONAL, widget);
+    carreraLabel = new QLabel (CARRERA_PERSONAL, widget); // combox
+    tutorLabel = new QLabel (TUTOR_ESTUDIANTE, widget);  // combox
 
     // Lines
-    nombreLine = new QLineEdit();
-    apeidoLine = new QLineEdit();
-    codigoLine = new QLineEdit();
-    emailLine = new QLineEdit();
-    telefonoLine = new QLineEdit();
-    expedienteLine = new QLineEdit();
-    creditosCursadosLine = new QLineEdit();
+    nombreLine = new QLineEdit(widget);
+    apeidoLine = new QLineEdit(widget);
+    codigoLine = new QLineEdit(widget);
+    emailLine = new QLineEdit(widget);
+    telefonoLine = new QLineEdit(widget);
+    expedienteLine = new QLineEdit(widget);
+    creditosCursadosLine = new QLineEdit(widget);
 
     // QComboBox
-    statusPersonalCombobox = new QComboBox();
+    statusPersonalCombobox = new QComboBox(widget);
+    // load by database
     statusPersonalCombobox->addItem(STATUS_PERSONAL_ACTIVE);
     statusPersonalCombobox->addItem(STATUS_PERSONAL_INACTIVE);
 
-    carreraCombobox = new QComboBox();
-    tutorCombobox = new QComboBox();
+    carreraCombobox = new QComboBox(widget);
+    tutorCombobox = new QComboBox(widget);
 
     // QSpinBox
-    semestreSpin = new QSpinBox();
+    semestreSpin = new QSpinBox(widget);
     semestreSpin->setRange(MIN_RANGE_SEMESTRE, MAX_RANGE_SEMESTRE);
 
     // QPushButton
-    addPersonalButton = new QPushButton(TEXT_ADD_PERSONAL);
+    addPersonalButton = new QPushButton(TEXT_ADD_PERSONAL, widget);
 
     // implementation
     registroGridLayout->addWidget(nombreLabel, 0, 0);
@@ -352,9 +353,15 @@ char GUIGabinete::connectDB()
 void GUIGabinete::addPersonalRegistroWidget()
 {
     // GUI
-    mainWidget = new QWidget();
     window = new QMainWindow();
+    mainWidget = new QWidget(window);
     mainLayout = new QGridLayout();
+
+    tabs = new QTabWidget(mainWidget);
+
+    tabs->addTab(mainWidget, "6y");
+
+
 
     initPersonalRegistro();
     loadAllToLinkedList(); // to insert all data on files and consults

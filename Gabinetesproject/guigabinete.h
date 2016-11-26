@@ -15,6 +15,7 @@
 #include <QSpinBox>
 #include <QPushButton>
 #include <QMessageBox>
+#include <QTabWidget>
 
 #include "configfile.h"
 #include "database.h"
@@ -111,9 +112,12 @@ private:
     short status;
 
     // interface
+    QTabWidget *tabs = nullptr;
     QMainWindow *window = nullptr;
-    QLayout *mainLayout = nullptr;
-    QWidget *mainWidget = nullptr; // all into there
+    QLayout *mainGridLayout = nullptr;
+
+    QWidget *mainWidget = nullptr, // all into there
+            *mainRegistro = nullptr;
 
     QGroupBox *registroGroupLayout = nullptr;
 
@@ -160,7 +164,7 @@ private:
     *dbLine = nullptr;
 
     void initCaptureDB();
-    void initPersonalRegistro();
+    void initPersonalRegistro(QWidget*);
 
 
     bool allValidationsAddPersonal();
