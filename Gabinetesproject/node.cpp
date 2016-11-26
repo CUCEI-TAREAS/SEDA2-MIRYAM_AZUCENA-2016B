@@ -5,8 +5,8 @@ template<typename T>
  
 Node<T>::Node()
 {
-    data = NULL;
-    next = NULL;
+    data = nullptr;
+    next = nullptr;
 }
  
 // Constructor por parámetro
@@ -36,3 +36,4 @@ void Node<T>::print()
  
 template<typename T>
 Node<T>::~Node() {}
+

@@ -21,6 +21,8 @@
 #include "personal.h"
 #include "list.h"
 #include "list.cpp"
+#include "admin.h"
+#include "node.h"
 #include "name.h"
 
 // app
@@ -96,7 +98,7 @@ private:
     List<Carrera> *carreras = nullptr;
     List<Carrera> *roles = nullptr;
     List<Personal> *personal = nullptr;
-    List<Personal> *admins = nullptr;
+    List<Admin> *admins = nullptr;
 
 
     // connection db
@@ -160,19 +162,23 @@ private:
     void initCaptureDB();
     void initRegistroPersonal();
 
-    void loadAll();
+    void loadAllToLinkedList();
+    void loadAllToGuiAddPersonal();
+
+    void loadGuiCarreras(QComboBox*, List<Carrera>*);
+
 
     // SELECT ALL
     void loadListCarreas(List<Carrera>*);
     void loadListRoles(List<Carrera>*);
     void loadListPersonal(List<Personal>*);
-    void loadListAdmins(List<Personal>*);
+    void loadListAdmins(List<Admin>*);
 
     // SELECT BY QUERY
     void loadListCarreas(List<Carrera>*, QString);
     void loadListRoles(List<Carrera>*, QString);
     void loadListPersonal(List<Personal>*, QString);
-    void loadListAdmins(List<Personal>*, QString);
+    void loadListAdmins(List<Admin>*, QString);
 
 private slots:
     char connectDB();

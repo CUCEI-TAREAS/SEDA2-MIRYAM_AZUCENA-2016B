@@ -21,10 +21,10 @@ private:
     telefono,
     expediente;
 
-    char status,
+    QChar status, // status did work ?
     semestre,
     creditosCursados,
-    permisos;
+    permisos; // status did work ?
 
     Name *nombre =  nullptr;
 
@@ -42,14 +42,14 @@ public:
     void setTelefono(const QString &value);
     QString getExpediente() const;
     void setExpediente(const QString &value);
-    char getStatus() const;
-    void setStatus(char value);
-    char getSemestre() const;
-    void setSemestre(char value);
-    char getCreditosCursados() const;
-    void setCreditosCursados(char value);
-    char getPermisos() const;
-    void setPermisos(char value);
+    QChar getStatus() const;
+    void setStatus(QChar value);
+    QChar getSemestre() const;
+    void setSemestre(QChar value);
+    QChar getCreditosCursados() const;
+    void setCreditosCursados(QChar value);
+    QChar getPermisos() const;
+    void setPermisos(QChar value);
 
 
     Carrera *getCarrera() const;

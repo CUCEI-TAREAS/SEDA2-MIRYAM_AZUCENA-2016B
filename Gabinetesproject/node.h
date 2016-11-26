@@ -20,5 +20,5 @@ class Node
         void delete_all();
         void print();
 };
- 
+
 #endif // NODE_H

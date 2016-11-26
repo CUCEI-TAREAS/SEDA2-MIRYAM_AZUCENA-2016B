@@ -1,11 +1,11 @@
 #include "carrera.h"
 
-int Carrera::getId() const
+QString Carrera::getId() const
 {
     return id;
 }
 
-void Carrera::setId(int value)
+void Carrera::setId(QString value)
 {
     id = value;
 }
@@ -23,6 +23,5 @@ void Carrera::setCarrera(const QString value)
 Carrera::Carrera()
 {
     // index of table
-    id = 0;
-    carrera = "";
+    id = carrera = "";
 }

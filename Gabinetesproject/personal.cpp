@@ -55,42 +55,42 @@ void Personal::setExpediente(const QString &value)
     expediente = value;
 }
 
-char Personal::getStatus() const
+QChar Personal::getStatus() const
 {
     return status;
 }
 
-void Personal::setStatus(char value)
+void Personal::setStatus(QChar value)
 {
     status = value;
 }
 
-char Personal::getSemestre() const
+QChar Personal::getSemestre() const
 {
     return semestre;
 }
 
-void Personal::setSemestre(char value)
+void Personal::setSemestre(QChar value)
 {
     semestre = value;
 }
 
-char Personal::getCreditosCursados() const
+QChar Personal::getCreditosCursados() const
 {
     return creditosCursados;
 }
 
-void Personal::setCreditosCursados(char value)
+void Personal::setCreditosCursados(QChar value)
 {
     creditosCursados = value;
 }
 
-char Personal::getPermisos() const
+QChar Personal::getPermisos() const
 {
     return permisos;
 }
 
-void Personal::setPermisos(char value)
+void Personal::setPermisos(QChar value)
 {
     permisos = value;
 }

@@ -6,14 +6,14 @@
 class Carrera
 {
 private:
-    int id;
-    QString carrera;
+    // int id; //CHANGE TO STRING
+    QString id, carrera;
 
 public:
     Carrera();
 
-    int getId() const;
-    void setId(int value);
+    QString getId() const;
+    void setId(QString value);
 
     QString getCarrera() const;
     void setCarrera(const QString value);

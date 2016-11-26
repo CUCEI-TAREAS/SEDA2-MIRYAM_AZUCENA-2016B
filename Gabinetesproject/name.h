@@ -16,19 +16,19 @@ public:
     Name();
 
     QString getFirtsName() const;
-    void setFirtsName(const QString &value);
+    void setFirtsName(const QString value);
 
     QString getSecondName() const;
-    void setSecondName(const QString &value);
+    void setSecondName(const QString value);
 
     QString getThirdName() const;
-    void setThirdName(const QString &value);
+    void setThirdName(const QString value);
 
     QString getLastNameMaternal() const;
-    void setLastNameMaternal(const QString &value);
+    void setLastNameMaternal(const QString value);
 
     QString getLastNamePaternal() const;
-    void setLastNamePaternal(const QString &value);
+    void setLastNamePaternal(const QString value);
 
 
 };

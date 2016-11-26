@@ -107,15 +107,7 @@ void GUIGabinete::initRegistroPersonal()
     statusPersonalCombobox->addItem(STATUS_PERSONAL_INACTIVE);
 
     carreraCombobox = new QComboBox();
-    // all read from DB, by default stored DB
-    //  loadAll() CAreers, Roles, admin
-    //carreraCombobox->addItem(CAREER_INF);
-    //carreraCombobox->addItem(CAREER_COM);
-    //carreraCombobox->addItem(CAREER_ELE);
-
-    tutorCombobox = new QComboBox(); // read from db
-
-
+    tutorCombobox = new QComboBox();
 
     // QSpinBox
     semestreSpin = new QSpinBox();
@@ -159,15 +151,36 @@ void GUIGabinete::initRegistroPersonal()
     registroGroupLayout->setLayout(registroGridLayout);
 }
 
-void GUIGabinete::loadAll()
+void GUIGabinete::loadAllToLinkedList()
 {
     carreras = new List<Carrera>();
     roles = new List<Carrera>();
     personal = new List<Personal>();
+    admins = new List<Admin>();
 
     loadListCarreas(carreras);
     loadListRoles(roles);
     loadListPersonal(personal);
+    loadListAdmins(admins);
+}
+
+void GUIGabinete::loadAllToGuiAddPersonal()
+{
+    loadGuiCarreras(carreraCombobox, carreras);
+}
+
+void GUIGabinete::loadGuiCarreras(QComboBox *combo, List<Carrera>* myList)
+{
+    Node<Carrera>* node = nullptr;
+    Carrera temp;
+
+    node = myList->head();
+
+    while ( node != nullptr){
+        temp = node->data;
+        combo->addItem(temp.getCarrera());
+        node = node->next;
+    }
 }
 
 void GUIGabinete::loadListCarreas(List<Carrera> * myList)
@@ -178,7 +191,7 @@ void GUIGabinete::loadListCarreas(List<Carrera> * myList)
     while(result.next()){
 
         temp = new Carrera();
-        temp->setId(result.value(CAREER_ID).toInt());
+        temp->setId(result.value(CAREER_ID).toString());
         temp->setCarrera(result.value(CAREER_ROL).toString());
 
         myList->add_head(*temp);
@@ -196,7 +209,7 @@ void GUIGabinete::loadListRoles(List<Carrera> * myList)
     while(result.next()){
 
         temp = new Carrera();
-        temp->setId(result.value(ROLES_ID).toInt());
+        temp->setId(result.value(ROLES_ID).toString());
         temp->setCarrera(result.value(ROLES_ROL).toString());
 
         myList->add_head(*temp);
@@ -208,8 +221,11 @@ void GUIGabinete::loadListRoles(List<Carrera> * myList)
 
 void GUIGabinete::loadListPersonal(List<Personal> *myList)
 {
-    Personal *temp = nullptr;
+    Personal *temp = nullptr,
+            *tutor = nullptr;
+
     Name *nombre = nullptr;
+    Carrera *carrera = nullptr;
 
     QSqlQuery result = db->selectAll(NAME_TABLE_PERSON);
 
@@ -217,29 +233,51 @@ void GUIGabinete::loadListPersonal(List<Personal> *myList)
 
         temp = new Personal();
         temp->setCodigo(result.value(PERSON_CODE).toString());
+        temp->setEmail(result.value(PERSON_MAIL).toString());
+        temp->setTelefono(result.value(PERSON_PHONE).toString());
+        temp->setExpediente(result.value(PERSON_EXPEDIENTE).toString());
+
+        // status did work ?
+        temp->setSemestre(result.value(PERSON_CURRENTSEMESTRE).toChar());
+        temp->setCreditosCursados(result.value(PERSON_CREDITS).toChar());
+        temp->setSemestre(result.value(PERSON_CURRENTSEMESTRE).toChar());
 
         nombre = new Name();
-
         nombre->setFirtsName(result.value(PERSON_FIRSTNAME).toString());
         nombre->setSecondName(result.value(PERSON_SECONDNAME).toString());
         nombre->setThirdName(result.value(PERSON_THIRDNAME).toString());
         nombre->setLastNamePaternal(result.value(PERSON_LASTNAMEPATERNAL).toString());
         nombre->setLastNameMaternal(result.value(PERSON_LASTNAMEPATERNAL).toString());
 
+        // retrieve id career & tutor and linked from Career & Tutor(Code Person) list to Person
+
         temp->setNombre(nombre);
 
         myList->add_head(*temp);
 
         temp = nullptr;
+        tutor = nullptr;
         nombre = nullptr;
+        carrera = nullptr;
     }
-
-    delete temp;
 }
 
-void GUIGabinete::loadListAdmins(List<Personal> *)
+void GUIGabinete::loadListAdmins(List<Admin>* myList)
 {
+    Admin *temp = nullptr;
+    QSqlQuery result = db->selectAll(NAME_TABLE_ADMIN);
 
+    while(result.next()){
+
+        temp = new Admin();
+        temp->setId(result.value(ADMIN_ID).toString());
+        temp->setAdmin(result.value(ADMIN_PERSON).toString());
+        temp->setPass(result.value(ADMIN_PASS).toString());
+        myList->add_head(*temp);
+    }
+
+    temp = nullptr;
+    delete temp;
 }
 
 void GUIGabinete::loadListCarreas(List<Carrera> *, QString)
@@ -252,7 +290,7 @@ void GUIGabinete::loadListRoles(List<Carrera> *, QString)
 
 }
 
-void GUIGabinete::loadListAdmins(List<Personal> *, QString)
+void GUIGabinete::loadListAdmins(List<Admin> *, QString)
 {
 
 }
@@ -313,7 +351,8 @@ void GUIGabinete::addPersonalRegistroWidget()
 
 
     initRegistroPersonal();
-    loadAll(); // to insert all data on files and consults
+    loadAllToLinkedList(); // to insert all data on files and consults
+    loadAllToGuiAddPersonal();
 
     // also init to GabinetePersonal()
     mainLayout->addWidget(registroGroupLayout);

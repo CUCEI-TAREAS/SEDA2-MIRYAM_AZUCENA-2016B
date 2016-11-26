@@ -36,7 +36,11 @@ class List
         void search(T);
         void sort();
  
-    private:
+
+        Node<T> *head() const;
+        void setHead(Node<T> *head);
+
+private:
         Node<T> *m_head = nullptr;
         int m_num_nodes;
 };

@@ -69,6 +69,9 @@
 
 #define ADMIN           NAME_TABLE_ADMIN    " (id SERIAL PRIMARY KEY, admin VARCHAR (10) REFERENCES Person (code), pass TEXT NOT NULL );"
 #define DEFAULT_ADMIN   NAME_TABLE_ADMIN    " (admin, pass) VALUES ( '999', '123');"
+#define ADMIN_ID 0
+#define ADMIN_PERSON 1
+#define ADMIN_PASS 2
 
 #define MEETING NAME_TABLE_MEETING " (codeStudent VARCHAR (10) REFERENCES Person (code), codeAdmin  VARCHAR (10), date TIMESTAMP NOT NULL, time TIME NOT NULL);"
 

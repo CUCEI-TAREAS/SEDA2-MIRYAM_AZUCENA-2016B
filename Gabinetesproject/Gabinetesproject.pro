@@ -20,7 +20,9 @@ SOURCES += main.cpp \
     database.cpp \
     configfile.cpp \
     list.cpp \
-    node.cpp
+    node.cpp \
+    name.cpp \
+    admin.cpp
 
 HEADERS  += \
     guigabinete.h \
@@ -29,4 +31,6 @@ HEADERS  += \
     database.h \
     configfile.h \
     list.h \
-    node.h
+    node.h \
+    name.h \
+    admin.h

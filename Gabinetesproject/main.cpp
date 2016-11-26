@@ -19,10 +19,10 @@ High priority
     done ; tables and defaults user on DB ; these might db connection as root
     done ; create all indepences tables, after tables  with dependencies and foreign keys
     done ; loadConnectionDB() // create connection DB from file // when file already exists
+    done ; loadAllToLinkedList() CAreers, Roles, admin
+    done ; loadAllCodesPerson() to linked list : seek faster exists
+    done ; loadAdmins() // to load on GUI e.g. tutorCombox
 
-    loadAllToLinkedList() CAreers, Roles, admin
-    loadAllCodesPerson() to linked list : seek faster exists
-    loadAdmins() // to load on GUI e.g. tutorCombox
     addPerson()
     personExist() // by codigo
     logAsAdmin()
@@ -34,6 +34,7 @@ Second
     improve relations on cascade or // product_no integer REFERENCES products ON DELETE RESTRICT,
     order_id integer REFERENCES orders ON DELETE CASCADE,
 
+    security passwords, algorithms to codify
     // user and db always must be lowercase
     verifyeConnectionFromFileConfigToDB() // when fileConfig already exists
     validationsToPerson()

@@ -349,6 +349,17 @@ void List<T>::sort()
         aux_node = aux_node->next;
     }
 }
+template<typename T>
+Node<T>* List<T>::head() const
+{
+    return m_head;
+}
+
+template<typename T>
+void List<T>::setHead(Node<T> *head)
+{
+    m_head = head;
+}
 
 // Guardar una lista en un archivo
 template<typename T>
