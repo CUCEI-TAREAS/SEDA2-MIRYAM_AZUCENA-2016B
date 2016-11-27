@@ -335,31 +335,29 @@ char GUIGabinete::connectDB()
 
 void GUIGabinete::addPersonalRegistroWidget()
 {
+    // MainWindow
     window = new QMainWindow();
 
-    mainWidget = new QWidget();
+    // widgets
+    mainCentralWidget = new QWidget();
     mainRegistro = new QWidget();
 
+    // layouts
     registroMainLayout = new QFormLayout();
+    mainCentralLayout =  new QFormLayout();
 
-    initPersonalRegistro(mainWidget, registroMainLayout);
+    initPersonalRegistro(mainRegistro, registroMainLayout);
 
-    // GUI
+    tabs = new QTabWidget();
+    tabs->addTab(mainRegistro, TEXT_ADD_PERSONAL);
 
-    //tabs = new QTabWidget(mainWidget);
+    mainCentralLayout->addRow(tabs);
+    mainCentralWidget->setLayout(mainCentralLayout);
 
+    loadAllToLinkedList(); // to insert all data on files and consults
+    loadAllToGuiAddPersonal();
 
-    //tabs->addTab(mainRegistro, TEXT_ADD_PERSONAL);
-
-
-    //loadAllToLinkedList(); // to insert all data on files and consults
-    //loadAllToGuiAddPersonal();
-
-    // also init to GabinetePersonal()
-    //mainLayout->addWidget(registroGroupLayout);
-    //mainWidget->setLayout(mainLayout);
-
-    window->setCentralWidget(mainWidget);
+    window->setCentralWidget(mainCentralWidget);
     window->setWindowTitle(TITLE_APP);
     window->setMinimumWidth(MINIMUM_WIDTH);
     window->show();

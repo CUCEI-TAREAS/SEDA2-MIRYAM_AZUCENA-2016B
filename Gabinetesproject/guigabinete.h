@@ -118,14 +118,14 @@ private:
 
     //QLayout *mainGridLayout = nullptr; // change to grid
 
-    QWidget *mainWidget = nullptr, // all into there
+    QWidget *mainCentralWidget = nullptr, // all into there
             *mainRegistro = nullptr;
 
     //QGroupBox *registroGroupLayout = nullptr;
 
     // registro
     QFormLayout *registroMainLayout = nullptr,
-                *mainGridLayout = nullptr;
+                *mainCentralLayout = nullptr;
 
     // components of registro
     QLabel
