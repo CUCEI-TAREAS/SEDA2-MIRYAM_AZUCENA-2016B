@@ -9,6 +9,7 @@
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include <QGridLayout>
+#include <QFormLayout>
 #include <QLabel>
 #include <QLineEdit>
 #include <QComboBox>
@@ -114,15 +115,17 @@ private:
     // interface
     QTabWidget *tabs = nullptr;
     QMainWindow *window = nullptr;
-    QLayout *mainGridLayout = nullptr;
+
+    //QLayout *mainGridLayout = nullptr; // change to grid
 
     QWidget *mainWidget = nullptr, // all into there
             *mainRegistro = nullptr;
 
-    QGroupBox *registroGroupLayout = nullptr;
+    //QGroupBox *registroGroupLayout = nullptr;
 
     // registro
-    QGridLayout *registroGridLayout = nullptr;
+    QFormLayout *registroMainLayout = nullptr,
+                *mainGridLayout = nullptr;
 
     // components of registro
     QLabel
@@ -164,7 +167,7 @@ private:
     *dbLine = nullptr;
 
     void initCaptureDB();
-    void initPersonalRegistro(QWidget*);
+    void initPersonalRegistro(QWidget*, QFormLayout*);
 
 
     bool allValidationsAddPersonal();

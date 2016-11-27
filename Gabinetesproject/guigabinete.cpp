@@ -73,83 +73,66 @@ void GUIGabinete::initCaptureDB()
     captureDB->show();
 }
 
-void GUIGabinete::initPersonalRegistro(QWidget* widget)
+void GUIGabinete::initPersonalRegistro(QWidget* widget, QFormLayout *layout)
 {
     //layout
-    registroGroupLayout = new QGroupBox(widget);
-    registroGridLayout = new QGridLayout(widget);
+    //registroGroupLayout = new QGroupBox(widget);
+    //registroGridLayout = new QGridLayout(widget);
 
     // labels
-    nombreLabel = new QLabel(NAME_PERSONAL, widget);
-    apeidoLabel = new QLabel(LAST_NAME_PERSONAL, widget);
-    codigoLabel = new QLabel(CODE_PERSONAL, widget);
-    emailLabel = new QLabel(EMAIL_PERSONAL, widget);
-    telefonoLabel = new QLabel(PHONE_PERSONAL, widget);
-    expedienteLabel = new QLabel(EXP_PERSONAL, widget);
-    statusPersonalLabel = new QLabel (STATE_PERSONAL, widget);
-    semestreLabel =  new QLabel (SEMESTRE_PERSONAL, widget);
-    creditosCursadosLabel = new QLabel( CURRENT_PERSONAL, widget);
-    carreraLabel = new QLabel (CARRERA_PERSONAL, widget); // combox
-    tutorLabel = new QLabel (TUTOR_ESTUDIANTE, widget);  // combox
+    nombreLabel = new QLabel(NAME_PERSONAL);
+    apeidoLabel = new QLabel(LAST_NAME_PERSONAL);
+    codigoLabel = new QLabel(CODE_PERSONAL);
+    emailLabel = new QLabel(EMAIL_PERSONAL);
+    telefonoLabel = new QLabel(PHONE_PERSONAL);
+    expedienteLabel = new QLabel(EXP_PERSONAL);
+    statusPersonalLabel = new QLabel (STATE_PERSONAL);
+    semestreLabel =  new QLabel (SEMESTRE_PERSONAL);
+    creditosCursadosLabel = new QLabel( CURRENT_PERSONAL);
+    carreraLabel = new QLabel (CARRERA_PERSONAL); // combox
+    tutorLabel = new QLabel (TUTOR_ESTUDIANTE);  // combox
 
     // Lines
-    nombreLine = new QLineEdit(widget);
-    apeidoLine = new QLineEdit(widget);
-    codigoLine = new QLineEdit(widget);
-    emailLine = new QLineEdit(widget);
-    telefonoLine = new QLineEdit(widget);
-    expedienteLine = new QLineEdit(widget);
-    creditosCursadosLine = new QLineEdit(widget);
+    nombreLine = new QLineEdit();
+    apeidoLine = new QLineEdit();
+    codigoLine = new QLineEdit();
+    emailLine = new QLineEdit();
+    telefonoLine = new QLineEdit();
+    expedienteLine = new QLineEdit();
+    creditosCursadosLine = new QLineEdit();
 
     // QComboBox
-    statusPersonalCombobox = new QComboBox(widget);
+    statusPersonalCombobox = new QComboBox();
     // load by database
     statusPersonalCombobox->addItem(STATUS_PERSONAL_ACTIVE);
     statusPersonalCombobox->addItem(STATUS_PERSONAL_INACTIVE);
 
-    carreraCombobox = new QComboBox(widget);
-    tutorCombobox = new QComboBox(widget);
+    carreraCombobox = new QComboBox();
+    tutorCombobox = new QComboBox();
 
     // QSpinBox
-    semestreSpin = new QSpinBox(widget);
+    semestreSpin = new QSpinBox();
     semestreSpin->setRange(MIN_RANGE_SEMESTRE, MAX_RANGE_SEMESTRE);
 
     // QPushButton
-    addPersonalButton = new QPushButton(TEXT_ADD_PERSONAL, widget);
+    addPersonalButton = new QPushButton(TEXT_ADD_PERSONAL);
 
     // implementation
-    registroGridLayout->addWidget(nombreLabel, 0, 0);
-    registroGridLayout->addWidget(nombreLine, 0, 1);
+    layout->addRow(nombreLabel,nombreLine);
+    layout->addRow(apeidoLabel, apeidoLine);
+    layout->addRow(codigoLabel, codigoLine);
+    layout->addRow(emailLabel, emailLine);
+    layout->addRow(telefonoLabel, telefonoLine);
+    layout->addRow(expedienteLabel, expedienteLine);
+    layout->addRow(statusPersonalLabel, statusPersonalCombobox);
+    layout->addRow(semestreLabel, semestreSpin);
+    layout->addRow(carreraLabel, carreraCombobox);
+    layout->addRow(tutorLabel, tutorCombobox);
 
-    registroGridLayout->addWidget(apeidoLabel, 1, 0);
-    registroGridLayout->addWidget(apeidoLine, 1, 1);
+    layout->addRow(addPersonalButton);
 
-    registroGridLayout->addWidget(codigoLabel, 2, 0);
-    registroGridLayout->addWidget(codigoLine, 2, 1);
-
-    registroGridLayout->addWidget(emailLabel, 3, 0);
-    registroGridLayout->addWidget(emailLine, 3, 1);
-
-    registroGridLayout->addWidget(telefonoLabel, 4, 0);
-    registroGridLayout->addWidget(telefonoLine, 4, 1);
-
-    registroGridLayout->addWidget(expedienteLabel, 5, 0);
-    registroGridLayout->addWidget(expedienteLine, 5, 1);
-
-    registroGridLayout->addWidget(statusPersonalLabel, 6, 0);
-    registroGridLayout->addWidget(statusPersonalCombobox, 6, 1);
-
-    registroGridLayout->addWidget(semestreLabel, 7, 0);
-    registroGridLayout->addWidget(semestreSpin, 7, 1);
-
-    registroGridLayout->addWidget(carreraLabel, 8, 0);
-    registroGridLayout->addWidget(carreraCombobox, 8, 1);
-
-    registroGridLayout->addWidget(tutorLabel, 9, 0);
-    registroGridLayout->addWidget(tutorCombobox, 9, 1);
-
-    registroGridLayout->addWidget(addPersonalButton, 10, 0, 1, 2);
-    registroGroupLayout->setLayout(registroGridLayout);
+    widget->setLayout(layout);
+    //registroGroupLayout->setLayout(registroGridLayout);
 }
 
 bool GUIGabinete::allValidationsAddPersonal()
@@ -352,24 +335,29 @@ char GUIGabinete::connectDB()
 
 void GUIGabinete::addPersonalRegistroWidget()
 {
-    // GUI
     window = new QMainWindow();
-    mainWidget = new QWidget(window);
-    mainLayout = new QGridLayout();
 
-    tabs = new QTabWidget(mainWidget);
+    mainWidget = new QWidget();
+    mainRegistro = new QWidget();
 
-    tabs->addTab(mainWidget, "6y");
+    registroMainLayout = new QFormLayout();
+
+    initPersonalRegistro(mainWidget, registroMainLayout);
+
+    // GUI
+
+    //tabs = new QTabWidget(mainWidget);
 
 
+    //tabs->addTab(mainRegistro, TEXT_ADD_PERSONAL);
 
-    initPersonalRegistro();
-    loadAllToLinkedList(); // to insert all data on files and consults
-    loadAllToGuiAddPersonal();
+
+    //loadAllToLinkedList(); // to insert all data on files and consults
+    //loadAllToGuiAddPersonal();
 
     // also init to GabinetePersonal()
-    mainLayout->addWidget(registroGroupLayout);
-    mainWidget->setLayout(mainLayout);
+    //mainLayout->addWidget(registroGroupLayout);
+    //mainWidget->setLayout(mainLayout);
 
     window->setCentralWidget(mainWidget);
     window->setWindowTitle(TITLE_APP);
