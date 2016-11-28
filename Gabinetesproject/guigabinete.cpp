@@ -75,10 +75,6 @@ void GUIGabinete::initCaptureDB()
 
 void GUIGabinete::initPersonalRegistro(QWidget* widget, QFormLayout *layout)
 {
-    //layout
-    //registroGroupLayout = new QGroupBox(widget);
-    //registroGridLayout = new QGridLayout(widget);
-
     // labels
     nombreLabel = new QLabel(NAME_PERSONAL);
     apeidoLabel = new QLabel(LAST_NAME_PERSONAL);
@@ -115,7 +111,7 @@ void GUIGabinete::initPersonalRegistro(QWidget* widget, QFormLayout *layout)
     semestreSpin->setRange(MIN_RANGE_SEMESTRE, MAX_RANGE_SEMESTRE);
 
     // QPushButton
-    addPersonalButton = new QPushButton(TEXT_ADD_PERSONAL);
+    addPersonalButton = new QPushButton(TITLE_ADD_PERSONAL);
 
     // implementation
     layout->addRow(nombreLabel,nombreLine);
@@ -128,11 +124,10 @@ void GUIGabinete::initPersonalRegistro(QWidget* widget, QFormLayout *layout)
     layout->addRow(semestreLabel, semestreSpin);
     layout->addRow(carreraLabel, carreraCombobox);
     layout->addRow(tutorLabel, tutorCombobox);
-
     layout->addRow(addPersonalButton);
 
     widget->setLayout(layout);
-    //registroGroupLayout->setLayout(registroGridLayout);
+
 }
 
 bool GUIGabinete::allValidationsAddPersonal()
@@ -140,6 +135,36 @@ bool GUIGabinete::allValidationsAddPersonal()
     // check only mandatory fields
 
     return true;
+}
+
+Personal *GUIGabinete::getCurrentPersonal()
+{
+    /*
+    layout->addRow(nombreLabel,nombreLine);
+    layout->addRow(apeidoLabel, apeidoLine);
+    layout->addRow(codigoLabel, codigoLine);
+    layout->addRow(emailLabel, emailLine);
+    layout->addRow(telefonoLabel, telefonoLine);
+    layout->addRow(expedienteLabel, expedienteLine);
+    layout->addRow(statusPersonalLabel, statusPersonalCombobox);
+    layout->addRow(semestreLabel, semestreSpin);
+    layout->addRow(carreraLabel, carreraCombobox);
+    layout->addRow(tutorLabel, tutorCombobox);
+    layout->addRow(addPersonalButton);
+    */
+    QString nombre,
+            apeido,
+            codigo,
+            email,
+            telefono,
+            expediente;
+
+    QChar semestre;
+    //...
+
+
+
+
 }
 
 void GUIGabinete::loadAllToLinkedList()
@@ -349,7 +374,7 @@ void GUIGabinete::addPersonalRegistroWidget()
     initPersonalRegistro(mainRegistro, registroMainLayout);
 
     tabs = new QTabWidget();
-    tabs->addTab(mainRegistro, TEXT_ADD_PERSONAL);
+    tabs->addTab(mainRegistro, TITLE_ADD_PERSONAL);
 
     mainCentralLayout->addRow(tabs);
     mainCentralWidget->setLayout(mainCentralLayout);

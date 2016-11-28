@@ -5,6 +5,22 @@ Name::Name()
 
 }
 
+Name::Name(QString f, QString p)
+{
+    firtsName = f;
+    LastNamePaternal = p;
+
+}
+
+Name::Name(QString f, QString s, QString t, QString p, QString m)
+{
+    firtsName = f;
+    secondName = s;
+    thirdName = t;
+    LastNamePaternal = p;
+    LastNameMaternal = m;
+}
+
 QString Name::getFirtsName() const
 {
     return firtsName;

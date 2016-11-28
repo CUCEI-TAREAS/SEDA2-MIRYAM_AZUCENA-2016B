@@ -28,7 +28,7 @@
 #include "name.h"
 
 // app
-#define TEXT_ADD_PERSONAL   "Agregar estudiante"
+#define TITLE_ADD_PERSONAL   "Agregar estudiante"
 
 #define TITLE_APP       "Gabinete"
 #define MINIMUM_WIDTH   600
@@ -171,6 +171,8 @@ private:
 
 
     bool allValidationsAddPersonal();
+    bool validationPersonal(Personal*); // check only mandatory fields
+    Personal* getCurrentPersonal();
 
     void loadAllToLinkedList();
     void loadAllToGuiAddPersonal();

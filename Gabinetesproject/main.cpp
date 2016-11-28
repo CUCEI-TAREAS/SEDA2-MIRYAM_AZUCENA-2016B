@@ -24,6 +24,8 @@ High priority
     done ; loadAdmins() // to load on GUI e.g. tutorCombox
 
     addPerson()
+    orderByQuickSort
+    generate PDF to reports, Date and statistics statistics
     personExist() // by codigo
     logAsAdmin()
     createMeeting() & dateSchedule() // focused available to date

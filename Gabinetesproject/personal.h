@@ -33,6 +33,7 @@ private:
 
 public:
     Personal();
+    Personal(Name*, QString, QString, QString, QString, QChar, QChar, QChar, QChar, Carrera*, Personal*);
 
     QString getCodigo() const;
     void setCodigo(const QString &value);

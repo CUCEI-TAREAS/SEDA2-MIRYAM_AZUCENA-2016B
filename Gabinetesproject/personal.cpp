@@ -4,6 +4,22 @@ Personal::Personal()
 {
 
 }
+
+Personal::Personal(Name* n, QString code, QString mail, QString phone, QString exp, QChar sta, QChar semes, QChar cre, QChar per, Carrera* career, Personal* tuto)
+{
+    nombre = n;
+    codigo = code;
+    email = mail;
+    telefono = phone;
+    expediente = exp;
+    status = sta;
+    semestre = semes;
+    creditosCursados = cre;
+    permisos = per;
+    carrera = career;
+    tutor = tuto;
+}
+
 Name *Personal::getNombre() const
 {
     return nombre;
