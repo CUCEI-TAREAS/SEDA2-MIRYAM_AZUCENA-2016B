@@ -20,7 +20,6 @@ Personal::Personal(Name* n, QString code, QString mail, QString phone, QString e
     status = sta;
     semestre = semes;
     creditosCursados = cre;
-    // permisos = per;
     carrera = career;
     tutor = tuto;
 }

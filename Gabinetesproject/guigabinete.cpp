@@ -14,6 +14,7 @@ GUIGabinete::GUIGabinete()
         if ( db->connectDB(fileConfig->getHost(), fileConfig->getPort(), fileConfig->getUser(), fileConfig->getPass(), fileConfig->getNameDB())){
             addPersonalRegistroWidget();
         } else {
+
             // MSG SE PUDO CONECTAR AL SERVER, PERO NO A LA BASE DE DATOS
         }
 
@@ -163,7 +164,7 @@ Personal *GUIGabinete::getGUICurrentPersonal()
     creditos = creditosCursadosLine->text();
 
     carrera =  carreraCombobox->currentText();
-    codeTutor =  codigoLine->text();
+    codeTutor =  tutorCombobox->currentText();
 
     //... search codeTutor on List and link with person
     Personal *tutor = new Personal(codeTutor);
@@ -183,7 +184,6 @@ void GUIGabinete::loadAllToLinkedList()
 
     loadListCarreas(carreras);
     loadListRoles(roles);
-
     loadListPersonal(personal);
     loadListAdmins(admins);
 }
@@ -191,6 +191,7 @@ void GUIGabinete::loadAllToLinkedList()
 void GUIGabinete::loadAllToGuiAddPersonal()
 {
     loadGuiCarreras(carreraCombobox, carreras);
+    loadGuiTutores(tutorCombobox, admins);
 }
 
 void GUIGabinete::loadGuiCarreras(QComboBox *combo, List<Carrera>* myList)
@@ -203,6 +204,20 @@ void GUIGabinete::loadGuiCarreras(QComboBox *combo, List<Carrera>* myList)
     while ( node != nullptr){
         temp = node->data;
         combo->addItem(temp.getCarrera());
+        node = node->next;
+    }
+}
+
+void GUIGabinete::loadGuiTutores(QComboBox *combo, List<Admin> *myList)
+{
+    Node<Admin>* node = nullptr;
+    Admin temp;
+
+    node = myList->head();
+
+    while ( node != nullptr){
+        temp = node->data;
+        combo->addItem(temp.getAdmin());
         node = node->next;
     }
 }
@@ -398,10 +413,12 @@ void GUIGabinete::addPersonalRegistroWidget()
 
 bool GUIGabinete::insertPersonalToDB(Personal* persona)
 {
-    //persona
-
     // .. validations to add a default db
-    return true;
+    if (db->existsPerson(persona->getCodigo()))
+        return false;
+        // msg ya existe ese ID
+
+    return db->addPerson(persona);
 }
 
 bool GUIGabinete::insertPersonalToDBFromGUI()

@@ -178,7 +178,7 @@ private:
     void loadAllToGuiAddPersonal();
 
     void loadGuiCarreras(QComboBox*, List<Carrera>*);
-
+    void loadGuiTutores(QComboBox*, List<Admin> *);
 
     // SELECT ALL
     void loadListCarreas(List<Carrera>*);
