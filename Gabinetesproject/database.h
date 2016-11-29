@@ -46,8 +46,8 @@
     "mail TEXT NULL," \
     "phone TEXT NULL," \
     "expediente TEXT NULL, " \
-    "currentSemestre CHAR(1) NULL, " \
-    "creditsObtained CHAR(1) NULL, " \
+    "currentSemestre TEXT  NULL, " \
+    "creditsObtained TEXT  NULL, " \
     "career INTEGER NULL REFERENCES Career(id) , " \
     "codeTutor VARCHAR (10) NULL REFERENCES Person (code) " \
     " ); "

@@ -140,20 +140,6 @@ bool GUIGabinete::allValidationsAddPersonal()
 
 Personal *GUIGabinete::getGUICurrentPersonal()
 {
-    /*
-    layout->addRow(nombreLabel,nombreLine);
-    layout->addRow(apeidoLabel, apeidoLine);
-    layout->addRow(codigoLabel, codigoLine);
-    layout->addRow(emailLabel, emailLine);
-    layout->addRow(telefonoLabel, telefonoLine);
-    layout->addRow(expedienteLabel, expedienteLine);
-    layout->addRow(statusPersonalLabel, statusPersonalCombobox);
-    layout->addRow(semestreLabel, semestreSpin);
-    layout->addRow(carreraLabel, carreraCombobox);
-    layout->addRow(tutorLabel, tutorCombobox);
-    layout->addRow(addPersonalButton);
-    */
-
     QString nombre,
             apeido,
             codigo,
@@ -172,17 +158,20 @@ Personal *GUIGabinete::getGUICurrentPersonal()
     email = emailLine->text();
     telefono = telefonoLine->text();
     expediente = expedienteLine->text();
-    //state = statusPersonalCombobox->currentText().data();
+    state = statusPersonalCombobox->currentText();
+    semestre = semestreSpin->text();
+    creditos = creditosCursadosLine->text();
 
-    //
+    carrera =  carreraCombobox->currentText();
+    codeTutor =  codigoLine->text();
 
+    //... search codeTutor on List and link with person
     Personal *tutor = new Personal(codeTutor);
     Name *name = new Name(nombre, apeido);
     Carrera *career = new Carrera(carrera);
 
     //
-    //return new Personal(name, codigo, email, telefono, expediente, state, semestre, creditos, career, tutor);
-    return new Personal(codigo);
+    return new Personal(name, codigo, email, telefono, expediente, state, semestre, creditos, career, tutor);
 }
 
 void GUIGabinete::loadAllToLinkedList()
@@ -409,6 +398,8 @@ void GUIGabinete::addPersonalRegistroWidget()
 
 bool GUIGabinete::insertPersonalToDB(Personal* persona)
 {
+    //persona
+
     // .. validations to add a default db
     return true;
 }
