@@ -113,8 +113,8 @@ bool Database::addPerson(Personal *person)
             + "'" + state + "',"
             + "'" + semestre + "',"
             + "'" + creditos + "',"
-            + "'" + carrera + "',"
-            + "'" + codeTutor + "'"
+            + "'" + carrera + "'," // ... recover ID career from List Career
+            +  codeTutor +
             + ");";
     // ...
     QSqlQuery query(db);
