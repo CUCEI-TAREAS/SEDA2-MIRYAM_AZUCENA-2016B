@@ -32,6 +32,7 @@ High priority
     sendMail()
 
 Second 
+    new Table to states person [active / inactive / ]
 
     improve relations on cascade or // product_no integer REFERENCES products ON DELETE RESTRICT,
     order_id integer REFERENCES orders ON DELETE CASCADE,

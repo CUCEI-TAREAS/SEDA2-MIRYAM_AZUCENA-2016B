@@ -172,7 +172,7 @@ private:
 
     bool allValidationsAddPersonal();
     bool validationPersonal(Personal*); // check only mandatory fields
-    Personal* getCurrentPersonal();
+    Personal* getGUICurrentPersonal();
 
     void loadAllToLinkedList();
     void loadAllToGuiAddPersonal();
@@ -197,6 +197,9 @@ private slots:
     void clearRegistro();
     void deleteCaptureDB();
     void addPersonalRegistroWidget();
+    bool insertPersonalToDB(Personal*);
+    bool insertPersonalToDBFromGUI();
+
 
 signals:
     void fileConfigReady();

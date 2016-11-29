@@ -5,7 +5,12 @@ Personal::Personal()
 
 }
 
-Personal::Personal(Name* n, QString code, QString mail, QString phone, QString exp, QChar sta, QChar semes, QChar cre, QChar per, Carrera* career, Personal* tuto)
+Personal::Personal(QString code)
+{
+    codigo = code;
+}
+
+Personal::Personal(Name* n, QString code, QString mail, QString phone, QString exp, QChar sta, QChar semes, QChar cre, Carrera* career, Personal* tuto)
 {
     nombre = n;
     codigo = code;
@@ -15,7 +20,7 @@ Personal::Personal(Name* n, QString code, QString mail, QString phone, QString e
     status = sta;
     semestre = semes;
     creditosCursados = cre;
-    permisos = per;
+    // permisos = per;
     carrera = career;
     tutor = tuto;
 }

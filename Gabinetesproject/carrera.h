@@ -3,6 +3,8 @@
 
 #include <QString>
 
+#define CAREER_NO_VERIFY -1
+
 class Carrera
 {
 private:
@@ -11,6 +13,7 @@ private:
 
 public:
     Carrera();
+    Carrera(QString);
 
     QString getId() const;
     void setId(QString value);

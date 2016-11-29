@@ -22,6 +22,10 @@ void Carrera::setCarrera(const QString value)
 
 Carrera::Carrera()
 {
-    // index of table
-    id = carrera = "";
+}
+
+Carrera::Carrera(QString ca)
+{
+    id = CAREER_NO_VERIFY;
+    carrera = ca;
 }

@@ -128,6 +128,7 @@ void GUIGabinete::initPersonalRegistro(QWidget* widget, QFormLayout *layout)
 
     widget->setLayout(layout);
 
+    connect(addPersonalButton, SIGNAL(clicked(bool)), this, SLOT(insertPersonalToDBFromGUI()));
 }
 
 bool GUIGabinete::allValidationsAddPersonal()
@@ -137,7 +138,7 @@ bool GUIGabinete::allValidationsAddPersonal()
     return true;
 }
 
-Personal *GUIGabinete::getCurrentPersonal()
+Personal *GUIGabinete::getGUICurrentPersonal()
 {
     /*
     layout->addRow(nombreLabel,nombreLine);
@@ -152,19 +153,36 @@ Personal *GUIGabinete::getCurrentPersonal()
     layout->addRow(tutorLabel, tutorCombobox);
     layout->addRow(addPersonalButton);
     */
+
     QString nombre,
             apeido,
             codigo,
             email,
             telefono,
-            expediente;
+            expediente,
+            carrera,
+            codeTutor,
+            state,
+            semestre,
+            creditos;
 
-    QChar semestre;
-    //...
+    nombre = nombreLine->text();
+    apeido = apeidoLine->text();
+    codigo = codigoLine->text();
+    email = emailLine->text();
+    telefono = telefonoLine->text();
+    expediente = expedienteLine->text();
+    //state = statusPersonalCombobox->currentText().data();
 
+    //
 
+    Personal *tutor = new Personal(codeTutor);
+    Name *name = new Name(nombre, apeido);
+    Carrera *career = new Carrera(carrera);
 
-
+    //
+    //return new Personal(name, codigo, email, telefono, expediente, state, semestre, creditos, career, tutor);
+    return new Personal(codigo);
 }
 
 void GUIGabinete::loadAllToLinkedList()
@@ -176,6 +194,7 @@ void GUIGabinete::loadAllToLinkedList()
 
     loadListCarreas(carreras);
     loadListRoles(roles);
+
     loadListPersonal(personal);
     loadListAdmins(admins);
 }
@@ -386,8 +405,16 @@ void GUIGabinete::addPersonalRegistroWidget()
     window->setWindowTitle(TITLE_APP);
     window->setMinimumWidth(MINIMUM_WIDTH);
     window->show();
+}
 
-    // connects
+bool GUIGabinete::insertPersonalToDB(Personal* persona)
+{
+    // .. validations to add a default db
+    return true;
+}
 
+bool GUIGabinete::insertPersonalToDBFromGUI()
+{   // ... Person validations as code
+    return insertPersonalToDB(getGUICurrentPersonal());
 }
 
