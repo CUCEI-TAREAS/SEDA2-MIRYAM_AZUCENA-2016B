@@ -172,7 +172,8 @@ void GUIGabinete::initAdminLogin(QWidget *widget, QFormLayout *layout)
 
 void GUIGabinete::initAdminTask(QWidget *widget, QFormLayout *layout)
 {
-    widget = new QWidget();
+    // ...
+    widget = new AdminTask();
 }
 
 bool GUIGabinete::allValidationsAddPersonal()
@@ -392,7 +393,7 @@ void GUIGabinete::deleteCaptureDB()
 {
     captureDB->hide();
     captureDB = nullptr;
-    //captureDB->destroy();
+    captureDB->deleteLater();
     delete captureDB;
 
     addPersonalRegistroWidget();
@@ -433,7 +434,8 @@ void GUIGabinete::addPersonalRegistroWidget()
     // widgets
     mainCentralWidget = new QWidget();
     mainRegistro = new QWidget();
-    mainAdmin = new QWidget();
+    mainAdmin = new AdminTask();
+    mainAdminLogin = new QWidget(mainAdmin);
 
     // layouts
     registroMainLayout = new QFormLayout();
@@ -441,11 +443,11 @@ void GUIGabinete::addPersonalRegistroWidget()
     adminLoginFormLayout = new QFormLayout();
 
     initPersonalRegistro(mainRegistro, registroMainLayout);
-    initAdminLogin(mainAdmin, adminLoginFormLayout);
+    initAdminLogin(mainAdminLogin, adminLoginFormLayout);
 
     tabs = new QTabWidget();
     tabs->addTab(mainRegistro, TITLE_ADD_PERSONAL);
-    tabs->addTab(mainAdmin, TITLE_LOGIN_ADMIN);
+    tabs->addTab(mainAdminLogin, TITLE_LOGIN_ADMIN);
 
     mainCentralLayout->addRow(tabs);
     mainCentralWidget->setLayout(mainCentralLayout);
@@ -469,6 +471,7 @@ bool GUIGabinete::insertPersonalToDB(Personal* persona)
         // msg ya existe ese ID
     }
     if(db->addPerson(persona)){
+        loadListPersonal(personal); // load new person to lnked list
         QMessageBox::information(mainRegistro, ADD_PERSONAL, ADD_PERSONAL, 1, 2);
         return true;
     } else {
@@ -486,14 +489,17 @@ void GUIGabinete::logAdmin()
 {
     // .. validations GUI
 
-    if (db->checkAdmin(userLine->text(), passLine->text())){
+    //if (db->checkAdmin(userLine->text(), passLine->text())){
         adminMainFormLayout = new QFormLayout();
-        initAdminTask(mainAdmin, adminMainFormLayout);
-        // ... delete this qwidget load new
+        //tabs->removeTab(tabs->currentIndex());
+        //initAdminTask(mainAdmin, adminMainFormLayout);
+        delete mainAdminLogin;
+        //tabs->addTab(mainAdmin, "test");
 
-    } else {
+
+   // } else {
         QMessageBox::critical(mainRegistro, NO_LOG_ADMIN, NO_LOG_ADMIN, 1, 2);
-    }
+   // }
 
 }
 

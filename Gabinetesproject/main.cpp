@@ -27,6 +27,7 @@ High priority
     done ; loadAdmins() // to load on GUI e.g. tutorCombox
     done ; addPerson() new algorithms, all stored as TEXT, not more Char
 
+    separate every interface from gui gabinete to type class
     ...loadAsAdmin():other Qwidget to admin task // create new tab to admin task
     orderByQuickSort
     generate PDF to reports, Date and statistics statistics

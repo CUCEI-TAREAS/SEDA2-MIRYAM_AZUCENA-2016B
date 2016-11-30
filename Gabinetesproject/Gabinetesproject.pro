@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     list.cpp \
     node.cpp \
     name.cpp \
-    admin.cpp
+    admin.cpp \
+    admintask.cpp
 
 HEADERS  += \
     guigabinete.h \
@@ -33,4 +34,5 @@ HEADERS  += \
     list.h \
     node.h \
     name.h \
-    admin.h
+    admin.h \
+    admintask.h

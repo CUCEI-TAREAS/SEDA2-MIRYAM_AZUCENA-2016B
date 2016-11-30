@@ -26,6 +26,7 @@
 #include "admin.h"
 #include "node.h"
 #include "name.h"
+#include "admintask.h"
 
 // app
 #define TITLE_ADD_PERSONAL   "Agregar estudiante"
@@ -41,7 +42,7 @@
 #define TITLE_CAPTUREDB "Configuracion de la Base de datos PostgreSQL"
 #define HOST_CAPTUREDB  "Host"
 #define PORT_CAPTUREDB  "Puerto"
- #define USER_CAPTUREDB  "Usuario"
+#define USER_CAPTUREDB  "Usuario"
 #define PASS_CAPTUREDB  "Contraseña"
 #define DB_CAPTUREDB    "Nombre de la base de datos para " TITLE_APP " Software"
 #define CONECTAR_CAPTUREDB "Conectar"
@@ -126,16 +127,17 @@ private:
     QMainWindow *window = nullptr;
 
     QWidget *mainCentralWidget = nullptr, // all into there
-            *mainRegistro = nullptr,
-            *mainAdmin = nullptr;
+    *mainRegistro = nullptr,
+    *mainAdminLogin = nullptr,
+    *mainAdmin = nullptr;
 
     //QGroupBox *registroGroupLayout = nullptr;
 
     // registro
     QFormLayout *adminLoginFormLayout = nullptr,
-                *adminMainFormLayout = nullptr,
-                *registroMainLayout = nullptr,
-                *mainCentralLayout = nullptr;
+    *adminMainFormLayout = nullptr,
+    *registroMainLayout = nullptr,
+    *mainCentralLayout = nullptr;
 
     // components of registro
     QLabel
