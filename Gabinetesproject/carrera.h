@@ -14,6 +14,7 @@ private:
 public:
     Carrera();
     Carrera(QString);
+    Carrera(QString, QString);
 
     QString getId() const;
     void setId(QString value);

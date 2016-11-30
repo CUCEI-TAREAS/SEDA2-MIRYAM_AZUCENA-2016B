@@ -206,7 +206,7 @@ signals:
 
 public:
     GUIGabinete();
-
+    QString getId(QString);
 };
 
 #endif // GUIGABINETE_H

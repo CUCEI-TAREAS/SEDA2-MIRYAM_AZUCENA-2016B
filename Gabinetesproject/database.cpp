@@ -98,22 +98,22 @@ bool Database::addPerson(Personal *person)
     semestre = person->getSemestre();
     creditos = person->getCreditosCursados();
 
-    carrera =  person->getCarrera()->getCarrera();
+    carrera =  person->getCarrera()->getId();
     codeTutor =  person->getTutor()->getCodigo();
 
     str =  INSERT_INTO NAME_TABLE_PERSON "VALUES ( '" + codigo + "',"
-            + "'" + nombre + "',"
-            + "'" + nombre2 + "',"
-            + "'" + nombre3 + "',"
-            + "'" + apeido + "',"
-            + "'" + apeido2 + "',"
-            + "'" + email + "',"
-            + "'" + telefono + "',"
-            + "'" + expediente + "',"
-            + "'" + state + "',"
-            + "'" + semestre + "',"
-            + "'" + creditos + "',"
-            + "'" + carrera + "'," // ... recover ID career from List Career
+            + "'" + nombre + "', "
+            + "'" + nombre2 + "', "
+            + "'" + nombre3 + "', "
+            + "'" + apeido + "', "
+            + "'" + apeido2 + "', "
+            + "'" + email + "', "
+            + "'" + telefono + "', "
+            + "'" + expediente + "', "
+            + "'" + state + "', "
+            + "'" + semestre + "', "
+            + "'" + creditos + "', "
+            + " " + carrera + ", " // ... innecesary quoutes
             +  codeTutor +
             + ");";
     // ...

@@ -21,6 +21,20 @@ GUIGabinete::GUIGabinete()
     }
 }
 
+QString GUIGabinete::getId(QString career)
+{
+    Node<Carrera>* node = nullptr;
+    node = carreras->head();
+
+    while ( node != nullptr){
+        if( node->data.getCarrera() == career ){
+            return node->data.getId();
+        }
+        node = node->next;
+    }
+    return CAREER_NO_VERIFY;
+}
+
 
 void GUIGabinete::initCaptureDB()
 {
@@ -147,7 +161,7 @@ Personal *GUIGabinete::getGUICurrentPersonal()
             email,
             telefono,
             expediente,
-            carrera,
+            carrera, idCarrera,
             codeTutor,
             state,
             semestre,
@@ -163,13 +177,14 @@ Personal *GUIGabinete::getGUICurrentPersonal()
     semestre = semestreSpin->text();
     creditos = creditosCursadosLine->text();
 
-    carrera =  carreraCombobox->currentText();
-    codeTutor =  tutorCombobox->currentText();
+    carrera =  carreraCombobox->currentText(); // look on linke
 
-    //... search codeTutor on List and link with person
+    codeTutor =  tutorCombobox->currentText();
+    idCarrera = getId(carrera);
+
     Personal *tutor = new Personal(codeTutor);
     Name *name = new Name(nombre, apeido);
-    Carrera *career = new Carrera(carrera);
+    Carrera *career = new Carrera(idCarrera, carrera);
 
     //
     return new Personal(name, codigo, email, telefono, expediente, state, semestre, creditos, career, tutor);
@@ -416,7 +431,7 @@ bool GUIGabinete::insertPersonalToDB(Personal* persona)
     // .. validations to add a default db
     if (db->existsPerson(persona->getCodigo()))
         return false;
-        // msg ya existe ese ID
+    // msg ya existe ese ID
 
     return db->addPerson(persona);
 }

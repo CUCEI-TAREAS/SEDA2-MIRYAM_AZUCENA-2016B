@@ -1,13 +1,18 @@
 #include "carrera.h"
 
-QString Carrera::getId() const
+Carrera::Carrera()
 {
-    return id;
+}
+Carrera::Carrera(QString ca)
+{
+    id = CAREER_NO_VERIFY;
+    carrera = ca;
 }
 
-void Carrera::setId(QString value)
+Carrera::Carrera(QString value, QString caree)
 {
     id = value;
+   carrera = caree;
 }
 
 QString Carrera::getCarrera() const
@@ -20,12 +25,12 @@ void Carrera::setCarrera(const QString value)
     carrera = value;
 }
 
-Carrera::Carrera()
+QString Carrera::getId() const
 {
+    return id;
 }
 
-Carrera::Carrera(QString ca)
+void Carrera::setId(QString value)
 {
-    id = CAREER_NO_VERIFY;
-    carrera = ca;
+    id = value;
 }

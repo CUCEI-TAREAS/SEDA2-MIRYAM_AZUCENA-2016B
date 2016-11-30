@@ -5,14 +5,17 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-        GUIGabinete app;
+    GUIGabinete app;
 
     return a.exec();
 }
 
 /* 
+ * All be on RAM ...
+ * But addes, changes and modify should store directly on DB
+ * Then stored, inmediatly load to list on RAM
+ *
 High priority
-
 
     done ; message around db is create sicces
     done ; implement name as typedata
@@ -22,8 +25,9 @@ High priority
     done ; loadAllToLinkedList() CAreers, Roles, admin
     done ; loadAllCodesPerson() to linked list : seek faster exists
     done ; loadAdmins() // to load on GUI e.g. tutorCombox
+    done ; addPerson() new algorithms, all stored as TEXT, not more Char
 
-    addPerson()
+    loadAsAdmin() // create new tab to admin task
     orderByQuickSort
     generate PDF to reports, Date and statistics statistics
     personExist() // by codigo
@@ -31,7 +35,9 @@ High priority
     createMeeting() & dateSchedule() // focused available to date
     sendMail()
 
-Second 
+Second
+    // show calendar/days available from registro GUI bottom
+    addCalendar()
     new Table to states person [active / inactive / ]
 
     improve relations on cascade or // product_no integer REFERENCES products ON DELETE RESTRICT,
