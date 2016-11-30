@@ -9,6 +9,8 @@
 #include <QSqlError>
 #include <QDebug>
 
+#include "personal.h"
+
 #define CAREER_INF "'INFORMATICA'"
 #define CAREER_COM "'COMPUTACION'"
 #define CAREER_ELE "'ELECTRONICA'"
@@ -34,7 +36,6 @@
 
 
 
-//"status CHAR(1) NOT NULL, "
 #define PERSON  NAME_TABLE_PERSON \
     "( " \
     "code VARCHAR (10) UNIQUE PRIMARY KEY NOT NULL," \
@@ -46,8 +47,9 @@
     "mail TEXT NULL," \
     "phone TEXT NULL," \
     "expediente TEXT NULL, " \
-    "currentSemestre CHAR(1) NULL, " \
-    "creditsObtained CHAR(1) NULL, " \
+    "status TEXT NULL, " \
+    "currentSemestre TEXT  NULL, " \
+    "creditsObtained TEXT  NULL, " \
     "career INTEGER NULL REFERENCES Career(id) , " \
     "codeTutor VARCHAR (10) NULL REFERENCES Person (code) " \
     " ); "
@@ -62,10 +64,11 @@
 #define PERSON_MAIL 6
 #define PERSON_PHONE 7
 #define PERSON_EXPEDIENTE 8
-#define PERSON_CURRENTSEMESTRE 9
-#define PERSON_CREDITS 10
-#define PERSON_CAREER 11
-#define PERSON_ROLES
+#define PERSON_STATUS 9
+#define PERSON_CURRENTSEMESTRE 10
+#define PERSON_CREDITS 11
+#define PERSON_CAREER 12
+#define PERSON_TUTOR 13
 
 #define ADMIN           NAME_TABLE_ADMIN    " (id SERIAL PRIMARY KEY, admin VARCHAR (10) REFERENCES Person (code), pass TEXT NOT NULL );"
 #define DEFAULT_ADMIN   NAME_TABLE_ADMIN    " (admin, pass) VALUES ( '999', '123');"
@@ -78,6 +81,10 @@
 #define CREATE_DB "CREATE DATABASE "
 #define CREATE_TABLE "CREATE TABLE "
 #define INSERT_INTO "INSERT INTO "
+
+#define EXISTS_PERSON "SELECT CODE FROM " NAME_TABLE_PERSON " WHERE CODE LIKE "
+
+//#define
 
 
 #define QUERY_SELECT_ALL "SELECT * FROM "
@@ -101,6 +108,10 @@ public:
     QSqlQuery selectAll(QString);
     bool createDB(QString);
     bool connectDB(QString host, QString port, QString user, QString pass, QString dblocal);
+
+    //
+    bool existsPerson(QString);
+    bool addPerson(Personal *);
 
 };
 

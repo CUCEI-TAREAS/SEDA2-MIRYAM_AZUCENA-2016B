@@ -4,6 +4,26 @@ Personal::Personal()
 {
 
 }
+
+Personal::Personal(QString code)
+{
+    codigo = code;
+}
+
+Personal::Personal(Name* n, QString code, QString mail, QString phone, QString exp, QString sta, QString semes, QString cre, Carrera* career, Personal* tuto)
+{
+    nombre = n;
+    codigo = code;
+    email = mail;
+    telefono = phone;
+    expediente = exp;
+    status = sta;
+    semestre = semes;
+    creditosCursados = cre;
+    carrera = career;
+    tutor = tuto;
+}
+
 Name *Personal::getNombre() const
 {
     return nombre;
@@ -55,42 +75,42 @@ void Personal::setExpediente(const QString &value)
     expediente = value;
 }
 
-QChar Personal::getStatus() const
+QString Personal::getStatus() const
 {
     return status;
 }
 
-void Personal::setStatus(QChar value)
+void Personal::setStatus(QString value)
 {
     status = value;
 }
 
-QChar Personal::getSemestre() const
+QString Personal::getSemestre() const
 {
     return semestre;
 }
 
-void Personal::setSemestre(QChar value)
+void Personal::setSemestre(QString value)
 {
     semestre = value;
 }
 
-QChar Personal::getCreditosCursados() const
+QString Personal::getCreditosCursados() const
 {
     return creditosCursados;
 }
 
-void Personal::setCreditosCursados(QChar value)
+void Personal::setCreditosCursados(QString value)
 {
     creditosCursados = value;
 }
 
-QChar Personal::getPermisos() const
+QString Personal::getPermisos() const
 {
     return permisos;
 }
 
-void Personal::setPermisos(QChar value)
+void Personal::setPermisos(QString value)
 {
     permisos = value;
 }

@@ -19,9 +19,8 @@ private:
     QString codigo,
     email,
     telefono,
-    expediente;
-
-    QChar status, // status did work ?
+    expediente,
+    status, // status did work ?
     semestre,
     creditosCursados,
     permisos; // status did work ?
@@ -33,6 +32,8 @@ private:
 
 public:
     Personal();
+    Personal(QString);
+    Personal(Name*, QString, QString, QString, QString, QString, QString, QString, Carrera*, Personal*);
 
     QString getCodigo() const;
     void setCodigo(const QString &value);
@@ -42,14 +43,14 @@ public:
     void setTelefono(const QString &value);
     QString getExpediente() const;
     void setExpediente(const QString &value);
-    QChar getStatus() const;
-    void setStatus(QChar value);
-    QChar getSemestre() const;
-    void setSemestre(QChar value);
-    QChar getCreditosCursados() const;
-    void setCreditosCursados(QChar value);
-    QChar getPermisos() const;
-    void setPermisos(QChar value);
+    QString getStatus() const;
+    void setStatus(QString value);
+    QString getSemestre() const;
+    void setSemestre(QString value);
+    QString getCreditosCursados() const;
+    void setCreditosCursados(QString value);
+    QString getPermisos() const;
+    void setPermisos(QString value);
 
 
     Carrera *getCarrera() const;

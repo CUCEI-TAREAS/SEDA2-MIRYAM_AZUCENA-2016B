@@ -14,10 +14,25 @@ GUIGabinete::GUIGabinete()
         if ( db->connectDB(fileConfig->getHost(), fileConfig->getPort(), fileConfig->getUser(), fileConfig->getPass(), fileConfig->getNameDB())){
             addPersonalRegistroWidget();
         } else {
+
             // MSG SE PUDO CONECTAR AL SERVER, PERO NO A LA BASE DE DATOS
         }
 
     }
+}
+
+QString GUIGabinete::getId(QString career)
+{
+    Node<Carrera>* node = nullptr;
+    node = carreras->head();
+
+    while ( node != nullptr){
+        if( node->data.getCarrera() == career ){
+            return node->data.getId();
+        }
+        node = node->next;
+    }
+    return CAREER_NO_VERIFY;
 }
 
 
@@ -75,10 +90,6 @@ void GUIGabinete::initCaptureDB()
 
 void GUIGabinete::initPersonalRegistro(QWidget* widget, QFormLayout *layout)
 {
-    //layout
-    //registroGroupLayout = new QGroupBox(widget);
-    //registroGridLayout = new QGridLayout(widget);
-
     // labels
     nombreLabel = new QLabel(NAME_PERSONAL);
     apeidoLabel = new QLabel(LAST_NAME_PERSONAL);
@@ -115,7 +126,7 @@ void GUIGabinete::initPersonalRegistro(QWidget* widget, QFormLayout *layout)
     semestreSpin->setRange(MIN_RANGE_SEMESTRE, MAX_RANGE_SEMESTRE);
 
     // QPushButton
-    addPersonalButton = new QPushButton(TEXT_ADD_PERSONAL);
+    addPersonalButton = new QPushButton(TITLE_ADD_PERSONAL);
 
     // implementation
     layout->addRow(nombreLabel,nombreLine);
@@ -128,11 +139,11 @@ void GUIGabinete::initPersonalRegistro(QWidget* widget, QFormLayout *layout)
     layout->addRow(semestreLabel, semestreSpin);
     layout->addRow(carreraLabel, carreraCombobox);
     layout->addRow(tutorLabel, tutorCombobox);
-
     layout->addRow(addPersonalButton);
 
     widget->setLayout(layout);
-    //registroGroupLayout->setLayout(registroGridLayout);
+
+    connect(addPersonalButton, SIGNAL(clicked(bool)), this, SLOT(insertPersonalToDBFromGUI()));
 }
 
 bool GUIGabinete::allValidationsAddPersonal()
@@ -140,6 +151,43 @@ bool GUIGabinete::allValidationsAddPersonal()
     // check only mandatory fields
 
     return true;
+}
+
+Personal *GUIGabinete::getGUICurrentPersonal()
+{
+    QString nombre,
+            apeido,
+            codigo,
+            email,
+            telefono,
+            expediente,
+            carrera, idCarrera,
+            codeTutor,
+            state,
+            semestre,
+            creditos;
+
+    nombre = nombreLine->text();
+    apeido = apeidoLine->text();
+    codigo = codigoLine->text();
+    email = emailLine->text();
+    telefono = telefonoLine->text();
+    expediente = expedienteLine->text();
+    state = statusPersonalCombobox->currentText();
+    semestre = semestreSpin->text();
+    creditos = creditosCursadosLine->text();
+
+    carrera =  carreraCombobox->currentText(); // look on linke
+
+    codeTutor =  tutorCombobox->currentText();
+    idCarrera = getId(carrera);
+
+    Personal *tutor = new Personal(codeTutor);
+    Name *name = new Name(nombre, apeido);
+    Carrera *career = new Carrera(idCarrera, carrera);
+
+    //
+    return new Personal(name, codigo, email, telefono, expediente, state, semestre, creditos, career, tutor);
 }
 
 void GUIGabinete::loadAllToLinkedList()
@@ -158,6 +206,7 @@ void GUIGabinete::loadAllToLinkedList()
 void GUIGabinete::loadAllToGuiAddPersonal()
 {
     loadGuiCarreras(carreraCombobox, carreras);
+    loadGuiTutores(tutorCombobox, admins);
 }
 
 void GUIGabinete::loadGuiCarreras(QComboBox *combo, List<Carrera>* myList)
@@ -170,6 +219,20 @@ void GUIGabinete::loadGuiCarreras(QComboBox *combo, List<Carrera>* myList)
     while ( node != nullptr){
         temp = node->data;
         combo->addItem(temp.getCarrera());
+        node = node->next;
+    }
+}
+
+void GUIGabinete::loadGuiTutores(QComboBox *combo, List<Admin> *myList)
+{
+    Node<Admin>* node = nullptr;
+    Admin temp;
+
+    node = myList->head();
+
+    while ( node != nullptr){
+        temp = node->data;
+        combo->addItem(temp.getAdmin());
         node = node->next;
     }
 }
@@ -349,7 +412,7 @@ void GUIGabinete::addPersonalRegistroWidget()
     initPersonalRegistro(mainRegistro, registroMainLayout);
 
     tabs = new QTabWidget();
-    tabs->addTab(mainRegistro, TEXT_ADD_PERSONAL);
+    tabs->addTab(mainRegistro, TITLE_ADD_PERSONAL);
 
     mainCentralLayout->addRow(tabs);
     mainCentralWidget->setLayout(mainCentralLayout);
@@ -361,8 +424,20 @@ void GUIGabinete::addPersonalRegistroWidget()
     window->setWindowTitle(TITLE_APP);
     window->setMinimumWidth(MINIMUM_WIDTH);
     window->show();
+}
 
-    // connects
+bool GUIGabinete::insertPersonalToDB(Personal* persona)
+{
+    // .. validations to add a default db
+    if (db->existsPerson(persona->getCodigo()))
+        return false;
+    // msg ya existe ese ID
 
+    return db->addPerson(persona);
+}
+
+bool GUIGabinete::insertPersonalToDBFromGUI()
+{   // ... Person validations as code
+    return insertPersonalToDB(getGUICurrentPersonal());
 }
 

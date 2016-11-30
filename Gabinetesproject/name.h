@@ -14,6 +14,9 @@ private:
 
 public:
     Name();
+    Name(QString, QString);
+    Name(QString, QString, QString, QString, QString);
+
 
     QString getFirtsName() const;
     void setFirtsName(const QString value);

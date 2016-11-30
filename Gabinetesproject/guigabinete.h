@@ -28,7 +28,7 @@
 #include "name.h"
 
 // app
-#define TEXT_ADD_PERSONAL   "Agregar estudiante"
+#define TITLE_ADD_PERSONAL   "Agregar estudiante"
 
 #define TITLE_APP       "Gabinete"
 #define MINIMUM_WIDTH   600
@@ -171,12 +171,14 @@ private:
 
 
     bool allValidationsAddPersonal();
+    bool validationPersonal(Personal*); // check only mandatory fields
+    Personal* getGUICurrentPersonal();
 
     void loadAllToLinkedList();
     void loadAllToGuiAddPersonal();
 
     void loadGuiCarreras(QComboBox*, List<Carrera>*);
-
+    void loadGuiTutores(QComboBox*, List<Admin> *);
 
     // SELECT ALL
     void loadListCarreas(List<Carrera>*);
@@ -195,13 +197,16 @@ private slots:
     void clearRegistro();
     void deleteCaptureDB();
     void addPersonalRegistroWidget();
+    bool insertPersonalToDB(Personal*);
+    bool insertPersonalToDBFromGUI();
+
 
 signals:
     void fileConfigReady();
 
 public:
     GUIGabinete();
-
+    QString getId(QString);
 };
 
 #endif // GUIGABINETE_H
