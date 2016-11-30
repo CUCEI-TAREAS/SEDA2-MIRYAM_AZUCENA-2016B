@@ -27,7 +27,7 @@ High priority
     done ; loadAdmins() // to load on GUI e.g. tutorCombox
     done ; addPerson() new algorithms, all stored as TEXT, not more Char
 
-    loadAsAdmin() // create new tab to admin task
+    ...loadAsAdmin():other Qwidget to admin task // create new tab to admin task
     orderByQuickSort
     generate PDF to reports, Date and statistics statistics
     personExist() // by codigo

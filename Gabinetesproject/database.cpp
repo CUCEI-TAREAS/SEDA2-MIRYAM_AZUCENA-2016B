@@ -53,7 +53,7 @@ bool Database::connectDB(QString host, QString port, QString user, QString pass,
         return db.open();
 
     } else {
-        /// MSG NO SE PUEDE CONNECTAR AL SERVIDOR
+        // ...  MSG NO SE PUEDE CONNECTAR AL SERVIDOR
         return false;
     }
 }
@@ -113,13 +113,28 @@ bool Database::addPerson(Personal *person)
             + "'" + state + "', "
             + "'" + semestre + "', "
             + "'" + creditos + "', "
-            + " " + carrera + ", " // ... innecesary quoutes
+            + " " + carrera + ", "
             +  codeTutor +
             + ");";
-    // ...
+
     QSqlQuery query(db);
     if(query.exec(str)){
         return true;
+    }
+    qDebug() << query.lastError().text();
+    return false;
+}
+
+bool Database::checkAdmin(QString code, QString pass)
+{
+    QSqlQuery query(db);
+    query.exec(EXISTS_ADMIN "'" + code + "';");
+
+    if(query.next()){
+        if(query.value(EXISTS_ADMIN_PASS).toString() == pass){
+            // admin exists
+            return true;
+        }
     }
     return false;
 }
