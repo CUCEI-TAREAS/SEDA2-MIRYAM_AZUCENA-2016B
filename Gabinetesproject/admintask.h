@@ -24,10 +24,13 @@ private:
     void initLayout(QFormLayout *);
 public:
 
-    explicit AdminTask();
+    explicit AdminTask(QWidget*);
     void initLayout(QWidget*, QFormLayout *);
 
     void addToList(QWidget*, QString);
+
+    QWidget *getMain() const;
+    void setMain(QWidget *value);
 
 signals:
 

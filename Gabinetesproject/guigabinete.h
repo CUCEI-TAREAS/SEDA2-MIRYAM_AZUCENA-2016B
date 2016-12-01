@@ -112,6 +112,8 @@ private:
     List<Personal> *personal = nullptr;
     List<Admin> *admins = nullptr;
 
+    // admin
+    AdminTask *adminProvider = nullptr;
 
     // connection db
     ConfigFile *fileConfig = nullptr;
@@ -135,7 +137,7 @@ private:
 
     // registro
     QFormLayout *adminLoginFormLayout = nullptr,
-    *adminMainFormLayout = nullptr,
+    //*adminMainFormLayout = nullptr,
     *registroMainLayout = nullptr,
     *mainCentralLayout = nullptr;
 

@@ -1,13 +1,13 @@
 #include <QApplication>
 #include "guigabinete.h"
-#include "admintask.h"
+//#include "admintask.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    AdminTask app;
-    //GUIGabinete app;
+    //AdminTask app;
+    GUIGabinete app;
 
     return a.exec();
 }
@@ -28,10 +28,10 @@ High priority
     done ; loadAllCodesPerson() to linked list : seek faster exists
     done ; loadAdmins() // to load on GUI e.g. tutorCombox
     done ; addPerson() new algorithms, all stored as TEXT, not more Char
+    done ; loadAsAdmin(): learn how to user QListWidget with QStackWidget also QWidget Parents
+    done ; orderByQuickSort():methods on List
 
-    separate every interface from gui gabinete to type class
-    ...loadAsAdmin():other Qwidget to admin task // create new tab to admin task
-    orderByQuickSort
+    view all students // quickSort // from Ram by code
     generate PDF to reports, Date and statistics statistics
     personExist() // by codigo
     logAsAdmin()
@@ -39,6 +39,7 @@ High priority
     sendMail()
 
 Second
+    separate every interface from gui gabinete to type class
     // show calendar/days available from registro GUI bottom
     addCalendar()
     new Table to states person [active / inactive / ]

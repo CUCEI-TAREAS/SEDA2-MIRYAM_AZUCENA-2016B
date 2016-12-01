@@ -1,8 +1,8 @@
 #include "admintask.h"
 
-AdminTask::AdminTask()
+AdminTask::AdminTask(QWidget *parent)
 {
-    main = new QWidget();
+    main = new QWidget(parent);
     mainLayout = new QFormLayout();
 
     initLayout(mainLayout);
@@ -25,6 +25,16 @@ void AdminTask::addToList(QWidget *widget, QString title)
 {
     stack->addWidget(widget);
     listWidget->addItem(title);
+}
+
+QWidget *AdminTask::getMain() const
+{
+    return main;
+}
+
+void AdminTask::setMain(QWidget *value)
+{
+    main = value;
 }
 
 void AdminTask::initLayout(QFormLayout *layout)

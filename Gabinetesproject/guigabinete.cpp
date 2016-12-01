@@ -303,6 +303,7 @@ void GUIGabinete::loadListRoles(List<Carrera> * myList)
     delete temp;
 }
 
+//... terminate and validate storage on ram
 void GUIGabinete::loadListPersonal(List<Personal> *myList)
 {
     Personal *temp = nullptr,
@@ -434,7 +435,7 @@ void GUIGabinete::addPersonalRegistroWidget()
     // widgets
     mainCentralWidget = new QWidget();
     mainRegistro = new QWidget();
-    //mainAdmin = new AdminTask();
+    mainAdmin = new QWidget();
     mainAdminLogin = new QWidget(mainAdmin);
 
     // layouts
@@ -447,7 +448,7 @@ void GUIGabinete::addPersonalRegistroWidget()
 
     tabs = new QTabWidget();
     tabs->addTab(mainRegistro, TITLE_ADD_PERSONAL);
-    tabs->addTab(mainAdminLogin, TITLE_LOGIN_ADMIN);
+    tabs->addTab(mainAdmin, TITLE_LOGIN_ADMIN);
 
     mainCentralLayout->addRow(tabs);
     mainCentralWidget->setLayout(mainCentralLayout);
@@ -488,13 +489,13 @@ bool GUIGabinete::insertPersonalToDBFromGUI()
 void GUIGabinete::logAdmin()
 {
     // .. validations GUI
-
     if (db->checkAdmin(userLine->text(), passLine->text())){
-        adminMainFormLayout = new QFormLayout();
+        delete mainAdminLogin;
+        adminProvider = new AdminTask(mainAdmin);
 
-    } else {
-        QMessageBox::critical(mainRegistro, NO_LOG_ADMIN, NO_LOG_ADMIN, 1, 2);
+        return;
     }
+        QMessageBox::critical(mainRegistro, NO_LOG_ADMIN, NO_LOG_ADMIN, 1, 2);
 
 }
 

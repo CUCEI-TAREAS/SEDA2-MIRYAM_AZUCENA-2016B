@@ -35,7 +35,14 @@ class List
         void save_file(string);
         void search(T);
         void sort();
- 
+
+        void quickSort();
+        void quickSort(int, int);
+
+        T getData_by_position(int);
+        Node<T>* getNode_by_position(int);
+        void change(Node<T>*, Node<T>*);
+
 
         Node<T> *head() const;
         void setHead(Node<T> *head);
