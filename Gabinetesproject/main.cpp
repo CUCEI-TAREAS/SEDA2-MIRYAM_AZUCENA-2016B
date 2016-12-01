@@ -1,11 +1,13 @@
 #include <QApplication>
 #include "guigabinete.h"
+#include "admintask.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    GUIGabinete app;
+    AdminTask app;
+    //GUIGabinete app;
 
     return a.exec();
 }

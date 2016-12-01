@@ -1,32 +1,37 @@
 #include "admintask.h"
 
-AdminTask::AdminTask(QWidget *parent) : QWidget(parent)
+AdminTask::AdminTask()
 {
+    main = new QWidget();
+    mainLayout = new QFormLayout();
+
     initLayout(mainLayout);
-    setLayout(mainLayout);
+    main->setLayout(mainLayout);
+
+    // connect
+    connect(listWidget, SIGNAL(currentRowChanged(int)), stack, SLOT(setCurrentIndex(int)));
 }
 
-QTabWidget *AdminTask::getVerticalTabs() const
+void AdminTask::initLayout(QWidget *widget, QFormLayout *layout)
 {
-    return verticalTabs;
+    listWidget = new QListWidget();
+    stack = new QStackedWidget();
+
+    layout->addRow(listWidget, stack);
+    widget->setLayout(layout);
 }
 
-void AdminTask::setVerticalTabs(QTabWidget *value)
+void AdminTask::addToList(QWidget *widget, QString title)
 {
-    verticalTabs = value;
+    stack->addWidget(widget);
+    listWidget->addItem(title);
 }
-
 
 void AdminTask::initLayout(QFormLayout *layout)
 {
-    layout = new QFormLayout();
+    listWidget = new QListWidget();
+    stack = new QStackedWidget();
 
-    text = new QLabel("text");
-    layout->addRow(text);
-
-}
-
-void AdminTask::addTabs(QWidget *, QString)
-{
+    layout->addRow(listWidget, stack);
 
 }

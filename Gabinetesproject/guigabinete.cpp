@@ -173,7 +173,7 @@ void GUIGabinete::initAdminLogin(QWidget *widget, QFormLayout *layout)
 void GUIGabinete::initAdminTask(QWidget *widget, QFormLayout *layout)
 {
     // ...
-    widget = new AdminTask();
+    //widget = new AdminTask();
 }
 
 bool GUIGabinete::allValidationsAddPersonal()
@@ -434,7 +434,7 @@ void GUIGabinete::addPersonalRegistroWidget()
     // widgets
     mainCentralWidget = new QWidget();
     mainRegistro = new QWidget();
-    mainAdmin = new AdminTask();
+    //mainAdmin = new AdminTask();
     mainAdminLogin = new QWidget(mainAdmin);
 
     // layouts
@@ -489,17 +489,12 @@ void GUIGabinete::logAdmin()
 {
     // .. validations GUI
 
-    //if (db->checkAdmin(userLine->text(), passLine->text())){
+    if (db->checkAdmin(userLine->text(), passLine->text())){
         adminMainFormLayout = new QFormLayout();
-        //tabs->removeTab(tabs->currentIndex());
-        //initAdminTask(mainAdmin, adminMainFormLayout);
-        delete mainAdminLogin;
-        //tabs->addTab(mainAdmin, "test");
 
-
-   // } else {
+    } else {
         QMessageBox::critical(mainRegistro, NO_LOG_ADMIN, NO_LOG_ADMIN, 1, 2);
-   // }
+    }
 
 }
 

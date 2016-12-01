@@ -2,32 +2,32 @@
 #define ADMINTASK_H
 
 #include <QWidget>
+#include <QObject>
+#include <QListWidget>
+#include <QStackedWidget>
 #include <QLabel>
 #include <QString>
-#include <QTabWidget>
 #include <QFormLayout>
 
-class AdminTask : public QWidget
+class AdminTask : QObject
 {
     Q_OBJECT
 
 private:
-    QTabWidget* verticalTabs = nullptr;
 
+    QWidget *main = nullptr;
+    QListWidget *listWidget = nullptr;
+    QStackedWidget *stack = nullptr;
     QFormLayout* mainLayout = nullptr;
 
-    QLabel *text = nullptr;
 
+    void initLayout(QFormLayout *);
 public:
 
-    explicit AdminTask(QWidget *parent = 0);
+    explicit AdminTask();
+    void initLayout(QWidget*, QFormLayout *);
 
-    void initLayout(QFormLayout*);
-    void addTabs(QWidget*, QString);
-
-
-    QTabWidget *getVerticalTabs() const;
-    void setVerticalTabs(QTabWidget *value);
+    void addToList(QWidget*, QString);
 
 signals:
 
