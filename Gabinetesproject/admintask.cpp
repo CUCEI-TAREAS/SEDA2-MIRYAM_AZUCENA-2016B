@@ -7,6 +7,7 @@ AdminTask::AdminTask(QWidget *parent)
 
     initLayout(mainLayout);
     main->setLayout(mainLayout);
+    main->show();
 
     // connect
     connect(listWidget, SIGNAL(currentRowChanged(int)), stack, SLOT(setCurrentIndex(int)));
@@ -25,6 +26,8 @@ void AdminTask::addToList(QWidget *widget, QString title)
 {
     stack->addWidget(widget);
     listWidget->addItem(title);
+
+
 }
 
 QWidget *AdminTask::getMain() const

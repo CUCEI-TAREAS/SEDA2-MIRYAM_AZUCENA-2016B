@@ -30,10 +30,10 @@ High priority
     done ; addPerson() new algorithms, all stored as TEXT, not more Char
     done ; loadAsAdmin(): learn how to user QListWidget with QStackWidget also QWidget Parents
     done ; orderByQuickSort():methods on List
+    done ; personExist() // by codigo
 
     view all students // quickSort // from Ram by code
     generate PDF to reports, Date and statistics statistics
-    personExist() // by codigo
     logAsAdmin()
     createMeeting() & dateSchedule() // focused available to date
     sendMail()

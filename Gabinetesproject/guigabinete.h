@@ -18,6 +18,10 @@
 #include <QMessageBox>
 #include <QTabWidget>
 
+#include <QSqlRelationalTableModel>
+#include <QTableView>
+#include <QTableWidget>
+
 #include "configfile.h"
 #include "database.h"
 #include "personal.h"

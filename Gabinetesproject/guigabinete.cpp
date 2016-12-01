@@ -493,6 +493,8 @@ void GUIGabinete::logAdmin()
         delete mainAdminLogin;
         adminProvider = new AdminTask(mainAdmin);
 
+        adminProvider->addToList(new QTableView(mainAdmin), "tes");
+
         return;
     }
         QMessageBox::critical(mainRegistro, NO_LOG_ADMIN, NO_LOG_ADMIN, 1, 2);
