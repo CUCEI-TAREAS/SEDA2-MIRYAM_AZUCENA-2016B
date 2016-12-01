@@ -18,6 +18,10 @@
 #include <QMessageBox>
 #include <QTabWidget>
 
+#include <QSqlRelationalTableModel>
+#include <QTableView>
+#include <QTableWidget>
+
 #include "configfile.h"
 #include "database.h"
 #include "personal.h"
@@ -26,9 +30,11 @@
 #include "admin.h"
 #include "node.h"
 #include "name.h"
+#include "admintask.h"
 
 // app
 #define TITLE_ADD_PERSONAL   "Agregar estudiante"
+#define TITLE_LOGIN_ADMIN   "Administrador"
 
 #define TITLE_APP       "Gabinete"
 #define MINIMUM_WIDTH   600
@@ -67,6 +73,11 @@
 #define TITLE_DB_MSG        "se configuro la base datos " + dbLine->text() + " con exito "
 
 // registro
+#define ADD_PERSONAL            "Agregado con exito"
+#define NO_ADD_PERSONAL         "No agregado"
+#define DUPLICATE_PERSONAL      "El usuario ya existe"
+#define ERROR_ADD_PERSONAL      "Error al agregar el usuario "
+
 #define NAME_PERSONAL           "Nombre del estudiante"
 #define LAST_NAME_PERSONAL      "Apeido del estudiante"
 #define CODE_PERSONAL           "Codigo del estudiante"
@@ -82,6 +93,9 @@
 
 #define MIN_RANGE_SEMESTRE 1
 #define MAX_RANGE_SEMESTRE 22
+
+// admin
+#define NO_LOG_ADMIN "Error ; No logueado"
 
 #define START           -1
 #define SETUPDB         0 // capture
@@ -102,6 +116,8 @@ private:
     List<Personal> *personal = nullptr;
     List<Admin> *admins = nullptr;
 
+    // admin
+    AdminTask *adminProvider = nullptr;
 
     // connection db
     ConfigFile *fileConfig = nullptr;
@@ -116,16 +132,18 @@ private:
     QTabWidget *tabs = nullptr;
     QMainWindow *window = nullptr;
 
-    //QLayout *mainGridLayout = nullptr; // change to grid
-
     QWidget *mainCentralWidget = nullptr, // all into there
-            *mainRegistro = nullptr;
+    *mainRegistro = nullptr,
+    *mainAdminLogin = nullptr,
+    *mainAdmin = nullptr;
 
     //QGroupBox *registroGroupLayout = nullptr;
 
     // registro
-    QFormLayout *registroMainLayout = nullptr,
-                *mainCentralLayout = nullptr;
+    QFormLayout *adminLoginFormLayout = nullptr,
+    //*adminMainFormLayout = nullptr,
+    *registroMainLayout = nullptr,
+    *mainCentralLayout = nullptr;
 
     // components of registro
     QLabel
@@ -166,8 +184,14 @@ private:
     *passLine = nullptr,
     *dbLine = nullptr;
 
+    // components of admin
+
+
     void initCaptureDB();
     void initPersonalRegistro(QWidget*, QFormLayout*);
+    void initAdminLogin(QWidget*, QFormLayout*);
+    void initAdminTask(QWidget*, QFormLayout*);
+
 
 
     bool allValidationsAddPersonal();
@@ -200,13 +224,15 @@ private slots:
     bool insertPersonalToDB(Personal*);
     bool insertPersonalToDBFromGUI();
 
+    void logAdmin();
+
 
 signals:
     void fileConfigReady();
 
 public:
     GUIGabinete();
-    QString getId(QString);
+    QString getIdCareerFromList(QString);
 };
 
 #endif // GUIGABINETE_H

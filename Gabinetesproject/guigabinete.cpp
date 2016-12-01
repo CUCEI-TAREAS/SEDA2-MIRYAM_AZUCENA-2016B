@@ -21,7 +21,7 @@ GUIGabinete::GUIGabinete()
     }
 }
 
-QString GUIGabinete::getId(QString career)
+QString GUIGabinete::getIdCareerFromList(QString career)
 {
     Node<Carrera>* node = nullptr;
     node = carreras->head();
@@ -146,6 +146,36 @@ void GUIGabinete::initPersonalRegistro(QWidget* widget, QFormLayout *layout)
     connect(addPersonalButton, SIGNAL(clicked(bool)), this, SLOT(insertPersonalToDBFromGUI()));
 }
 
+void GUIGabinete::initAdminLogin(QWidget *widget, QFormLayout *layout)
+{
+    QPushButton *log = nullptr;
+    QLabel *userLabel = nullptr,
+            *passLabel = nullptr;
+
+    userLabel = new QLabel(USER_CAPTUREDB);
+    passLabel = new QLabel(PASS_CAPTUREDB);
+
+    userLine = new QLineEdit();
+    passLine = new QLineEdit();
+    passLine->setEchoMode(QLineEdit::Password);
+
+    log = new QPushButton(TITLE_LOGIN_ADMIN);
+
+    layout->addRow(userLabel, userLine);
+    layout->addRow(passLabel, passLine);
+    layout->addRow(log);
+
+    widget->setLayout(layout);
+
+    connect(log, SIGNAL(clicked(bool)), this, SLOT(logAdmin()));
+}
+
+void GUIGabinete::initAdminTask(QWidget *widget, QFormLayout *layout)
+{
+    // ...
+    //widget = new AdminTask();
+}
+
 bool GUIGabinete::allValidationsAddPersonal()
 {
     // check only mandatory fields
@@ -180,7 +210,7 @@ Personal *GUIGabinete::getGUICurrentPersonal()
     carrera =  carreraCombobox->currentText(); // look on linke
 
     codeTutor =  tutorCombobox->currentText();
-    idCarrera = getId(carrera);
+    idCarrera = getIdCareerFromList(carrera);
 
     Personal *tutor = new Personal(codeTutor);
     Name *name = new Name(nombre, apeido);
@@ -273,6 +303,7 @@ void GUIGabinete::loadListRoles(List<Carrera> * myList)
     delete temp;
 }
 
+//... terminate and validate storage on ram
 void GUIGabinete::loadListPersonal(List<Personal> *myList)
 {
     Personal *temp = nullptr,
@@ -363,7 +394,7 @@ void GUIGabinete::deleteCaptureDB()
 {
     captureDB->hide();
     captureDB = nullptr;
-    //captureDB->destroy();
+    captureDB->deleteLater();
     delete captureDB;
 
     addPersonalRegistroWidget();
@@ -404,15 +435,20 @@ void GUIGabinete::addPersonalRegistroWidget()
     // widgets
     mainCentralWidget = new QWidget();
     mainRegistro = new QWidget();
+    mainAdmin = new QWidget();
+    mainAdminLogin = new QWidget(mainAdmin);
 
     // layouts
     registroMainLayout = new QFormLayout();
     mainCentralLayout =  new QFormLayout();
+    adminLoginFormLayout = new QFormLayout();
 
     initPersonalRegistro(mainRegistro, registroMainLayout);
+    initAdminLogin(mainAdminLogin, adminLoginFormLayout);
 
     tabs = new QTabWidget();
     tabs->addTab(mainRegistro, TITLE_ADD_PERSONAL);
+    tabs->addTab(mainAdmin, TITLE_LOGIN_ADMIN);
 
     mainCentralLayout->addRow(tabs);
     mainCentralWidget->setLayout(mainCentralLayout);
@@ -428,16 +464,40 @@ void GUIGabinete::addPersonalRegistroWidget()
 
 bool GUIGabinete::insertPersonalToDB(Personal* persona)
 {
-    // .. validations to add a default db
-    if (db->existsPerson(persona->getCodigo()))
-        return false;
-    // msg ya existe ese ID
 
-    return db->addPerson(persona);
+    // .. validations to add a default db
+    if (db->existsPerson(persona->getCodigo())){
+        QMessageBox::critical(mainRegistro, NO_ADD_PERSONAL, DUPLICATE_PERSONAL, 1, 2);
+        return false;
+        // msg ya existe ese ID
+    }
+    if(db->addPerson(persona)){
+        loadListPersonal(personal); // load new person to lnked list
+        QMessageBox::information(mainRegistro, ADD_PERSONAL, ADD_PERSONAL, 1, 2);
+        return true;
+    } else {
+        QMessageBox::critical(mainRegistro, NO_ADD_PERSONAL, ERROR_ADD_PERSONAL, 1, 2);
+        return false;
+    }
 }
 
 bool GUIGabinete::insertPersonalToDBFromGUI()
 {   // ... Person validations as code
     return insertPersonalToDB(getGUICurrentPersonal());
+}
+
+void GUIGabinete::logAdmin()
+{
+    // .. validations GUI
+    if (db->checkAdmin(userLine->text(), passLine->text())){
+        delete mainAdminLogin;
+        adminProvider = new AdminTask(mainAdmin);
+
+        adminProvider->addToList(new QTableView(mainAdmin), "tes");
+
+        return;
+    }
+        QMessageBox::critical(mainRegistro, NO_LOG_ADMIN, NO_LOG_ADMIN, 1, 2);
+
 }
 

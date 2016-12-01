@@ -3,7 +3,7 @@
 
 #include <QString>
 
-#define CAREER_NO_VERIFY -1
+#define CAREER_NO_VERIFY "-1"
 
 class Carrera
 {

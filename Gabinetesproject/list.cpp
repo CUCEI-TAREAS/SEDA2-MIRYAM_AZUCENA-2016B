@@ -227,27 +227,27 @@ void List<T>::intersection(List list_2)
     // Índice del 2do vector (v2)
     int v2_i = 0;
 
-  // Mientras no haya terminado de recorrer ambas Lists
-  while (v1_i < m_num_nodes && v2_i < num_nodes_2) {
-      if (v1[v1_i] == v2[v2_i]) {
-          intersection_list.add_end(v1[v1_i]);
-          v1_i++;
-          v2_i++;
-          num_inter++;
-      } else if (v1[v1_i] < v2[v2_i]) {
-          v1_i++;
-      } else {
-          v2_i++;
-      }
-  }
+    // Mientras no haya terminado de recorrer ambas Lists
+    while (v1_i < m_num_nodes && v2_i < num_nodes_2) {
+        if (v1[v1_i] == v2[v2_i]) {
+            intersection_list.add_end(v1[v1_i]);
+            v1_i++;
+            v2_i++;
+            num_inter++;
+        } else if (v1[v1_i] < v2[v2_i]) {
+            v1_i++;
+        } else {
+            v2_i++;
+        }
+    }
 
-  // Solo si hay alguna intersección imprimo la nueva lista creada
-  if (num_inter > 0) {
-      cout << "Existen " << num_inter << " intersecciones " << endl;
-      intersection_list.print();
-  } else {
-      cout << "No hay intersección en ambas listas" << endl;
-  }
+    // Solo si hay alguna intersección imprimo la nueva lista creada
+    if (num_inter > 0) {
+        cout << "Existen " << num_inter << " intersecciones " << endl;
+        intersection_list.print();
+    } else {
+        cout << "No hay intersección en ambas listas" << endl;
+    }
 }
 
 // Invertir la lista
@@ -296,10 +296,10 @@ void List<T>::print()
         while (temp) {
             temp->print();
             if (!temp->next) cout << "NULL";
-                temp = temp->next;
+            temp = temp->next;
         }
-  }
-  cout << endl << endl;
+    }
+    cout << endl << endl;
 }
 
 // Buscar el dato de un nodo
@@ -349,6 +349,104 @@ void List<T>::sort()
         aux_node = aux_node->next;
     }
 }
+
+template<typename T>
+void List<T>::quickSort()
+{
+    int i = 1, j = m_num_nodes;
+
+    quickSort(i, j);
+}
+
+template<typename T>
+void List<T>::quickSort(int left, int right)
+{
+    if(left >= right)
+        return;
+    int x = getData_by_position((left + right) /2 ),
+            y = getData_by_position(right);
+
+   change(getNode_by_position((left + right) /2 ),  getNode_by_position(right));
+
+    int i = left, j = right;
+
+    while (i < j){
+
+        while (i < j and getData_by_position(i) <= getData_by_position(right) ){
+            i += 1;
+        }
+
+        while ( i < j and getData_by_position(j) >= getData_by_position(right)){
+            j -= 1;
+        }
+        if( i != j){
+            change(getNode_by_position(i), getNode_by_position(j));
+        }
+    }
+
+    if (i != right){
+        change(getNode_by_position(i), getNode_by_position(right));
+    }
+
+    quickSort(left, i - 1);
+    quickSort(i + 1, right);
+}
+
+template<typename T>
+T List<T>::getData_by_position(int pos)
+{
+    if (pos < 0)
+        cout<<"error on T List<T>::getData_by_position(int pos)";
+
+    else if (pos == 0)
+        return m_head->data;
+
+    else if (pos == 1)
+        return m_head->data;
+
+    else {
+        Node<T> *temp1 = m_head->next;
+
+        for (int i = 2; i <= pos; i++) {
+            if (i == pos) {
+                return temp1->data;
+            }
+            temp1 = temp1->next;
+        }
+    }
+}
+template<typename T>
+Node<T> *List<T>::getNode_by_position(int pos)
+{
+    if (pos < 0)
+        return nullptr;
+
+    else if (pos == 0)
+        return m_head;
+
+    else if (pos == 1)
+        return m_head;
+
+    else {
+        Node<T> *temp1 = m_head->next;
+
+        for (int i = 2; i <= pos; i++) {
+            if (i == pos) {
+                return temp1;
+            }
+            temp1 = temp1->next;
+        }
+    }
+}
+
+template<typename T>
+void List<T>::change(Node<T> *first, Node<T> *second)
+{
+    T aux = first->data;
+    first->data = second->data;
+    second->data = aux;
+}
+
 template<typename T>
 Node<T>* List<T>::head() const
 {

@@ -54,7 +54,11 @@
     "codeTutor VARCHAR (10) NULL REFERENCES Person (code) " \
     " ); "
 
-#define DEFAULT_PERSON  NAME_TABLE_PERSON   " (code, firstName, LastNamePaternal ) VALUES  ('999', 'ADMIN', 'ROOT')"
+#define DEFAULT_PERSON_CODE "0"
+#define DEFAULT_PERSON_NAME "ROOT"
+#define DEFAULT_PERSON_PASS "a5z8y1"
+
+#define DEFAULT_PERSON  NAME_TABLE_PERSON   " (code, firstName, LastNamePaternal ) VALUES  ('" DEFAULT_PERSON_CODE "' , '" DEFAULT_PERSON_NAME "', '" DEFAULT_PERSON_NAME "');"
 #define PERSON_CODE 0
 #define PERSON_FIRSTNAME 1
 #define PERSON_SECONDNAME 2
@@ -71,7 +75,8 @@
 #define PERSON_TUTOR 13
 
 #define ADMIN           NAME_TABLE_ADMIN    " (id SERIAL PRIMARY KEY, admin VARCHAR (10) REFERENCES Person (code), pass TEXT NOT NULL );"
-#define DEFAULT_ADMIN   NAME_TABLE_ADMIN    " (admin, pass) VALUES ( '999', '123');"
+#define DEFAULT_ADMIN   NAME_TABLE_ADMIN    " (admin, pass) VALUES ( '" DEFAULT_PERSON_CODE "', '" DEFAULT_PERSON_PASS"');"
+
 #define ADMIN_ID 0
 #define ADMIN_PERSON 1
 #define ADMIN_PASS 2
@@ -83,9 +88,8 @@
 #define INSERT_INTO "INSERT INTO "
 
 #define EXISTS_PERSON "SELECT CODE FROM " NAME_TABLE_PERSON " WHERE CODE LIKE "
-
-//#define
-
+#define EXISTS_ADMIN "SELECT PASS FROM " NAME_TABLE_ADMIN " WHERE ADMIN LIKE "
+#define EXISTS_ADMIN_PASS 0
 
 #define QUERY_SELECT_ALL "SELECT * FROM "
 
@@ -112,6 +116,7 @@ public:
     //
     bool existsPerson(QString);
     bool addPerson(Personal *);
+    bool checkAdmin(QString, QString);
 
 };
 
