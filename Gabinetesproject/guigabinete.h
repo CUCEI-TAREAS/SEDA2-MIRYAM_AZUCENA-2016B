@@ -31,6 +31,7 @@
 #include "node.h"
 #include "name.h"
 #include "admintask.h"
+#include "widgetregdb.h"
 
 // app
 #define TITLE_ADD_PERSONAL   "Agregar estudiante"
@@ -43,13 +44,6 @@
 #define CONFIGURE_DB    "No se ha configurado un Base de datos"
 #define BODY_CONFIGURE_DB_CAPTUREDB "Configure la conexion al servidor"
 
-#define TITLE_CAPTUREDB "Configuracion de la Base de datos PostgreSQL"
-#define HOST_CAPTUREDB  "Host"
-#define PORT_CAPTUREDB  "Puerto"
-#define USER_CAPTUREDB  "Usuario"
-#define PASS_CAPTUREDB  "Contraseña"
-#define DB_CAPTUREDB    "Nombre de la base de datos para " TITLE_APP " Software"
-#define CONECTAR_CAPTUREDB "Conectar"
 
 #define DEFAULT_HOST "127.0.0.1"
 #define DEFAULT_PORT "5432"
@@ -137,7 +131,6 @@ private:
     *mainAdminLogin = nullptr,
     *mainAdmin = nullptr;
 
-    //QGroupBox *registroGroupLayout = nullptr;
 
     // registro
     QFormLayout *adminLoginFormLayout = nullptr,
@@ -175,19 +168,13 @@ private:
     *tutorCombobox = nullptr,
     *statusPersonalCombobox = nullptr;
 
-    //capture db
-    QWidget *captureDB = nullptr;
-
-    QLineEdit *hostLine = nullptr,
-    *portLine = nullptr,
-    *userLine = nullptr,
-    *passLine = nullptr,
-    *dbLine = nullptr;
+    WidgetRegDB* capturarDB = nullptr;
 
     // components of admin
 
 
-    void initCaptureDB();
+    // replace from class
+    //void initCaptureDB();
     void initPersonalRegistro(QWidget*, QFormLayout*);
     void initAdminLogin(QWidget*, QFormLayout*);
     void initAdminTask(QWidget*, QFormLayout*);

@@ -7,8 +7,8 @@ GUIGabinete::GUIGabinete()
     db = new Database();
     fileConfig = new ConfigFile();
     if(fileConfig->getStatusFile() < EXISTS ){
-        initCaptureDB();
-        QMessageBox::warning(captureDB, CONFIGURE_DB, BODY_CONFIGURE_DB_CAPTUREDB, 1, 2);
+        capturarDB = new WidgetRegDB();
+        QMessageBox::warning(capturarDB, CONFIGURE_DB, BODY_CONFIGURE_DB_CAPTUREDB, 1, 2);
         status =  SETUPDB;
     } else {
         if ( db->connectDB(fileConfig->getHost(), fileConfig->getPort(), fileConfig->getUser(), fileConfig->getPass(), fileConfig->getNameDB())){
@@ -33,59 +33,6 @@ QString GUIGabinete::getIdCareerFromList(QString career)
         node = node->next;
     }
     return CAREER_NO_VERIFY;
-}
-
-
-void GUIGabinete::initCaptureDB()
-{
-    QLabel  *hostLabel,
-            *portLabel,
-            *userLabel,
-            *passLabel,
-            *dbLabel;
-
-    QVBoxLayout *layout = new QVBoxLayout(captureDB);
-    QPushButton *conectar =  new QPushButton(CONECTAR_CAPTUREDB, captureDB);
-
-    hostLabel = new QLabel(HOST_CAPTUREDB, captureDB);
-    portLabel = new QLabel(PORT_CAPTUREDB, captureDB);
-    userLabel = new QLabel(USER_CAPTUREDB, captureDB);
-    passLabel = new QLabel(PASS_CAPTUREDB, captureDB);
-    dbLabel = new QLabel(DB_CAPTUREDB, captureDB);
-
-    hostLine = new QLineEdit(DEFAULT_HOST, captureDB);
-    portLine = new QLineEdit(DEFAULT_PORT, captureDB);
-    userLine = new QLineEdit(DEFAULT_USER, captureDB);
-    passLine = new QLineEdit(captureDB);
-    passLine->setEchoMode(QLineEdit::Password);
-    dbLine = new QLineEdit(DEFAULT_DB, captureDB);
-
-    layout->addWidget(hostLabel, 1);
-    layout->addWidget(hostLine, 2);
-
-    layout->addWidget(portLabel, 3);
-    layout->addWidget(portLine, 4);
-
-    layout->addWidget(userLabel, 5);
-    layout->addWidget(userLine, 6);
-
-    layout->addWidget(passLabel, 7);
-    layout->addWidget(passLine, 8);
-
-    layout->addWidget(dbLabel, 9);
-    layout->addWidget(dbLine, 10);
-
-    layout->addWidget(conectar, 11);
-
-    captureDB = new QWidget();
-    captureDB->setMinimumWidth(MINIMUM_WIDTH);
-    captureDB->setLayout(layout);
-    captureDB->setWindowTitle(TITLE_CAPTUREDB);
-
-    // connects
-    connect(conectar, SIGNAL(clicked()), this,  SLOT(connectDB()));
-    connect(this, SIGNAL(fileConfigReady()), this, SLOT(deleteCaptureDB()));
-    captureDB->show();
 }
 
 void GUIGabinete::initPersonalRegistro(QWidget* widget, QFormLayout *layout)
@@ -148,7 +95,7 @@ void GUIGabinete::initPersonalRegistro(QWidget* widget, QFormLayout *layout)
 
 void GUIGabinete::initAdminLogin(QWidget *widget, QFormLayout *layout)
 {
-    QPushButton *log = nullptr;
+/*    QPushButton *log = nullptr;
     QLabel *userLabel = nullptr,
             *passLabel = nullptr;
 
@@ -168,6 +115,7 @@ void GUIGabinete::initAdminLogin(QWidget *widget, QFormLayout *layout)
     widget->setLayout(layout);
 
     connect(log, SIGNAL(clicked(bool)), this, SLOT(logAdmin()));
+  */
 }
 
 void GUIGabinete::initAdminTask(QWidget *widget, QFormLayout *layout)
@@ -392,10 +340,10 @@ void GUIGabinete::clearRegistro()
 
 void GUIGabinete::deleteCaptureDB()
 {
-    captureDB->hide();
-    captureDB = nullptr;
-    captureDB->deleteLater();
-    delete captureDB;
+    capturarDB->hide();
+    //captureDB = nullptr;
+    //captureDB->deleteLater();
+    //delete captureDB;
 
     addPersonalRegistroWidget();
 }

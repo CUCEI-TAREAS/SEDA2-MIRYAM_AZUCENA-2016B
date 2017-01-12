@@ -17,6 +17,20 @@ int main(int argc, char *argv[])
  * But addes, changes and modify should store directly on DB
  * Then stored, inmediatly load to list on RAM
  *
+ *
+Critical priority
+    // fix initAdminLogin
+    Tickets
+    clean up code [refactor] separate class gabinete
+    update msg pop-up, current  msg are deprecated
+
+    DB
+        When connect is done, but database exists /
+            verify DB and show option [delete.new ] /
+
+        When connect file is create but db is no exists...
+
+
 High priority
 
     done ; message around db is create sicces
@@ -37,6 +51,11 @@ High priority
     logAsAdmin()
     createMeeting() & dateSchedule() // focused available to date
     sendMail()
+
+Features / Improvements
+
+    Export / Import all data
+
 
 Second
     separate every interface from gui gabinete to type class
